@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { revalidatePath } from "next/cache";
 import db from '@/lib/db';
 import { getCurrentAdmin } from "@/lib/auth/auth";
 
@@ -64,6 +65,7 @@ export async function PUT(req: NextRequest) {
       },
     });
 
+    revalidatePath("/", "layout");
     return NextResponse.json({ success: true, settings: updated });
   } catch (error: any) {
     console.error("Update settings error:", error);

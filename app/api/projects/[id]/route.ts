@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { revalidatePath } from "next/cache";
 import db from '@/lib/db';
 import { getCurrentAdmin } from "@/lib/auth/auth";
 
@@ -71,6 +72,8 @@ export async function PUT(
       include: { images: true },
     });
 
+    revalidatePath("/", "page");
+    revalidatePath("/projects", "page");
     return NextResponse.json({ success: true, project: updated });
   } catch (error: any) {
     console.error("Update project error:", error);
@@ -91,6 +94,8 @@ export async function DELETE(
     await db.projects.delete({
       where: { id: params.id },
     });
+    revalidatePath("/", "page");
+    revalidatePath("/projects", "page");
     return NextResponse.json({ success: true, message: "Project deleted successfully" });
   } catch (error: any) {
     return NextResponse.json({ error: "Failed to delete project" }, { status: 500 });

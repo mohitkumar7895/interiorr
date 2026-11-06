@@ -44,6 +44,7 @@ export default function AboutSection({
           src="/logo/ma-emblem.svg"
           alt="Watermark"
           fill
+          sizes="384px"
           className="object-contain"
         />
       </div>
@@ -56,9 +57,11 @@ export default function AboutSection({
               {/* Primary Image */}
               <div className="relative h-[300px] sm:h-[380px] md:h-[440px] rounded-2xl sm:rounded-3xl overflow-hidden border-2 border-brand-gold/40 shadow-2xl">
                 <Image
-                  src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1200&q=85"
+                  src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1200&q=80"
                   alt="Architectural Masterpiece by MA Carpenter"
                   fill
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  quality={80}
                   className="object-cover hover:scale-105 transition-transform duration-700"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-brand-black/80 via-transparent to-transparent" />
@@ -71,6 +74,7 @@ export default function AboutSection({
                         src="/logo/ma-emblem.svg"
                         alt="MA"
                         fill
+                        sizes="40px"
                         className="object-contain"
                       />
                     </div>

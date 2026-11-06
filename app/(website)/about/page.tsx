@@ -82,9 +82,11 @@ export default function AboutPage() {
               <div className="lg:col-span-6 relative">
                 <div className="relative h-[280px] sm:h-[380px] md:h-[480px] rounded-2xl sm:rounded-3xl overflow-hidden border border-brand-gold/40 shadow-2xl">
                   <Image
-                    src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=85"
+                    src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80"
                     alt="MA Carpenter and Interior Luxury Residence"
                     fill
+                    sizes="(max-width: 1024px) 100vw, 50vw"
+                    quality={80}
                     className="object-cover"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-brand-black via-transparent to-transparent" />
@@ -95,6 +97,8 @@ export default function AboutPage() {
                     src="/images/ma-reference-branding.jpg"
                     alt="Brand Identity"
                     fill
+                    sizes="240px"
+                    quality={80}
                     className="object-cover"
                   />
                 </div>

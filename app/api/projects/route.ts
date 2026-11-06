@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { revalidatePath } from "next/cache";
 import db from '@/lib/db';
 import { getCurrentAdmin } from "@/lib/auth/auth";
 
@@ -73,6 +74,8 @@ export async function POST(req: NextRequest) {
       include: { images: true },
     });
 
+    revalidatePath("/", "page");
+    revalidatePath("/projects", "page");
     return NextResponse.json({ success: true, project }, { status: 201 });
   } catch (error: any) {
     console.error("Create project error:", error);

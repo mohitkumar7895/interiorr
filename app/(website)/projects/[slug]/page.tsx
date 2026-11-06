@@ -56,7 +56,7 @@ export async function generateMetadata({ params }: ProjectDetailPageProps): Prom
   };
 }
 
-export const revalidate = 0;
+export const revalidate = 60;
 
 export default async function ProjectDetailPage({ params }: ProjectDetailPageProps) {
   const { slug } = params;
@@ -166,6 +166,8 @@ export default async function ProjectDetailPage({ params }: ProjectDetailPagePro
                     src={project.featuredImage}
                     alt={project.title}
                     fill
+                    sizes="(max-width: 1024px) 100vw, 66vw"
+                    quality={85}
                     className="object-cover"
                     priority
                   />
@@ -189,6 +191,8 @@ export default async function ProjectDetailPage({ params }: ProjectDetailPagePro
                             src={project.beforeImage}
                             alt="Before Renovation"
                             fill
+                            sizes="(max-width: 640px) 100vw, 33vw"
+                            quality={80}
                             className="object-cover"
                           />
                         </div>
@@ -203,6 +207,8 @@ export default async function ProjectDetailPage({ params }: ProjectDetailPagePro
                             src={project.afterImage || project.featuredImage}
                             alt="After Masterpiece"
                             fill
+                            sizes="(max-width: 640px) 100vw, 33vw"
+                            quality={80}
                             className="object-cover"
                           />
                         </div>
@@ -237,6 +243,8 @@ export default async function ProjectDetailPage({ params }: ProjectDetailPagePro
                             src={img.imageUrl}
                             alt={img.caption || `Project View ${idx + 1}`}
                             fill
+                            sizes="(max-width: 640px) 100vw, 33vw"
+                            quality={80}
                             className="object-cover group-hover:scale-105 transition-transform duration-500"
                           />
                           {img.caption && (

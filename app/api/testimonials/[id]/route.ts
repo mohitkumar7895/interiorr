@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { revalidatePath } from "next/cache";
 import db from '@/lib/db';
 import { getCurrentAdmin } from "@/lib/auth/auth";
 
@@ -28,6 +29,7 @@ export async function PUT(
       },
     });
 
+    revalidatePath("/", "page");
     return NextResponse.json({ success: true, testimonial: updated });
   } catch (error: any) {
     return NextResponse.json({ error: error.message || "Failed to update testimonial" }, { status: 500 });
@@ -47,6 +49,7 @@ export async function DELETE(
     await db.testimonials.delete({
       where: { id: params.id },
     });
+    revalidatePath("/", "page");
     return NextResponse.json({ success: true, message: "Testimonial deleted" });
   } catch (error) {
     return NextResponse.json({ error: "Failed to delete testimonial" }, { status: 500 });

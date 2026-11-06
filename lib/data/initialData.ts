@@ -63,11 +63,11 @@ export const INITIAL_SERVICES: ServiceData[] = [
     shortDesc: "End-to-end luxury architectural interior design tailored for bespoke residential and executive lifestyle environments.",
     fullDesc: "MA Carpenter and Interior delivers world-class interior design services for luxury apartments, villas, and commercial spaces across Noida and the NCR. From architectural spatial layout and 3D photorealistic renderings to lighting schematics and curated material selection, we blend timeless craftsmanship with contemporary ergonomics to build spaces that reflect your prestige.",
     icon: "Compass",
-    featuredImage: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1600&q=85",
+    featuredImage: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1600&q=80",
     images: [
-      "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1200&q=85",
-      "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1200&q=85",
-      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=85"
+      "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80"
     ],
     features: [
       "Architectural 3D & 2D Layouts",
@@ -93,11 +93,11 @@ export const INITIAL_SERVICES: ServiceData[] = [
     shortDesc: "German and Italian inspired ergonomic modular kitchens engineered with marine-grade waterproof ply and luxury acrylic/PU finishes.",
     fullDesc: "Cooking becomes an art form in our ergonomically planned modular kitchens. MA Carpenter and Interior builds modular kitchen layouts including Island, L-Shape, Parallel, and U-Shape configs. We use high-density waterproof plywood, quartz/granite stone countertops, Blum and Hettich soft-close hardware, and scratch-resistant acrylic and lacquered glass finishes.",
     icon: "Utensils",
-    featuredImage: "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=1600&q=85",
+    featuredImage: "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=1600&q=80",
     images: [
-      "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=1200&q=85",
-      "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&fit=crop&w=1200&q=85",
-      "https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=1200&q=85"
+      "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=1200&q=80"
     ],
     features: [
       "Waterproof BWP Marine Grade Core",
@@ -123,11 +123,11 @@ export const INITIAL_SERVICES: ServiceData[] = [
     shortDesc: "Sanctuaries of relaxation featuring acoustic wall paneling, integrated headboards, mood lighting, and concealed wardrobe systems.",
     fullDesc: "Your master bedroom should be an intimate haven of serenity. We design complete bedroom interiors including upholstered acoustic wall paneling, custom floating platform beds with hydraulic storage, bespoke nightstands, hidden dressing areas, and ambient layered LED profile illumination.",
     icon: "BedDouble",
-    featuredImage: "https://images.unsplash.com/photo-1616594039964-ae9021a400a0?auto=format&fit=crop&w=1600&q=85",
+    featuredImage: "https://images.unsplash.com/photo-1616594039964-ae9021a400a0?auto=format&fit=crop&w=1600&q=80",
     images: [
-      "https://images.unsplash.com/photo-1616594039964-ae9021a400a0?auto=format&fit=crop&w=1200&q=85",
-      "https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?auto=format&fit=crop&w=1200&q=85",
-      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=1200&q=85"
+      "https://images.unsplash.com/photo-1616594039964-ae9021a400a0?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=1200&q=80"
     ],
     features: [
       "Velvet & Leatherette Upholstered Headboards",
@@ -152,11 +152,11 @@ export const INITIAL_SERVICES: ServiceData[] = [
     shortDesc: "Grand salon aesthetics with Italian marble backdrops, fluted wooden cladding, champagne gold trims, and bespoke modular seating.",
     fullDesc: "Create an unforgettable first impression for your guests. MA Carpenter and Interior specializes in grand living room architecture featuring book-matched Italian marble TV consoles, CNC-cut metallic lattice screens, fluted charcoal and gold accent louvers, and bespoke sectional seating arrangements.",
     icon: "Armchair",
-    featuredImage: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1600&q=85",
+    featuredImage: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1600&q=80",
     images: [
-      "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1200&q=85",
-      "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1200&q=85",
-      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=85"
+      "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80"
     ],
     features: [
       "Book-Matched Italian Marble Feature Walls",
@@ -181,10 +181,10 @@ export const INITIAL_SERVICES: ServiceData[] = [
     shortDesc: "Handcrafted solid teak, sheesham, and engineered hardwood furniture made to measure by seasoned master artisans.",
     fullDesc: "Say goodbye to mass-produced furniture that fails within two years. Our in-house carpenters craft solid wood dining tables, artisanal credenzas, custom ergonomic desks, and statement accent chairs tailored to your exact measurements, fabric selections, and finish tastes.",
     icon: "Hammer",
-    featuredImage: "https://images.unsplash.com/photo-1538688525198-9b88f6f53126?auto=format&fit=crop&w=1600&q=85",
+    featuredImage: "https://images.unsplash.com/photo-1538688525198-9b88f6f53126?auto=format&fit=crop&w=1600&q=80",
     images: [
-      "https://images.unsplash.com/photo-1538688525198-9b88f6f53126?auto=format&fit=crop&w=1200&q=85",
-      "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=1200&q=85"
+      "https://images.unsplash.com/photo-1538688525198-9b88f6f53126?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=1200&q=80"
     ],
     features: [
       "Seasoned Grade-A Solid Teak & Walnut",
@@ -209,10 +209,10 @@ export const INITIAL_SERVICES: ServiceData[] = [
     shortDesc: "Floor-to-ceiling modular sliding, lacquered glass, walk-in closets, and hinged wardrobes with interior sensor illumination.",
     fullDesc: "Organize your life with high-fashion wardrobe designs. We fabricate walk-in dressing suites, tinted reflective glass wardrobes with aluminum gold profiles, floor-to-ceiling sliding sliders, and velvet-lined jewelry drawers that elevate your daily routine.",
     icon: "Sparkles",
-    featuredImage: "https://images.unsplash.com/photo-1558997519-83ea9252def8?auto=format&fit=crop&w=1600&q=85",
+    featuredImage: "https://images.unsplash.com/photo-1558997519-83ea9252def8?auto=format&fit=crop&w=1600&q=80",
     images: [
-      "https://images.unsplash.com/photo-1558997519-83ea9252def8?auto=format&fit=crop&w=1200&q=85",
-      "https://images.unsplash.com/photo-1595428774223-ef52624120d2?auto=format&fit=crop&w=1200&q=85"
+      "https://images.unsplash.com/photo-1558997519-83ea9252def8?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1595428774223-ef52624120d2?auto=format&fit=crop&w=1200&q=80"
     ],
     features: [
       "Tinted Fluted Glass with Rose Gold Aluminum Frames",
@@ -237,10 +237,10 @@ export const INITIAL_SERVICES: ServiceData[] = [
     shortDesc: "Statement entertainment media walls combining fluted panels, backlit onyx/marble, and floating storage drawers.",
     fullDesc: "Upgrade your entertainment experience with custom television consoles and media feature walls. We integrate acoustic back-panels, concealed conduit cable management, floating consoles, and dimmable accent lighting for theater-grade elegance.",
     icon: "Tv",
-    featuredImage: "https://images.unsplash.com/photo-1593784991095-a205069470b6?auto=format&fit=crop&w=1600&q=85",
+    featuredImage: "https://images.unsplash.com/photo-1593784991095-a205069470b6?auto=format&fit=crop&w=1600&q=80",
     images: [
-      "https://images.unsplash.com/photo-1593784991095-a205069470b6?auto=format&fit=crop&w=1200&q=85",
-      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=85"
+      "https://images.unsplash.com/photo-1593784991095-a205069470b6?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80"
     ],
     features: [
       "Backlit Translucent Onyx & Italian Marble",
@@ -265,10 +265,10 @@ export const INITIAL_SERVICES: ServiceData[] = [
     shortDesc: "Productive, executive office environments, CEO cabins, and corporate conference rooms designed to impress clients.",
     fullDesc: "Impress your corporate visitors and empower team productivity with MA Carpenter and Interior's corporate and home-office solutions. From sleek CEO desks with brass inlays to acoustic meeting pods and ergonomic workstations, we craft commercial prestige.",
     icon: "Briefcase",
-    featuredImage: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1600&q=85",
+    featuredImage: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1600&q=80",
     images: [
-      "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&q=85",
-      "https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&w=1200&q=85"
+      "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&w=1200&q=80"
     ],
     features: [
       "Executive Solid Hardwood Desk Suites",
@@ -293,9 +293,9 @@ export const INITIAL_SERVICES: ServiceData[] = [
     shortDesc: "Architectural Gyproc POP false ceilings with magnetic track lighting, cove illumination, and wooden rafters.",
     fullDesc: "Ceilings are your room's fifth wall. We install precision Saint-Gobain Gyproc false ceilings with recessed magnetic track lights, perimeter warm white cove lighting, acoustic wooden rafters, and zero-crack seamless finishes.",
     icon: "Layers",
-    featuredImage: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1600&q=85",
+    featuredImage: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1600&q=80",
     images: [
-      "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1200&q=85"
+      "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1200&q=80"
     ],
     features: [
       "Original Saint-Gobain Gyproc Sheets & Framing",
@@ -320,10 +320,10 @@ export const INITIAL_SERVICES: ServiceData[] = [
     shortDesc: "Comprehensive end-to-end turnkey interior transformation from bare shell to luxury move-in ready residence.",
     fullDesc: "Experience seamless peace of mind with our turnkey home interior package. We take full responsibility for civil alterations, false ceilings, plumbing, electricals, modular kitchen, wardrobes, custom carpentry, painting, wallpaper, and final deep-cleaning.",
     icon: "Home",
-    featuredImage: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=85",
+    featuredImage: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=80",
     images: [
-      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=85",
-      "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1200&q=85"
+      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1200&q=80"
     ],
     features: [
       "Dedicated On-Site Project Architect",
@@ -348,9 +348,9 @@ export const INITIAL_SERVICES: ServiceData[] = [
     shortDesc: "On-site master carpentry for door frame fixing, structural partitions, repair, hardware alignment, and fitting.",
     fullDesc: "Backed by years of heritage carpentry in Noida, our experienced wood artisans offer professional carpentry services. We repair jammed doors, align sagging modular hinges, replace damaged laminates, install heavy main doors, and construct custom room dividers.",
     icon: "Wrench",
-    featuredImage: "https://images.unsplash.com/photo-1581783342308-f792dbdd27c5?auto=format&fit=crop&w=1600&q=85",
+    featuredImage: "https://images.unsplash.com/photo-1581783342308-f792dbdd27c5?auto=format&fit=crop&w=1600&q=80",
     images: [
-      "https://images.unsplash.com/photo-1581783342308-f792dbdd27c5?auto=format&fit=crop&w=1200&q=85"
+      "https://images.unsplash.com/photo-1581783342308-f792dbdd27c5?auto=format&fit=crop&w=1200&q=80"
     ],
     features: [
       "Door Frame & Heavy Entrance Teak Door Installation",
@@ -375,9 +375,9 @@ export const INITIAL_SERVICES: ServiceData[] = [
     shortDesc: "Fine architectural woodwork, fluted wooden columns, wood wall cladding, intricate jali partitions, and pergolas.",
     fullDesc: "Add organic warmth and grandeur with bespoke architectural woodwork. From solid wood pergolas on terraces to intricate CNC wood jali dividers and fluted wood accent columns, MA Carpenter and Interior crafts wood into pure art.",
     icon: "Box",
-    featuredImage: "https://images.unsplash.com/photo-1540518614846-7ede433c4570?auto=format&fit=crop&w=1600&q=85",
+    featuredImage: "https://images.unsplash.com/photo-1540518614846-7ede433c4570?auto=format&fit=crop&w=1600&q=80",
     images: [
-      "https://images.unsplash.com/photo-1540518614846-7ede433c4570?auto=format&fit=crop&w=1200&q=85"
+      "https://images.unsplash.com/photo-1540518614846-7ede433c4570?auto=format&fit=crop&w=1200&q=80"
     ],
     features: [
       "CNC Cut Geometric Wooden Jali Screens",
@@ -408,15 +408,15 @@ export const INITIAL_PROJECTS: ProjectData[] = [
     area: "650 sq.ft",
     shortDesc: "Opulent salon with book-matched Italian marble, fluted charcoal wood paneling, and champagne gold trim.",
     description: "Designed for a distinguished physician family in Sector 120 Noida, this living room was completely overhauled from an empty concrete shell into a grand entertaining hall. The centerpiece is a 12-foot book-matched Statuario marble television wall flanked by vertical fluted louvers finished in deep charcoal and illuminated with recessed 3000K warm gold LED profiles. The false ceiling features nested floating steps with integrated magnetic track fixtures.",
-    featuredImage: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1600&q=85",
-    beforeImage: "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=1200&q=85",
-    afterImage: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1200&q=85",
+    featuredImage: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1600&q=80",
+    beforeImage: "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=1200&q=80",
+    afterImage: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1200&q=80",
     isFeatured: true,
     orderIndex: 1,
     galleryImages: [
-      { imageUrl: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1200&q=85", caption: "Main salon overview showing bookmatched marble feature wall" },
-      { imageUrl: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1200&q=85", caption: "Custom ceiling detail with gold cove lighting" },
-      { imageUrl: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1200&q=85", caption: "Bespoke velvet lounge furniture and fluted coffee tables" }
+      { imageUrl: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1200&q=80", caption: "Main salon overview showing bookmatched marble feature wall" },
+      { imageUrl: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1200&q=80", caption: "Custom ceiling detail with gold cove lighting" },
+      { imageUrl: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1200&q=80", caption: "Bespoke velvet lounge furniture and fluted coffee tables" }
     ]
   },
   {
@@ -429,15 +429,15 @@ export const INITIAL_PROJECTS: ProjectData[] = [
     area: "420 sq.ft",
     shortDesc: "Acoustic fluted wood headboard, floating platform king bed, and glass walk-in wardrobe.",
     description: "A tranquil sanctuary designed for restful sleep and effortless mornings. Featuring an uninterrupted 14-foot wide acoustic fluted wooden headboard wall with integrated bronze reading sconces, a custom hydraulic platform bed crafted from seasoned hardwood, and a walk-in wardrobe enclosed by rose-gold tinted fluted glass sliders with internal sensor-activated illumination.",
-    featuredImage: "https://images.unsplash.com/photo-1616594039964-ae9021a400a0?auto=format&fit=crop&w=1600&q=85",
-    beforeImage: "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=1200&q=85",
-    afterImage: "https://images.unsplash.com/photo-1616594039964-ae9021a400a0?auto=format&fit=crop&w=1200&q=85",
+    featuredImage: "https://images.unsplash.com/photo-1616594039964-ae9021a400a0?auto=format&fit=crop&w=1600&q=80",
+    beforeImage: "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=1200&q=80",
+    afterImage: "https://images.unsplash.com/photo-1616594039964-ae9021a400a0?auto=format&fit=crop&w=1200&q=80",
     isFeatured: true,
     orderIndex: 2,
     galleryImages: [
-      { imageUrl: "https://images.unsplash.com/photo-1616594039964-ae9021a400a0?auto=format&fit=crop&w=1200&q=85", caption: "Master king bed with integrated floating nightstands" },
-      { imageUrl: "https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?auto=format&fit=crop&w=1200&q=85", caption: "Acoustic wood panel detail and soft amber lighting" },
-      { imageUrl: "https://images.unsplash.com/photo-1558997519-83ea9252def8?auto=format&fit=crop&w=1200&q=85", caption: "Walk-in wardrobe with velvet-lined organizers" }
+      { imageUrl: "https://images.unsplash.com/photo-1616594039964-ae9021a400a0?auto=format&fit=crop&w=1200&q=80", caption: "Master king bed with integrated floating nightstands" },
+      { imageUrl: "https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?auto=format&fit=crop&w=1200&q=80", caption: "Acoustic wood panel detail and soft amber lighting" },
+      { imageUrl: "https://images.unsplash.com/photo-1558997519-83ea9252def8?auto=format&fit=crop&w=1200&q=80", caption: "Walk-in wardrobe with velvet-lined organizers" }
     ]
   },
   {
@@ -450,14 +450,14 @@ export const INITIAL_PROJECTS: ProjectData[] = [
     area: "280 sq.ft",
     shortDesc: "German-engineered modular kitchen featuring Calacatta gold quartz and matte black acrylic cabinetry.",
     description: "Engineered for a culinary enthusiast, this modular kitchen pairs high-gloss and matte anti-fingerprint acrylic finishes with imported Calacatta Gold quartz countertops with waterfall edges. Complete with Blum touch-to-open servo drawers, an expansive breakfast island with under-counter storage, and seamless integrated kitchen appliances.",
-    featuredImage: "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=1600&q=85",
-    beforeImage: "https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&w=1200&q=85",
-    afterImage: "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=1200&q=85",
+    featuredImage: "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=1600&q=80",
+    beforeImage: "https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&w=1200&q=80",
+    afterImage: "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=1200&q=80",
     isFeatured: true,
     orderIndex: 3,
     galleryImages: [
-      { imageUrl: "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=1200&q=85", caption: "Central prep island with waterfall quartz" },
-      { imageUrl: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&fit=crop&w=1200&q=85", caption: "Soft-close Blum hydraulic lift-up overhead cabinets" }
+      { imageUrl: "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=1200&q=80", caption: "Central prep island with waterfall quartz" },
+      { imageUrl: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&fit=crop&w=1200&q=80", caption: "Soft-close Blum hydraulic lift-up overhead cabinets" }
     ]
   },
   {
@@ -470,14 +470,14 @@ export const INITIAL_PROJECTS: ProjectData[] = [
     area: "320 sq.ft",
     shortDesc: "Floor-to-ceiling solid walnut bookshelves with warm LED illumination and executive leather desk.",
     description: "Designed for a Senior Advocate, this private study and home office exudes intellectual gravitas. Features floor-to-ceiling custom solid walnut cabinetry, illuminated book cubbies, a handcrafted executive desk with concealed power grommets, and sound-absorbing herringbone wall slats.",
-    featuredImage: "https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=1600&q=85",
-    beforeImage: "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=1200&q=85",
-    afterImage: "https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=1200&q=85",
+    featuredImage: "https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=1600&q=80",
+    beforeImage: "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=1200&q=80",
+    afterImage: "https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=1200&q=80",
     isFeatured: true,
     orderIndex: 4,
     galleryImages: [
-      { imageUrl: "https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=1200&q=85", caption: "Custom library wall with integrated warm lighting" },
-      { imageUrl: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&q=85", caption: "Artisanal walnut executive desk" }
+      { imageUrl: "https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=1200&q=80", caption: "Custom library wall with integrated warm lighting" },
+      { imageUrl: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&q=80", caption: "Artisanal walnut executive desk" }
     ]
   },
   {
@@ -490,13 +490,13 @@ export const INITIAL_PROJECTS: ProjectData[] = [
     area: "3,200 sq.ft",
     shortDesc: "Modern corporate interior with geometric acoustic ceilings, reception feature wall, and glass conference suites.",
     description: "A turnkey office transformation delivering 40 ergonomic workstations, 3 executive director cabins, a 16-seater boardroom with integrated motorized display lifts, and a striking black-and-gold reception foyer featuring the company's laser-cut brass emblem.",
-    featuredImage: "https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&w=1600&q=85",
-    beforeImage: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&q=85",
-    afterImage: "https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&w=1200&q=85",
+    featuredImage: "https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&w=1600&q=80",
+    beforeImage: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&q=80",
+    afterImage: "https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&w=1200&q=80",
     isFeatured: false,
     orderIndex: 5,
     galleryImages: [
-      { imageUrl: "https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&w=1200&q=85", caption: "Open plan collaboration zone with acoustic baffles" }
+      { imageUrl: "https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&w=1200&q=80", caption: "Open plan collaboration zone with acoustic baffles" }
     ]
   },
   {
@@ -509,13 +509,13 @@ export const INITIAL_PROJECTS: ProjectData[] = [
     area: "Turnkey Furniture",
     shortDesc: "Handcrafted 8-seater live-edge dining table, credenza with brass inlays, and accent armchairs.",
     description: "Custom commissioned furniture collection crafted in our Noida carpentry facility. Highlights include an 8-seater dining table from seasoned single-slab teakwood, a cocktail credenza with fluted doors and brushed gold handles, and velvet occasional chairs.",
-    featuredImage: "https://images.unsplash.com/photo-1538688525198-9b88f6f53126?auto=format&fit=crop&w=1600&q=85",
-    beforeImage: "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=1200&q=85",
-    afterImage: "https://images.unsplash.com/photo-1538688525198-9b88f6f53126?auto=format&fit=crop&w=1200&q=85",
+    featuredImage: "https://images.unsplash.com/photo-1538688525198-9b88f6f53126?auto=format&fit=crop&w=1600&q=80",
+    beforeImage: "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=1200&q=80",
+    afterImage: "https://images.unsplash.com/photo-1538688525198-9b88f6f53126?auto=format&fit=crop&w=1200&q=80",
     isFeatured: false,
     orderIndex: 6,
     galleryImages: [
-      { imageUrl: "https://images.unsplash.com/photo-1538688525198-9b88f6f53126?auto=format&fit=crop&w=1200&q=85", caption: "Solid wood detail with golden accents" }
+      { imageUrl: "https://images.unsplash.com/photo-1538688525198-9b88f6f53126?auto=format&fit=crop&w=1200&q=80", caption: "Solid wood detail with golden accents" }
     ]
   },
   {
@@ -528,13 +528,13 @@ export const INITIAL_PROJECTS: ProjectData[] = [
     area: "3,800 sq.ft",
     shortDesc: "Full turnkey luxury transformation across 4 bedrooms, drawing room, modular kitchen, and terrace deck.",
     description: "A complete turnkey residence executed in 55 days from empty shell to keys-in-hand luxury. Includes complete electrical rewiring, Gyproc designer false ceilings, Italian marble flooring polishing, bespoke modular kitchen with quartz counter, 4 custom bedroom suites with walk-in wardrobes, and an outdoor wooden pergola terrace deck.",
-    featuredImage: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=85",
-    beforeImage: "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=1200&q=85",
-    afterImage: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=85",
+    featuredImage: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=80",
+    beforeImage: "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=1200&q=80",
+    afterImage: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80",
     isFeatured: true,
     orderIndex: 7,
     galleryImages: [
-      { imageUrl: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=85", caption: "Grand double-height foyer with champagne gold accents" }
+      { imageUrl: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80", caption: "Grand double-height foyer with champagne gold accents" }
     ]
   }
 ];
@@ -552,84 +552,84 @@ export const INITIAL_GALLERY_ITEMS: GalleryItemData[] = [
   {
     title: "Modern Minimalist Living Room with Golden Accents",
     categorySlug: "living-room",
-    imageUrl: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1600&q=85",
+    imageUrl: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1600&q=80",
     isFeatured: true,
     orderIndex: 1
   },
   {
     title: "Executive Master Bedroom Suite with Fluted Wood Paneling",
     categorySlug: "bedroom",
-    imageUrl: "https://images.unsplash.com/photo-1616594039964-ae9021a400a0?auto=format&fit=crop&w=1600&q=85",
+    imageUrl: "https://images.unsplash.com/photo-1616594039964-ae9021a400a0?auto=format&fit=crop&w=1600&q=80",
     isFeatured: true,
     orderIndex: 2
   },
   {
     title: "Luxury Island Modular Kitchen with Quartz Breakfast Bar",
     categorySlug: "modular-kitchen",
-    imageUrl: "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=1600&q=85",
+    imageUrl: "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=1600&q=80",
     isFeatured: true,
     orderIndex: 3
   },
   {
     title: "Warm Wood Executive Study & Custom Library Shelf",
     categorySlug: "study-room",
-    imageUrl: "https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=1600&q=85",
+    imageUrl: "https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=1600&q=80",
     isFeatured: true,
     orderIndex: 4
   },
   {
     title: "Rose Gold Profile Tinted Glass Walk-In Wardrobe",
     categorySlug: "luxury-wardrobes",
-    imageUrl: "https://images.unsplash.com/photo-1558997519-83ea9252def8?auto=format&fit=crop&w=1600&q=85",
+    imageUrl: "https://images.unsplash.com/photo-1558997519-83ea9252def8?auto=format&fit=crop&w=1600&q=80",
     isFeatured: true,
     orderIndex: 5
   },
   {
     title: "Handcrafted Teakwood Console & Brass Joinery",
     categorySlug: "custom-woodwork",
-    imageUrl: "https://images.unsplash.com/photo-1538688525198-9b88f6f53126?auto=format&fit=crop&w=1600&q=85",
+    imageUrl: "https://images.unsplash.com/photo-1538688525198-9b88f6f53126?auto=format&fit=crop&w=1600&q=80",
     isFeatured: true,
     orderIndex: 6
   },
   {
     title: "Grand Drawing Room with Italian Statuario TV Wall",
     categorySlug: "living-room",
-    imageUrl: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=85",
+    imageUrl: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=80",
     isFeatured: false,
     orderIndex: 7
   },
   {
     title: "Boutique Hotel-Style Master Bedroom with Cove Lighting",
     categorySlug: "bedroom",
-    imageUrl: "https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?auto=format&fit=crop&w=1600&q=85",
+    imageUrl: "https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?auto=format&fit=crop&w=1600&q=80",
     isFeatured: false,
     orderIndex: 8
   },
   {
     title: "Sleek Handleless Modular Kitchen with Built-in Appliances",
     categorySlug: "modular-kitchen",
-    imageUrl: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&fit=crop&w=1600&q=85",
+    imageUrl: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&fit=crop&w=1600&q=80",
     isFeatured: false,
     orderIndex: 9
   },
   {
     title: "Home Office Pod with Hidden Wire Concealment",
     categorySlug: "study-room",
-    imageUrl: "https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&w=1600&q=85",
+    imageUrl: "https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&w=1600&q=80",
     isFeatured: false,
     orderIndex: 10
   },
   {
     title: "Floor-to-Ceiling High Gloss Sliding Wardrobe Suite",
     categorySlug: "luxury-wardrobes",
-    imageUrl: "https://images.unsplash.com/photo-1595428774223-ef52624120d2?auto=format&fit=crop&w=1600&q=85",
+    imageUrl: "https://images.unsplash.com/photo-1595428774223-ef52624120d2?auto=format&fit=crop&w=1600&q=80",
     isFeatured: false,
     orderIndex: 11
   },
   {
     title: "Artisanal Wooden Wall Paneling & Architectural Louvers",
     categorySlug: "custom-woodwork",
-    imageUrl: "https://images.unsplash.com/photo-1540518614846-7ede433c4570?auto=format&fit=crop&w=1600&q=85",
+    imageUrl: "https://images.unsplash.com/photo-1540518614846-7ede433c4570?auto=format&fit=crop&w=1600&q=80",
     isFeatured: false,
     orderIndex: 12
   }

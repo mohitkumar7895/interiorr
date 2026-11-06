@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { revalidatePath } from "next/cache";
 import db from '@/lib/db';
 import { getCurrentAdmin } from "@/lib/auth/auth";
 
@@ -42,6 +43,8 @@ export async function POST(req: NextRequest) {
       include: { category: true },
     });
 
+    revalidatePath("/", "page");
+    revalidatePath("/gallery", "page");
     return NextResponse.json({ success: true, item }, { status: 201 });
   } catch (error: any) {
     return NextResponse.json({ error: error.message || "Failed to add image" }, { status: 500 });

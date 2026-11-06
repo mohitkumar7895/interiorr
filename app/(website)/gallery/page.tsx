@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     "Explore high-resolution photography of luxury living rooms, master bedrooms, modular kitchens, custom woodwork, and walk-in wardrobes.",
 };
 
-export const revalidate = 0;
+export const revalidate = 60;
 
 export default async function GalleryPage() {
   let galleryItems: any[] = [];

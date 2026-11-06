@@ -27,10 +27,10 @@ export default function HeroSection({
   ctaText = "Explore Our Designs",
   ctaLink = "/projects",
   images = [
-    "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1920&q=85",
-    "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1920&q=85",
-    "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=1920&q=85",
-    "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1920&q=85"
+    "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1920&q=80",
+    "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1920&q=80",
+    "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=1920&q=80",
+    "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1920&q=80"
   ],
 }: HeroSectionProps) {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -61,6 +61,9 @@ export default function HeroSection({
               alt="Luxury Interior Masterpiece"
               fill
               priority={index === 0}
+              loading={index === 0 ? "eager" : "lazy"}
+              sizes="100vw"
+              quality={80}
               className={`object-cover transform transition-transform duration-10000 ${
                 index === currentSlide ? "scale-105" : "scale-100"
               }`}

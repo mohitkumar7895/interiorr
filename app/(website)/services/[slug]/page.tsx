@@ -54,7 +54,7 @@ export async function generateMetadata({ params }: ServiceDetailPageProps): Prom
   };
 }
 
-export const revalidate = 0;
+export const revalidate = 60;
 
 export default async function ServiceDetailPage({ params }: ServiceDetailPageProps) {
   const { slug } = params;
@@ -63,17 +63,16 @@ export default async function ServiceDetailPage({ params }: ServiceDetailPagePro
   let relatedProjects: any[] = [];
 
   try {
-    service = await db.services.findUnique({
-      where: { slug },
-    });
+    const [serviceRes, projectsRes] = await Promise.allSettled([
+      db.services.findUnique({ where: { slug } }),
+      db.projects.findMany({ where: { isPublished: true }, take: 2 }),
+    ]);
 
-    if (service) {
-      relatedProjects = await db.projects.findMany({
-        where: {
-          isPublished: true,
-        },
-        take: 2,
-      });
+    if (serviceRes.status === "fulfilled" && serviceRes.value) {
+      service = serviceRes.value;
+    }
+    if (projectsRes.status === "fulfilled" && projectsRes.value) {
+      relatedProjects = projectsRes.value;
     }
   } catch (err) {
     console.error("Service detail query error:", err);
@@ -211,6 +210,8 @@ export default async function ServiceDetailPage({ params }: ServiceDetailPagePro
                             src={img}
                             alt={`${service.title} Photo ${idx + 1}`}
                             fill
+                            sizes="(max-width: 640px) 100vw, 50vw"
+                            quality={80}
                             className="object-cover hover:scale-105 transition-transform duration-500"
                           />
                         </div>

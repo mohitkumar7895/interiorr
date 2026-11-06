@@ -108,6 +108,8 @@ export default function HomeGallerySection({ items }: HomeGallerySectionProps) {
                 src={item.imageUrl}
                 alt={item.title}
                 fill
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                quality={80}
                 className="object-cover group-hover:scale-110 transition-transform duration-700"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-brand-black/90 via-brand-black/30 to-transparent opacity-80 group-hover:opacity-95 transition-opacity" />
@@ -178,6 +180,8 @@ export default function HomeGallerySection({ items }: HomeGallerySectionProps) {
                 src={filteredItems[activeLightboxIndex].imageUrl}
                 alt={filteredItems[activeLightboxIndex].title}
                 fill
+                sizes="(max-width: 1024px) 95vw, 85vw"
+                quality={85}
                 className="object-contain"
               />
             </div>

@@ -21,6 +21,7 @@ export default function MaLogo({
             src="/logo/ma-emblem.svg"
             alt="MA Carpenter and Interior Logo"
             fill
+            sizes="48px"
             className="object-contain"
             priority
           />
@@ -37,6 +38,7 @@ export default function MaLogo({
             src="/logo/ma-logo.svg"
             alt="MA Carpenter and Interior Logo"
             fill
+            sizes="224px"
             className="object-contain"
             priority
           />
@@ -54,6 +56,7 @@ export default function MaLogo({
           src="/logo/ma-emblem.svg"
           alt="MA Logo"
           fill
+          sizes="48px"
           className="object-contain"
           priority
         />

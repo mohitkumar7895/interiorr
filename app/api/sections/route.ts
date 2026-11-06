@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { revalidatePath } from "next/cache";
 import db from '@/lib/db';
 import { getCurrentAdmin } from "@/lib/auth/auth";
 
@@ -32,6 +33,7 @@ export async function PUT(req: NextRequest) {
       },
     });
 
+    revalidatePath("/", "page");
     return NextResponse.json({ success: true, section: updated });
   } catch (error: any) {
     return NextResponse.json({ error: error.message || "Failed to update section" }, { status: 500 });

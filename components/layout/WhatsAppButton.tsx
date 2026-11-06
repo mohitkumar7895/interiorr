@@ -16,7 +16,7 @@ export default function WhatsAppButton() {
     const handleScroll = () => {
       setHasScrolled(window.scrollY > 150);
     };
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 

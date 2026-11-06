@@ -87,6 +87,8 @@ export default function FeaturedProjectsSection({ projects }: FeaturedProjectsSe
                     src={currentImg}
                     alt={project.title}
                     fill
+                    sizes="(max-width: 1024px) 100vw, 50vw"
+                    quality={80}
                     className="object-cover transition-all duration-700 group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-brand-black/90 via-transparent to-transparent" />

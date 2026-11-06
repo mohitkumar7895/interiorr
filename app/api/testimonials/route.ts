@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { revalidatePath } from "next/cache";
 import db from '@/lib/db';
 import { getCurrentAdmin } from "@/lib/auth/auth";
 
@@ -39,6 +40,7 @@ export async function POST(req: NextRequest) {
       },
     });
 
+    revalidatePath("/", "page");
     return NextResponse.json({ success: true, testimonial: test }, { status: 201 });
   } catch (error: any) {
     return NextResponse.json({ error: error.message || "Failed to create testimonial" }, { status: 500 });

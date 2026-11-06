@@ -18,11 +18,11 @@ import {
   INITIAL_TESTIMONIALS,
 } from "@/lib/data/initialData";
 
-export const revalidate = 0; // Dynamic on every request to reflect Admin updates instantly
+export const revalidate = 60; // Instant response with 60s background ISR; admin mutations purge cache on-demand
 
 export default async function HomePage() {
-  // Fetch SiteSettings
-  let settings = null;
+  // Fetch SiteSettings and page data concurrently in parallel
+  let settings: any = null;
   let homeSections: any[] = [];
   let services: any[] = [];
   let projects: any[] = [];
@@ -30,36 +30,28 @@ export default async function HomePage() {
   let testimonials: any[] = [];
 
   try {
-    settings = await db.siteSettings.findUnique({
-      where: { id: "default" },
-    });
+    const [
+      settingsRes,
+      sectionsRes,
+      servicesRes,
+      projectsRes,
+      galleryRes,
+      testimonialsRes,
+    ] = await Promise.allSettled([
+      db.siteSettings.findUnique({ where: { id: "default" } }),
+      db.homeSections.findMany({ orderBy: { orderIndex: "asc" } }),
+      db.services.findMany({ where: { isPublished: true }, orderBy: { orderIndex: "asc" } }),
+      db.projects.findMany({ where: { isPublished: true }, orderBy: { orderIndex: "asc" }, take: 6 }),
+      db.gallery.findMany({ where: { isFeatured: true }, include: { category: true }, orderBy: { orderIndex: "asc" }, take: 9 }),
+      db.testimonials.findMany({ where: { isPublished: true }, orderBy: { orderIndex: "asc" } }),
+    ]);
 
-    homeSections = await db.homeSections.findMany({
-      orderBy: { orderIndex: "asc" },
-    });
-
-    services = await db.services.findMany({
-      where: { isPublished: true },
-      orderBy: { orderIndex: "asc" },
-    });
-
-    projects = await db.projects.findMany({
-      where: { isPublished: true },
-      orderBy: { orderIndex: "asc" },
-      take: 6,
-    });
-
-    galleryItems = await db.gallery.findMany({
-      where: { isFeatured: true },
-      include: { category: true },
-      orderBy: { orderIndex: "asc" },
-      take: 9,
-    });
-
-    testimonials = await db.testimonials.findMany({
-      where: { isPublished: true },
-      orderBy: { orderIndex: "asc" },
-    });
+    if (settingsRes.status === "fulfilled" && settingsRes.value) settings = settingsRes.value;
+    if (sectionsRes.status === "fulfilled" && sectionsRes.value) homeSections = sectionsRes.value;
+    if (servicesRes.status === "fulfilled" && servicesRes.value) services = servicesRes.value;
+    if (projectsRes.status === "fulfilled" && projectsRes.value) projects = projectsRes.value;
+    if (galleryRes.status === "fulfilled" && galleryRes.value) galleryItems = galleryRes.value;
+    if (testimonialsRes.status === "fulfilled" && testimonialsRes.value) testimonials = testimonialsRes.value;
   } catch (error) {
     console.error("Database query fallback in HomePage:", error);
   }
@@ -68,9 +60,9 @@ export default async function HomePage() {
   const heroImages = settings?.heroImages
     ? JSON.parse(settings.heroImages)
     : [
-        "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1920&q=85",
-        "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1920&q=85",
-        "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=1920&q=85",
+        "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1920&q=80",
+        "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1920&q=80",
+        "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=1920&q=80",
       ];
 
   const displayServices =

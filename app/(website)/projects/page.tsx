@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     "Explore our luxury interior design and carpentry project transformations in Noida, Sector 120, and Delhi NCR with before/after photography.",
 };
 
-export const revalidate = 0;
+export const revalidate = 60;
 
 export default async function ProjectsPage() {
   let projects: any[] = [];

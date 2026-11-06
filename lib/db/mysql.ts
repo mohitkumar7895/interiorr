@@ -23,6 +23,7 @@ export const pool: mysql.Pool =
     waitForConnections: true,
     connectionLimit: 15,
     queueLimit: 0,
+    connectTimeout: 2000,
     enableKeepAlive: true,
     keepAliveInitialDelay: 0,
     charset: "utf8mb4",
@@ -32,10 +33,30 @@ if (process.env.NODE_ENV !== "production") {
   global.globalMysqlPool = pool;
 }
 
+// Track temporary database failure to fail fast without blocking requests
+let lastDbFailure = 0;
+const DB_COOLDOWN_MS = 15000;
+
 // Generic query helper
 export async function query<T = any>(sql: string, params: any[] = []): Promise<T[]> {
-  const [rows] = await pool.query(sql, params);
-  return rows as T[];
+  if (lastDbFailure && Date.now() - lastDbFailure < DB_COOLDOWN_MS) {
+    throw new Error("Database temporarily unreachable (in cooldown)");
+  }
+  try {
+    const [rows] = await pool.query(sql, params);
+    lastDbFailure = 0;
+    return rows as T[];
+  } catch (err: any) {
+    if (
+      err?.code === "ECONNREFUSED" ||
+      err?.code === "ETIMEDOUT" ||
+      err?.code === "PROTOCOL_CONNECTION_LOST" ||
+      err?.code === "ENOTFOUND"
+    ) {
+      lastDbFailure = Date.now();
+    }
+    throw err;
+  }
 }
 
 // Single row helper
@@ -46,8 +67,24 @@ export async function queryOne<T = any>(sql: string, params: any[] = []): Promis
 
 // Execute helper (INSERT, UPDATE, DELETE)
 export async function execute(sql: string, params: any[] = []): Promise<mysql.ResultSetHeader> {
-  const [result] = await pool.execute(sql, params);
-  return result as mysql.ResultSetHeader;
+  if (lastDbFailure && Date.now() - lastDbFailure < DB_COOLDOWN_MS) {
+    throw new Error("Database temporarily unreachable (in cooldown)");
+  }
+  try {
+    const [result] = await pool.execute(sql, params);
+    lastDbFailure = 0;
+    return result as mysql.ResultSetHeader;
+  } catch (err: any) {
+    if (
+      err?.code === "ECONNREFUSED" ||
+      err?.code === "ETIMEDOUT" ||
+      err?.code === "PROTOCOL_CONNECTION_LOST" ||
+      err?.code === "ENOTFOUND"
+    ) {
+      lastDbFailure = Date.now();
+    }
+    throw err;
+  }
 }
 
 // Database Schema Table Creator for MySQL

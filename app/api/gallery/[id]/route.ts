@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { revalidatePath } from "next/cache";
 import db from '@/lib/db';
 import { getCurrentAdmin } from "@/lib/auth/auth";
 
@@ -15,6 +16,8 @@ export async function DELETE(
     await db.gallery.delete({
       where: { id: params.id },
     });
+    revalidatePath("/", "page");
+    revalidatePath("/gallery", "page");
     return NextResponse.json({ success: true, message: "Gallery image deleted" });
   } catch (error) {
     return NextResponse.json({ error: "Failed to delete image" }, { status: 500 });
@@ -43,6 +46,8 @@ export async function PATCH(
       },
     });
 
+    revalidatePath("/", "page");
+    revalidatePath("/gallery", "page");
     return NextResponse.json({ success: true, item: updated });
   } catch (error) {
     return NextResponse.json({ error: "Failed to update item" }, { status: 500 });
