@@ -1,0 +1,127 @@
+<svg viewBox="0 0 500 420" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-auto">
+  <defs>
+    <!-- Premium 3D Gold Gradients -->
+    <linearGradient id="goldRoof" x1="50" y1="20" x2="450" y2="180" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#FFF2B2" />
+      <stop offset="25%" stop-color="#F5D58A" />
+      <stop offset="50%" stop-color="#D9A441" />
+      <stop offset="75%" stop-color="#B8832A" />
+      <stop offset="100%" stop-color="#F7DF94" />
+    </linearGradient>
+
+    <linearGradient id="goldLetter" x1="120" y1="80" x2="380" y2="280" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#FFF8D6" />
+      <stop offset="20%" stop-color="#F7DF94" />
+      <stop offset="50%" stop-color="#D9A441" />
+      <stop offset="80%" stop-color="#9E6E1A" />
+      <stop offset="100%" stop-color="#E5BE53" />
+    </linearGradient>
+
+    <linearGradient id="goldBase" x1="50" y1="280" x2="450" y2="340" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#D9A441" />
+      <stop offset="50%" stop-color="#FFF0A5" />
+      <stop offset="100%" stop-color="#A4741E" />
+    </linearGradient>
+
+    <filter id="goldGlow" x="-10%" y="-10%" width="120%" height="120%" filterUnits="userSpaceOnUse">
+      <feGaussianBlur stdDeviation="3" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+
+    <filter id="metallicBevel" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="1" dy="2" stdDeviation="2" flood-color="#000000" flood-opacity="0.8" />
+      <feDropShadow dx="-1" dy="-1" stdDeviation="1" flood-color="#FFEAA7" flood-opacity="0.5" />
+    </filter>
+  </defs>
+
+  <!-- Roofline Structure -->
+  <!-- Chimney on left -->
+  <path d="M 120 100 L 120 48 L 138 48 L 138 82" stroke="url(#goldRoof)" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+  
+  <!-- Main Gabled Peak Outer -->
+  <path d="M 55 165 L 250 25 L 445 165" stroke="url(#goldRoof)" stroke-width="11" stroke-linecap="round" stroke-linejoin="round" fill="none" filter="url(#metallicBevel)" />
+  
+  <!-- Main Gabled Peak Inner Accent -->
+  <path d="M 80 162 L 250 46 L 420 162" stroke="url(#goldRoof)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity="0.85" />
+
+  <!-- 4-Pane Window at the Peak -->
+  <g transform="translate(236, 68)" stroke="url(#goldRoof)" stroke-width="2.5" fill="#D9A441" fill-opacity="0.15">
+    <rect x="0" y="0" width="11" height="11" rx="1" />
+    <rect x="15" y="0" width="11" height="11" rx="1" />
+    <rect x="0" y="15" width="11" height="11" rx="1" />
+    <rect x="15" y="15" width="11" height="11" rx="1" />
+  </g>
+
+  <!-- Center MA Letters Typography -->
+  <!-- Letter M -->
+  <g filter="url(#metallicBevel)">
+    <!-- M Left Stem -->
+    <path d="M 130 250 L 130 115 L 148 115 L 148 250 Z" fill="url(#goldLetter)" />
+    <!-- M Left Serif Top -->
+    <path d="M 120 115 L 158 115 L 158 122 L 120 122 Z" fill="url(#goldRoof)" />
+    <!-- M Left Serif Bottom -->
+    <path d="M 120 244 L 158 244 L 158 250 L 120 250 Z" fill="url(#goldRoof)" />
+
+    <!-- M Diagonals to Peak -->
+    <path d="M 145 115 L 205 215 L 225 215 L 165 115 Z" fill="url(#goldLetter)" />
+    <path d="M 225 215 L 285 115 L 265 115 L 205 215 Z" fill="url(#goldRoof)" opacity="0.9" />
+
+    <!-- M Right Stem (blended into A) -->
+    <path d="M 265 115 L 285 115 L 285 250 L 265 250 Z" fill="url(#goldLetter)" />
+    <path d="M 255 244 L 295 244 L 295 250 L 255 250 Z" fill="url(#goldRoof)" />
+  </g>
+
+  <!-- Letter A -->
+  <g filter="url(#metallicBevel)">
+    <!-- A Left Diagonal -->
+    <path d="M 255 250 L 325 115 L 345 115 L 275 250 Z" fill="url(#goldLetter)" />
+    <!-- A Right Diagonal -->
+    <path d="M 330 115 L 400 250 L 375 250 L 315 125 Z" fill="url(#goldRoof)" />
+    <!-- A Crossbar -->
+    <path d="M 285 198 L 355 198 L 358 208 L 282 208 Z" fill="url(#goldLetter)" />
+    <!-- A Top Serif -->
+    <path d="M 315 115 L 355 115 L 355 121 L 315 121 Z" fill="url(#goldRoof)" />
+    <!-- A Bottom Right Serif -->
+    <path d="M 365 244 L 405 244 L 405 250 L 365 250 Z" fill="url(#goldRoof)" />
+  </g>
+
+  <!-- Swoop / Base Arc Underneath MA -->
+  <path d="M 65 258 Q 250 295 435 258 Q 250 282 65 258 Z" fill="url(#goldBase)" filter="url(#goldGlow)" />
+  <path d="M 75 264 Q 250 299 425 264" stroke="url(#goldRoof)" stroke-width="2" fill="none" opacity="0.7" />
+
+  <!-- Botanical Plant accents left & right -->
+  <!-- Left Plant -->
+  <g transform="translate(85, 205)" stroke="url(#goldRoof)" stroke-width="2.5" fill="none">
+    <path d="M 12 35 C 12 15, -5 5, -8 -5" />
+    <path d="M 12 35 C 12 10, 8 0, 5 -12" />
+    <path d="M 12 35 C 12 15, 25 5, 30 -6" />
+    <ellipse cx="12" cy="38" rx="8" ry="4" fill="url(#goldLetter)" />
+  </g>
+  <!-- Right Plant -->
+  <g transform="translate(390, 205)" stroke="url(#goldRoof)" stroke-width="2.5" fill="none">
+    <path d="M 12 35 C 12 15, -5 5, -8 -5" />
+    <path d="M 12 35 C 12 10, 8 0, 5 -12" />
+    <path d="M 12 35 C 12 15, 25 5, 30 -6" />
+    <ellipse cx="12" cy="38" rx="8" ry="4" fill="url(#goldLetter)" />
+  </g>
+
+  <!-- Main Business Name Typography -->
+  <text x="250" y="325" text-anchor="middle" font-family="'Cinzel', 'Playfair Display', Georgia, serif" font-size="27" font-weight="800" letter-spacing="4" fill="url(#goldRoof)" filter="url(#metallicBevel)">
+    MA CARPENTER AND INTERIOR
+  </text>
+
+  <!-- Divider Line with Diamond -->
+  <path d="M 60 348 L 210 348 M 290 348 L 440 348" stroke="url(#goldRoof)" stroke-width="1.8" stroke-linecap="round" />
+  <polygon points="250,342 256,348 250,354 244,348" fill="url(#goldLetter)" />
+
+  <!-- Subtitle Category -->
+  <text x="250" y="370" text-anchor="middle" font-family="'Plus Jakarta Sans', Arial, sans-serif" font-size="13" font-weight="700" letter-spacing="5" fill="#E5BE53">
+    CARPENTER AND INTERIOR
+  </text>
+
+  <!-- Tagline Script / Flourish -->
+  <text x="250" y="400" text-anchor="middle" font-family="'Playfair Display', Georgia, serif" font-style="italic" font-size="14" letter-spacing="1" fill="#FFF0A5">
+    — Designing Spaces, Defining Lifestyles —
+  </text>
+</svg>
+

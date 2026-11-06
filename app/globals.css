@@ -1,0 +1,144 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: 0 0% 3%;
+  --foreground: 45 40% 95%;
+  --card: 0 0% 6%;
+  --card-foreground: 45 40% 95%;
+  --popover: 0 0% 6%;
+  --popover-foreground: 45 40% 95%;
+  --primary: 40 68% 55%;
+  --primary-foreground: 0 0% 5%;
+  --secondary: 0 0% 12%;
+  --secondary-foreground: 45 40% 95%;
+  --muted: 0 0% 15%;
+  --muted-foreground: 40 10% 65%;
+  --accent: 40 68% 55%;
+  --accent-foreground: 0 0% 5%;
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 0 0% 98%;
+  --border: 40 30% 20%;
+  --input: 0 0% 18%;
+  --ring: 40 68% 55%;
+  --radius: 0.5rem;
+}
+
+* {
+  border-color: hsl(var(--border));
+}
+
+html {
+  scroll-behavior: smooth;
+  color-scheme: dark;
+}
+
+body {
+  background-color: #080808;
+  color: #F7F0E5;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  overflow-x: hidden;
+  selection-background-color: #D9A441;
+  selection-color: #080808;
+}
+
+::selection {
+  background-color: #D9A441;
+  color: #080808;
+}
+
+/* Custom Gold Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0d0d0d;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #3a2e18;
+  border-radius: 4px;
+  border: 1px solid rgba(217, 164, 65, 0.3);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #D9A441;
+}
+
+/* Luxury Typography */
+h1, h2, h3, .font-serif-luxury {
+  font-family: 'Cinzel', 'Playfair Display', Georgia, serif;
+}
+
+/* Gold Gradient Text */
+.gold-text-gradient {
+  background: linear-gradient(135deg, #FFF2B2 0%, #F5D58A 25%, #D9A441 55%, #B8832A 85%, #E5BE53 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.gold-border-gradient {
+  border-image: linear-gradient(135deg, #F5D58A, #D9A441, #8A5A0F) 1;
+}
+
+/* Shimmer animation */
+@keyframes goldShimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.gold-shimmer {
+  background: linear-gradient(90deg, rgba(217,164,65,0.05) 0%, rgba(245,213,138,0.2) 50%, rgba(217,164,65,0.05) 100%);
+  background-size: 200% 100%;
+  animation: goldShimmer 3s infinite linear;
+}
+
+/* Subtle Card Glow */
+.gold-glow-hover {
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.gold-glow-hover:hover {
+  border-color: rgba(217, 164, 65, 0.6);
+  box-shadow: 0 8px 30px rgba(217, 164, 65, 0.18);
+  transform: translateY(-3px);
+}
+
+/* Mobile & Touch Responsiveness Utilities */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Touch & tap responsiveness */
+button, a, input, select, textarea {
+  touch-action: manipulation;
+}
+
+/* Mobile viewport width stabilization */
+html, body {
+  max-width: 100vw;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* iOS input auto-zoom prevention */
+@media screen and (max-width: 768px) {
+  input, select, textarea {
+    font-size: 16px !important;
+  }
+}
+
+
