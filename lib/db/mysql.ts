@@ -5,12 +5,27 @@ declare global {
   var globalMysqlPool: mysql.Pool | undefined;
 }
 
-// Parse connection options
-const dbHost = process.env.MYSQL_HOST || "localhost";
-const dbPort = parseInt(process.env.MYSQL_PORT || "3306");
-const dbUser = process.env.MYSQL_USER || "root";
-const dbPassword = process.env.MYSQL_PASSWORD || "";
-const dbDatabase = process.env.MYSQL_DATABASE || "interior";
+// Parse connection options from DATABASE_URL or individual variables
+let dbHost = process.env.MYSQL_HOST || "localhost";
+let dbPort = parseInt(process.env.MYSQL_PORT || "3306");
+let dbUser = process.env.MYSQL_USER || "root";
+let dbPassword = process.env.MYSQL_PASSWORD || "";
+let dbDatabase = process.env.MYSQL_DATABASE || "interior";
+
+if (process.env.DATABASE_URL && process.env.DATABASE_URL.startsWith("mysql://")) {
+  try {
+    const parsed = new URL(process.env.DATABASE_URL);
+    dbHost = parsed.hostname || dbHost;
+    dbPort = parsed.port ? parseInt(parsed.port) : dbPort;
+    dbUser = decodeURIComponent(parsed.username || dbUser);
+    dbPassword = decodeURIComponent(parsed.password || dbPassword);
+    dbDatabase = parsed.pathname.replace(/^\//, "") || dbDatabase;
+  } catch (err) {
+    console.warn("Failed to parse DATABASE_URL, using individual env vars:", err);
+  }
+}
+
+const isSsl = process.env.MYSQL_SSL === "true" || process.env.MYSQL_SSL === "1";
 
 export const pool: mysql.Pool =
   global.globalMysqlPool ||
@@ -21,12 +36,13 @@ export const pool: mysql.Pool =
     password: dbPassword,
     database: dbDatabase,
     waitForConnections: true,
-    connectionLimit: 15,
+    connectionLimit: 10,
     queueLimit: 0,
-    connectTimeout: 2000,
+    connectTimeout: 10000,
     enableKeepAlive: true,
     keepAliveInitialDelay: 0,
     charset: "utf8mb4",
+    ssl: isSsl ? { rejectUnauthorized: false } : undefined,
   });
 
 if (process.env.NODE_ENV !== "production") {
@@ -35,7 +51,7 @@ if (process.env.NODE_ENV !== "production") {
 
 // Track temporary database failure to fail fast without blocking requests
 let lastDbFailure = 0;
-const DB_COOLDOWN_MS = 15000;
+const DB_COOLDOWN_MS = 10000;
 
 // Generic query helper
 export async function query<T = any>(sql: string, params: any[] = []): Promise<T[]> {
@@ -51,7 +67,8 @@ export async function query<T = any>(sql: string, params: any[] = []): Promise<T
       err?.code === "ECONNREFUSED" ||
       err?.code === "ETIMEDOUT" ||
       err?.code === "PROTOCOL_CONNECTION_LOST" ||
-      err?.code === "ENOTFOUND"
+      err?.code === "ENOTFOUND" ||
+      err?.code === "EACCES"
     ) {
       lastDbFailure = Date.now();
     }
@@ -79,7 +96,8 @@ export async function execute(sql: string, params: any[] = []): Promise<mysql.Re
       err?.code === "ECONNREFUSED" ||
       err?.code === "ETIMEDOUT" ||
       err?.code === "PROTOCOL_CONNECTION_LOST" ||
-      err?.code === "ENOTFOUND"
+      err?.code === "ENOTFOUND" ||
+      err?.code === "EACCES"
     ) {
       lastDbFailure = Date.now();
     }
@@ -139,15 +157,13 @@ export async function initDatabaseTables() {
   await execute(`
     CREATE TABLE IF NOT EXISTS HomeSections (
       id VARCHAR(36) PRIMARY KEY,
-      sectionKey VARCHAR(100) NOT NULL UNIQUE,
+      sectionKey VARCHAR(50) NOT NULL UNIQUE,
       title VARCHAR(191) NOT NULL,
-      subtitle TEXT,
       isEnabled BOOLEAN DEFAULT TRUE,
       orderIndex INT DEFAULT 0,
-      contentJson TEXT,
       createdAt DATETIME(3) DEFAULT CURRENT_TIMESTAMP(3),
       updatedAt DATETIME(3) DEFAULT CURRENT_TIMESTAMP(3) ON UPDATE CURRENT_TIMESTAMP(3),
-      INDEX idx_homesections_order (orderIndex)
+      INDEX idx_section_key (sectionKey)
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
   `);
 
@@ -157,21 +173,21 @@ export async function initDatabaseTables() {
       slug VARCHAR(191) NOT NULL UNIQUE,
       title VARCHAR(191) NOT NULL,
       category VARCHAR(100) DEFAULT 'Interior',
-      shortDesc TEXT NOT NULL,
-      fullDesc LONGTEXT NOT NULL,
-      icon VARCHAR(100) DEFAULT 'Hammer',
-      featuredImage TEXT NOT NULL,
-      images TEXT,
-      features TEXT,
-      benefits TEXT,
+      shortDesc TEXT,
+      fullDesc LONGTEXT,
+      icon VARCHAR(50) DEFAULT 'Hammer',
+      featuredImage TEXT,
+      images LONGTEXT,
+      features LONGTEXT,
+      benefits LONGTEXT,
       seoTitle VARCHAR(255),
       seoDesc TEXT,
       isPublished BOOLEAN DEFAULT TRUE,
       orderIndex INT DEFAULT 0,
       createdAt DATETIME(3) DEFAULT CURRENT_TIMESTAMP(3),
       updatedAt DATETIME(3) DEFAULT CURRENT_TIMESTAMP(3) ON UPDATE CURRENT_TIMESTAMP(3),
-      INDEX idx_services_slug (slug),
-      INDEX idx_services_published (isPublished, orderIndex)
+      INDEX idx_service_slug (slug),
+      INDEX idx_service_published (isPublished)
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
   `);
 
@@ -180,24 +196,23 @@ export async function initDatabaseTables() {
       id VARCHAR(36) PRIMARY KEY,
       slug VARCHAR(191) NOT NULL UNIQUE,
       title VARCHAR(191) NOT NULL,
-      category VARCHAR(100) NOT NULL,
+      category VARCHAR(100) DEFAULT 'Living Room',
       client VARCHAR(191),
-      location VARCHAR(191) DEFAULT 'Noida, NCR',
+      location VARCHAR(191) DEFAULT 'Sector 120, Noida',
       completedDate VARCHAR(100),
       area VARCHAR(100) DEFAULT '1,850 sq.ft',
-      shortDesc TEXT NOT NULL,
-      description LONGTEXT NOT NULL,
-      featuredImage TEXT NOT NULL,
+      shortDesc TEXT,
+      description LONGTEXT,
+      featuredImage TEXT,
       beforeImage TEXT,
       afterImage TEXT,
-      isPublished BOOLEAN DEFAULT TRUE,
       isFeatured BOOLEAN DEFAULT FALSE,
+      isPublished BOOLEAN DEFAULT TRUE,
       orderIndex INT DEFAULT 0,
       createdAt DATETIME(3) DEFAULT CURRENT_TIMESTAMP(3),
       updatedAt DATETIME(3) DEFAULT CURRENT_TIMESTAMP(3) ON UPDATE CURRENT_TIMESTAMP(3),
-      INDEX idx_projects_slug (slug),
-      INDEX idx_projects_category (category),
-      INDEX idx_projects_featured (isPublished, isFeatured)
+      INDEX idx_project_slug (slug),
+      INDEX idx_project_published (isPublished)
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
   `);
 
@@ -209,15 +224,16 @@ export async function initDatabaseTables() {
       caption VARCHAR(255),
       orderIndex INT DEFAULT 0,
       createdAt DATETIME(3) DEFAULT CURRENT_TIMESTAMP(3),
-      INDEX idx_proj_img_project (projectId)
+      INDEX idx_proj_img_project (projectId),
+      CONSTRAINT fk_proj_img_project FOREIGN KEY (projectId) REFERENCES Projects (id) ON DELETE CASCADE
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
   `);
 
   await execute(`
     CREATE TABLE IF NOT EXISTS GalleryCategories (
       id VARCHAR(36) PRIMARY KEY,
+      name VARCHAR(100) NOT NULL,
       slug VARCHAR(100) NOT NULL UNIQUE,
-      name VARCHAR(191) NOT NULL,
       orderIndex INT DEFAULT 0,
       createdAt DATETIME(3) DEFAULT CURRENT_TIMESTAMP(3),
       INDEX idx_gal_cat_slug (slug)
@@ -227,15 +243,32 @@ export async function initDatabaseTables() {
   await execute(`
     CREATE TABLE IF NOT EXISTS Gallery (
       id VARCHAR(36) PRIMARY KEY,
-      title VARCHAR(255) NOT NULL,
-      categoryId VARCHAR(36) NOT NULL,
+      title VARCHAR(191),
+      categoryId VARCHAR(36),
       imageUrl TEXT NOT NULL,
-      thumbnail TEXT,
       isFeatured BOOLEAN DEFAULT FALSE,
       orderIndex INT DEFAULT 0,
       createdAt DATETIME(3) DEFAULT CURRENT_TIMESTAMP(3),
       INDEX idx_gallery_cat (categoryId),
-      INDEX idx_gallery_featured (isFeatured)
+      CONSTRAINT fk_gallery_cat FOREIGN KEY (categoryId) REFERENCES GalleryCategories (id) ON DELETE SET NULL
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `);
+
+  await execute(`
+    CREATE TABLE IF NOT EXISTS Testimonials (
+      id VARCHAR(36) PRIMARY KEY,
+      clientName VARCHAR(191) NOT NULL,
+      clientRole VARCHAR(100) DEFAULT 'Homeowner',
+      clientLocation VARCHAR(191) DEFAULT 'Sector 120, Noida',
+      rating INT DEFAULT 5,
+      reviewText TEXT NOT NULL,
+      avatarUrl TEXT,
+      projectType VARCHAR(100),
+      isFeatured BOOLEAN DEFAULT FALSE,
+      isPublished BOOLEAN DEFAULT TRUE,
+      orderIndex INT DEFAULT 0,
+      createdAt DATETIME(3) DEFAULT CURRENT_TIMESTAMP(3),
+      updatedAt DATETIME(3) DEFAULT CURRENT_TIMESTAMP(3) ON UPDATE CURRENT_TIMESTAMP(3)
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
   `);
 
@@ -245,31 +278,24 @@ export async function initDatabaseTables() {
       name VARCHAR(191) NOT NULL,
       phone VARCHAR(50) NOT NULL,
       email VARCHAR(191),
-      service VARCHAR(100) DEFAULT 'General Consultation',
+      service VARCHAR(100) NOT NULL,
       message TEXT NOT NULL,
       status VARCHAR(50) DEFAULT 'New',
       internalNotes TEXT,
       createdAt DATETIME(3) DEFAULT CURRENT_TIMESTAMP(3),
       updatedAt DATETIME(3) DEFAULT CURRENT_TIMESTAMP(3) ON UPDATE CURRENT_TIMESTAMP(3),
-      INDEX idx_enquiries_status (status),
-      INDEX idx_enquiries_created (createdAt)
+      INDEX idx_enquiry_status (status)
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
   `);
 
   await execute(`
-    CREATE TABLE IF NOT EXISTS Testimonials (
+    CREATE TABLE IF NOT EXISTS ActivityLogs (
       id VARCHAR(36) PRIMARY KEY,
-      clientName VARCHAR(191) NOT NULL,
-      clientRole VARCHAR(100) DEFAULT 'Homeowner',
-      clientLocation VARCHAR(100) DEFAULT 'Sector 120, Noida',
-      avatarUrl TEXT,
-      rating INT DEFAULT 5,
-      reviewText TEXT NOT NULL,
-      isPublished BOOLEAN DEFAULT TRUE,
-      orderIndex INT DEFAULT 0,
-      createdAt DATETIME(3) DEFAULT CURRENT_TIMESTAMP(3),
-      updatedAt DATETIME(3) DEFAULT CURRENT_TIMESTAMP(3) ON UPDATE CURRENT_TIMESTAMP(3),
-      INDEX idx_testimonials_pub (isPublished, orderIndex)
+      action VARCHAR(100) NOT NULL,
+      adminEmail VARCHAR(191) NOT NULL,
+      details TEXT,
+      ipAddress VARCHAR(100),
+      createdAt DATETIME(3) DEFAULT CURRENT_TIMESTAMP(3)
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
   `);
 
@@ -280,12 +306,9 @@ export async function initDatabaseTables() {
       metaTitle VARCHAR(255) NOT NULL,
       metaDesc TEXT NOT NULL,
       keywords TEXT,
-      canonicalUrl TEXT,
+      canonicalUrl VARCHAR(255),
       ogTitle VARCHAR(255),
       ogDesc TEXT,
-      ogImage TEXT,
-      robots VARCHAR(50) DEFAULT 'index, follow',
-      schemaJson TEXT,
       createdAt DATETIME(3) DEFAULT CURRENT_TIMESTAMP(3),
       updatedAt DATETIME(3) DEFAULT CURRENT_TIMESTAMP(3) ON UPDATE CURRENT_TIMESTAMP(3),
       INDEX idx_seo_route (pageRoute)
@@ -293,17 +316,22 @@ export async function initDatabaseTables() {
   `);
 
   await execute(`
-    CREATE TABLE IF NOT EXISTS ActivityLogs (
+    CREATE TABLE IF NOT EXISTS Blogs (
       id VARCHAR(36) PRIMARY KEY,
-      action VARCHAR(191) NOT NULL,
-      adminEmail VARCHAR(191) NOT NULL,
-      details TEXT,
-      ipAddress VARCHAR(100),
+      slug VARCHAR(191) NOT NULL UNIQUE,
+      title VARCHAR(255) NOT NULL,
+      excerpt TEXT,
+      content LONGTEXT NOT NULL,
+      featuredImage TEXT NOT NULL,
+      category VARCHAR(100) DEFAULT 'Interior Design',
+      author VARCHAR(100) DEFAULT 'Monish Pasha',
+      readTime VARCHAR(50) DEFAULT '4 min read',
+      publishedAt VARCHAR(100),
+      isPublished BOOLEAN DEFAULT TRUE,
       createdAt DATETIME(3) DEFAULT CURRENT_TIMESTAMP(3),
-      INDEX idx_activity_created (createdAt)
+      updatedAt DATETIME(3) DEFAULT CURRENT_TIMESTAMP(3) ON UPDATE CURRENT_TIMESTAMP(3),
+      INDEX idx_blog_slug (slug),
+      INDEX idx_blog_published (isPublished)
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
   `);
 }
-
-export default pool;
-

@@ -44,7 +44,7 @@ export default async function ServicesPage() {
     console.error("Services fetch error:", err);
   }
 
-  const displayServices = services.length > 0 ? services : INITIAL_SERVICES;
+  const displayServices = Array.isArray(services) && services.length > 0 ? services : (services || []);
 
   return (
     <div className="min-h-screen bg-brand-black text-brand-cream">

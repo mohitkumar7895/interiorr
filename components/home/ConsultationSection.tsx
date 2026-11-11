@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { toast } from "sonner";
 import {
   Sparkles,
@@ -41,6 +41,24 @@ export default function ConsultationSection() {
     "Carpenter Services",
     "Wooden Work",
   ];
+
+  const [servicesOptions, setServicesOptions] = useState(servicesList);
+
+  useEffect(() => {
+    fetch("/api/services")
+      .then((res) => res.json())
+      .then((data) => {
+        if (data?.services && Array.isArray(data.services) && data.services.length > 0) {
+          const names = data.services
+            .filter((s: any) => s.isPublished !== false)
+            .map((s: any) => s.title);
+          if (names.length > 0) {
+            setServicesOptions(names);
+          }
+        }
+      })
+      .catch(() => {});
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -229,7 +247,7 @@ export default function ConsultationSection() {
                       onChange={(e) => setFormData({ ...formData, service: e.target.value })}
                       className="w-full px-4 py-3 sm:py-3.5 rounded-xl bg-brand-surface border border-brand-gold/20 focus:border-brand-gold text-brand-cream text-sm sm:text-xs outline-none transition-colors"
                     >
-                      {servicesList.map((srv) => (
+                      {servicesOptions.map((srv) => (
                         <option key={srv} value={srv} className="bg-brand-charcoal text-white">
                           {srv}
                         </option>

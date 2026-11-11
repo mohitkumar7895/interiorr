@@ -1,4 +1,6 @@
-import React from "react";
+"use client";
+
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import {
   Phone,
@@ -30,6 +32,27 @@ export default function Footer() {
     { title: "False Ceiling", href: "/services/false-ceiling" },
     { title: "Complete Home Interior", href: "/services/complete-home-interior" },
   ];
+
+  const [footerServices, setFooterServices] = useState(services);
+
+  useEffect(() => {
+    fetch("/api/services")
+      .then((res) => res.json())
+      .then((data) => {
+        if (data?.services && Array.isArray(data.services) && data.services.length > 0) {
+          setFooterServices(
+            data.services
+              .filter((s: any) => s.isPublished !== false)
+              .slice(0, 8)
+              .map((s: any) => ({
+                title: s.title,
+                href: `/services/${s.slug}`,
+              }))
+          );
+        }
+      })
+      .catch(() => {});
+  }, []);
 
   const quickLinks = [
     { title: "Home", href: "/" },
@@ -139,7 +162,7 @@ export default function Footer() {
               Our Services
             </h4>
             <ul className="space-y-2.5 text-xs text-gray-400">
-              {services.map((item) => (
+              {footerServices.map((item) => (
                 <li key={item.href}>
                   <Link
                     href={item.href}

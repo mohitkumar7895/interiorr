@@ -73,6 +73,29 @@ export default function Navbar() {
     { title: "False Ceiling", href: "/services/false-ceiling", desc: "POP ceilings & magnetic track lights" },
   ];
 
+  const [navServices, setNavServices] = useState(featuredServices);
+
+  // Dynamically sync services with Admin API so newly added/deleted services update live
+  useEffect(() => {
+    fetch("/api/services")
+      .then((res) => res.json())
+      .then((data) => {
+        if (data?.services && Array.isArray(data.services) && data.services.length > 0) {
+          setNavServices(
+            data.services
+              .filter((s: any) => s.isPublished !== false)
+              .slice(0, 8)
+              .map((s: any) => ({
+                title: s.title,
+                href: `/services/${s.slug}`,
+                desc: s.shortDesc || "Luxury interior and carpentry solution",
+              }))
+          );
+        }
+      })
+      .catch(() => {});
+  }, []);
+
   const phone = process.env.NEXT_PUBLIC_PHONE || "8714114418";
   const email = process.env.NEXT_PUBLIC_EMAIL || "Monishpasha233@gmail.com";
   const address = process.env.NEXT_PUBLIC_ADDRESS || "Shop No. 6, Sector 120, Noida";
@@ -171,7 +194,7 @@ export default function Navbar() {
                       }`}
                     >
                       <div className="bg-brand-charcoal/95 backdrop-blur-xl border border-brand-gold/35 rounded-2xl p-4 shadow-2xl grid grid-cols-2 gap-2">
-                        {featuredServices.map((service) => (
+                        {navServices.map((service) => (
                           <Link
                             key={service.href}
                             href={service.href}
@@ -194,7 +217,7 @@ export default function Navbar() {
 
                         <div className="col-span-2 pt-2 mt-1 border-t border-brand-gold/20 flex items-center justify-between px-2">
                           <span className="text-[11px] text-gray-400">
-                            Complete 12 Interior & Carpentry Solutions
+                            Complete {navServices.length} Interior &amp; Carpentry Solutions
                           </span>
                           <Link
                             href="/services"
@@ -323,30 +346,15 @@ export default function Navbar() {
                 Popular Services in Noida
               </span>
               <div className="grid grid-cols-2 gap-2 text-xs">
-                <Link
-                  href="/services/modular-kitchen"
-                  className="p-2.5 rounded-xl bg-brand-surface border border-brand-gold/20 text-brand-cream hover:text-brand-gold hover:border-brand-gold/50 transition-all font-medium"
-                >
-                  Modular Kitchen
-                </Link>
-                <Link
-                  href="/services/wardrobe-design"
-                  className="p-2.5 rounded-xl bg-brand-surface border border-brand-gold/20 text-brand-cream hover:text-brand-gold hover:border-brand-gold/50 transition-all font-medium"
-                >
-                  Wardrobe Design
-                </Link>
-                <Link
-                  href="/services/wooden-work"
-                  className="p-2.5 rounded-xl bg-brand-surface border border-brand-gold/20 text-brand-cream hover:text-brand-gold hover:border-brand-gold/50 transition-all font-medium"
-                >
-                  Wooden Work &amp; Jali
-                </Link>
-                <Link
-                  href="/services/living-room-interior"
-                  className="p-2.5 rounded-xl bg-brand-surface border border-brand-gold/20 text-brand-cream hover:text-brand-gold hover:border-brand-gold/50 transition-all font-medium"
-                >
-                  Living Room
-                </Link>
+                {navServices.slice(0, 4).map((s) => (
+                  <Link
+                    key={s.href}
+                    href={s.href}
+                    className="p-2.5 rounded-xl bg-brand-surface border border-brand-gold/20 text-brand-cream hover:text-brand-gold hover:border-brand-gold/50 transition-all font-medium truncate"
+                  >
+                    {s.title}
+                  </Link>
+                ))}
               </div>
             </div>
           </div>
