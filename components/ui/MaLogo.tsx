@@ -74,7 +74,7 @@ export default function MaLogo({
         </div>
         <div className="flex items-center gap-1.5 sm:gap-2 leading-none mt-0.5">
           <span className="text-[7.5px] min-[360px]:text-[8.5px] sm:text-[9px] uppercase tracking-[0.12em] sm:tracking-[0.25em] text-brand-gold font-semibold whitespace-nowrap">
-            Carpenter &amp; Interior
+            Luxury Woodwork &amp; Turnkey
           </span>
           <span className="hidden sm:inline-block w-1.5 h-1.5 rounded-full bg-brand-gold/60" />
           <span className="hidden sm:inline-block text-[9px] text-gray-400 italic">
