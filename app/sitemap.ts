@@ -2,7 +2,7 @@ import { MetadataRoute } from "next";
 import db from '@/lib/db';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://macarpenterandinterior.com";
 
   // Static core routes
   const staticRoutes: MetadataRoute.Sitemap = [
@@ -37,6 +37,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.8,
     },
     {
+      url: `${baseUrl}/blogs`,
+      lastModified: new Date(),
+      changeFrequency: "daily",
+      priority: 0.85,
+    },
+    {
       url: `${baseUrl}/contact`,
       lastModified: new Date(),
       changeFrequency: "monthly",
@@ -45,33 +51,41 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   ];
 
   try {
-    const services = await db.services.findMany({
-      where: { isPublished: true },
-      select: { slug: true, updatedAt: true },
-    });
+    const [services, projects, blogs] = await Promise.all([
+      db.services.findMany({
+        where: { isPublished: true },
+      }).catch(() => []),
+      db.projects.findMany({
+        where: { isPublished: true },
+      }).catch(() => []),
+      db.blogs.findMany({
+        where: { isPublished: true },
+      }).catch(() => []),
+    ]);
 
-    const serviceRoutes: MetadataRoute.Sitemap = services.map((s) => ({
+    const serviceRoutes: MetadataRoute.Sitemap = (services || []).map((s: any) => ({
       url: `${baseUrl}/services/${s.slug}`,
-      lastModified: s.updatedAt,
+      lastModified: new Date(),
       changeFrequency: "weekly",
       priority: 0.85,
     }));
 
-    const projects = await db.projects.findMany({
-      where: { isPublished: true },
-      select: { slug: true, updatedAt: true },
-    });
-
-    const projectRoutes: MetadataRoute.Sitemap = projects.map((p) => ({
+    const projectRoutes: MetadataRoute.Sitemap = (projects || []).map((p: any) => ({
       url: `${baseUrl}/projects/${p.slug}`,
-      lastModified: p.updatedAt,
+      lastModified: new Date(),
       changeFrequency: "weekly",
       priority: 0.85,
     }));
 
-    return [...staticRoutes, ...serviceRoutes, ...projectRoutes];
+    const blogRoutes: MetadataRoute.Sitemap = (blogs || []).map((b: any) => ({
+      url: `${baseUrl}/blogs/${b.slug}`,
+      lastModified: new Date(),
+      changeFrequency: "weekly",
+      priority: 0.8,
+    }));
+
+    return [...staticRoutes, ...serviceRoutes, ...projectRoutes, ...blogRoutes];
   } catch {
     return staticRoutes;
   }
 }
-
