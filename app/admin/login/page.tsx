@@ -93,7 +93,7 @@ export default function AdminLoginPage() {
                   required
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  placeholder="admin@mainterior.com"
+                  placeholder=""
                   className="w-full pl-10 pr-4 py-3 rounded-xl bg-brand-surface border border-brand-gold/20 focus:border-brand-gold text-brand-cream text-xs outline-none transition-colors"
                 />
               </div>
@@ -113,7 +113,7 @@ export default function AdminLoginPage() {
                   required
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  placeholder="••••••••"
+                  placeholder=""
                   className="w-full pl-10 pr-4 py-3 rounded-xl bg-brand-surface border border-brand-gold/20 focus:border-brand-gold text-brand-cream text-xs outline-none transition-colors"
                 />
               </div>
