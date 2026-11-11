@@ -14,6 +14,16 @@ import {
 
 const DATA_DIR = path.join(process.cwd(), "data");
 const STORE_FILE = path.join(DATA_DIR, "store.json");
+const TMP_STORE_FILE = path.join("/tmp", "store.json");
+
+function getActiveStorePath(): string {
+  if (process.env.VERCEL || process.env.AWS_LAMBDA_FUNCTION_NAME) {
+    if (fs.existsSync(TMP_STORE_FILE)) return TMP_STORE_FILE;
+  }
+  if (fs.existsSync(STORE_FILE)) return STORE_FILE;
+  if (process.env.VERCEL || process.env.AWS_LAMBDA_FUNCTION_NAME) return TMP_STORE_FILE;
+  return STORE_FILE;
+}
 
 export function generateId(): string {
   return crypto.randomUUID();
@@ -134,29 +144,25 @@ export function getJsonStore(): any {
     return memoryStoreCache;
   }
 
+  const filePath = getActiveStorePath();
   try {
-    if (!fs.existsSync(DATA_DIR)) {
-      fs.mkdirSync(DATA_DIR, { recursive: true });
-    }
-
-    if (fs.existsSync(STORE_FILE)) {
-      const content = fs.readFileSync(STORE_FILE, "utf-8");
+    if (fs.existsSync(filePath)) {
+      const content = fs.readFileSync(filePath, "utf-8");
       if (content && content.trim().length > 0) {
         const parsed = JSON.parse(content);
-        // Ensure all required collections exist
         const initial = createInitialStore();
         memoryStoreCache = {
           ...initial,
           ...parsed,
-          services: Array.isArray(parsed.services) && parsed.services.length > 0 ? parsed.services : initial.services,
-          projects: Array.isArray(parsed.projects) && parsed.projects.length > 0 ? parsed.projects : initial.projects,
-          gallery: Array.isArray(parsed.gallery) && parsed.gallery.length > 0 ? parsed.gallery : initial.gallery,
-          galleryCategories: Array.isArray(parsed.galleryCategories) && parsed.galleryCategories.length > 0 ? parsed.galleryCategories : initial.galleryCategories,
-          testimonials: Array.isArray(parsed.testimonials) && parsed.testimonials.length > 0 ? parsed.testimonials : initial.testimonials,
-          blogs: Array.isArray(parsed.blogs) && parsed.blogs.length > 0 ? parsed.blogs : initial.blogs,
+          services: Array.isArray(parsed.services) ? parsed.services : initial.services,
+          projects: Array.isArray(parsed.projects) ? parsed.projects : initial.projects,
+          gallery: Array.isArray(parsed.gallery) ? parsed.gallery : initial.gallery,
+          galleryCategories: Array.isArray(parsed.galleryCategories) ? parsed.galleryCategories : initial.galleryCategories,
+          testimonials: Array.isArray(parsed.testimonials) ? parsed.testimonials : initial.testimonials,
+          blogs: Array.isArray(parsed.blogs) ? parsed.blogs : initial.blogs,
           siteSettings: parsed.siteSettings || initial.siteSettings,
-          homeSections: Array.isArray(parsed.homeSections) && parsed.homeSections.length > 0 ? parsed.homeSections : initial.homeSections,
-          sEOSettings: Array.isArray(parsed.sEOSettings) && parsed.sEOSettings.length > 0 ? parsed.sEOSettings : initial.sEOSettings,
+          homeSections: Array.isArray(parsed.homeSections) ? parsed.homeSections : initial.homeSections,
+          sEOSettings: Array.isArray(parsed.sEOSettings) ? parsed.sEOSettings : initial.sEOSettings,
           enquiries: Array.isArray(parsed.enquiries) ? parsed.enquiries : initial.enquiries,
           admin: Array.isArray(parsed.admin) ? parsed.admin : initial.admin,
           activityLogs: Array.isArray(parsed.activityLogs) ? parsed.activityLogs : [],
@@ -165,7 +171,7 @@ export function getJsonStore(): any {
       }
     }
   } catch (err) {
-    console.warn("Error reading store.json, initializing fresh store:", err);
+    console.warn("Error reading store from " + filePath + ":", err);
   }
 
   memoryStoreCache = createInitialStore();
@@ -175,13 +181,23 @@ export function getJsonStore(): any {
 
 export function saveJsonStore(store: any): void {
   memoryStoreCache = store;
+  const filePath = (process.env.VERCEL || process.env.AWS_LAMBDA_FUNCTION_NAME) ? TMP_STORE_FILE : STORE_FILE;
   try {
-    if (!fs.existsSync(DATA_DIR)) {
-      fs.mkdirSync(DATA_DIR, { recursive: true });
+    const dir = path.dirname(filePath);
+    if (!fs.existsSync(dir)) {
+      fs.mkdirSync(dir, { recursive: true });
     }
-    fs.writeFileSync(STORE_FILE, JSON.stringify(store, null, 2), "utf-8");
+    fs.writeFileSync(filePath, JSON.stringify(store, null, 2), "utf-8");
   } catch (err) {
-    console.error("Error saving store.json:", err);
+    // If standard write fails (e.g. read-only filesystem on Vercel), fallback to /tmp
+    try {
+      if (filePath !== TMP_STORE_FILE) {
+        fs.writeFileSync(TMP_STORE_FILE, JSON.stringify(store, null, 2), "utf-8");
+      }
+    } catch (fallbackErr) {
+      console.error("Error saving fallback store to /tmp:", fallbackErr);
+    }
+    console.error("Error saving store:", err);
   }
 }
 

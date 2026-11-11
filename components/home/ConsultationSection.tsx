@@ -48,7 +48,7 @@ export default function ConsultationSection() {
     fetch("/api/services")
       .then((res) => res.json())
       .then((data) => {
-        if (data?.services && Array.isArray(data.services) && data.services.length > 0) {
+        if (data?.services && Array.isArray(data.services)) {
           const names = data.services
             .filter((s: any) => s.isPublished !== false)
             .map((s: any) => s.title);

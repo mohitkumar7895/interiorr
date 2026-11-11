@@ -80,17 +80,19 @@ export default function Navbar() {
     fetch("/api/services")
       .then((res) => res.json())
       .then((data) => {
-        if (data?.services && Array.isArray(data.services) && data.services.length > 0) {
-          setNavServices(
-            data.services
-              .filter((s: any) => s.isPublished !== false)
-              .slice(0, 8)
-              .map((s: any) => ({
+        if (data?.services && Array.isArray(data.services)) {
+          const published = data.services.filter((s: any) => s.isPublished !== false);
+          if (published.length > 0) {
+            setNavServices(
+              published.slice(0, 8).map((s: any) => ({
                 title: s.title,
                 href: `/services/${s.slug}`,
                 desc: s.shortDesc || "Luxury interior and carpentry solution",
               }))
-          );
+            );
+          } else {
+            setNavServices([]);
+          }
         }
       })
       .catch(() => {});

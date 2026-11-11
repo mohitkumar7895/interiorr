@@ -39,16 +39,18 @@ export default function Footer() {
     fetch("/api/services")
       .then((res) => res.json())
       .then((data) => {
-        if (data?.services && Array.isArray(data.services) && data.services.length > 0) {
-          setFooterServices(
-            data.services
-              .filter((s: any) => s.isPublished !== false)
-              .slice(0, 8)
-              .map((s: any) => ({
+        if (data?.services && Array.isArray(data.services)) {
+          const published = data.services.filter((s: any) => s.isPublished !== false);
+          if (published.length > 0) {
+            setFooterServices(
+              published.slice(0, 8).map((s: any) => ({
                 title: s.title,
                 href: `/services/${s.slug}`,
               }))
-          );
+            );
+          } else {
+            setFooterServices([]);
+          }
         }
       })
       .catch(() => {});

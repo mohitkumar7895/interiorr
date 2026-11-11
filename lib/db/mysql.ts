@@ -49,12 +49,29 @@ if (process.env.NODE_ENV !== "production") {
   global.globalMysqlPool = pool;
 }
 
+export function isMysqlConfigured(): boolean {
+  if (process.env.DATABASE_URL && process.env.DATABASE_URL.startsWith("mysql://")) {
+    return true;
+  }
+  if (process.env.MYSQL_HOST && process.env.MYSQL_HOST !== "localhost" && process.env.MYSQL_HOST !== "127.0.0.1") {
+    return true;
+  }
+  // Allow localhost only if NOT on Vercel/serverless
+  if (!process.env.VERCEL && !process.env.AWS_LAMBDA_FUNCTION_NAME && process.env.MYSQL_HOST) {
+    return true;
+  }
+  return false;
+}
+
 // Track temporary database failure to fail fast without blocking requests
 let lastDbFailure = 0;
 const DB_COOLDOWN_MS = 10000;
 
 // Generic query helper
 export async function query<T = any>(sql: string, params: any[] = []): Promise<T[]> {
+  if (!isMysqlConfigured()) {
+    throw new Error("MySQL is not configured");
+  }
   if (lastDbFailure && Date.now() - lastDbFailure < DB_COOLDOWN_MS) {
     throw new Error("Database temporarily unreachable (in cooldown)");
   }
@@ -84,6 +101,9 @@ export async function queryOne<T = any>(sql: string, params: any[] = []): Promis
 
 // Execute helper (INSERT, UPDATE, DELETE)
 export async function execute(sql: string, params: any[] = []): Promise<mysql.ResultSetHeader> {
+  if (!isMysqlConfigured()) {
+    throw new Error("MySQL is not configured");
+  }
   if (lastDbFailure && Date.now() - lastDbFailure < DB_COOLDOWN_MS) {
     throw new Error("Database temporarily unreachable (in cooldown)");
   }
