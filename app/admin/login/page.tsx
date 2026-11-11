@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
@@ -13,6 +13,12 @@ export default function AdminLoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+
+  // Ensure fields are completely empty on mount, preventing any browser prefill
+  useEffect(() => {
+    setEmail("");
+    setPassword("");
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -78,7 +84,7 @@ export default function AdminLoginPage() {
 
         {/* Login Form Box */}
         <div className="bg-brand-charcoal/90 border border-brand-gold/30 rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-10 shadow-2xl backdrop-blur-md">
-          <form onSubmit={handleSubmit} className="space-y-5">
+          <form onSubmit={handleSubmit} className="space-y-5" autoComplete="off">
             <div>
               <label className="block text-xs font-semibold uppercase tracking-wider text-brand-gold mb-1.5">
                 Admin Email Address
@@ -91,6 +97,7 @@ export default function AdminLoginPage() {
                 <input
                   type="email"
                   required
+                  autoComplete="off"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder=""
@@ -111,6 +118,7 @@ export default function AdminLoginPage() {
                 <input
                   type="password"
                   required
+                  autoComplete="new-password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder=""
