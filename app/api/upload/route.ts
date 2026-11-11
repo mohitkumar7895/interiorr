@@ -3,13 +3,15 @@ import { writeFile, mkdir } from "fs/promises";
 import path from "path";
 import { getCurrentAdmin } from "@/lib/auth/auth";
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 export async function POST(req: NextRequest) {
   try {
     const admin = await getCurrentAdmin();
-    // Allow upload if admin is logged in or if authorization is provided
+    // Allow upload if admin is logged in or if authorized
     if (!admin) {
-      // In development or when cookies are handled via client-side fetch with credentials,
-      // allow fallback if admin token header or cookie exists
+      // In development or when cookies are handled via client-side fetch
     }
 
     const formData = await req.formData();
@@ -54,9 +56,8 @@ export async function POST(req: NextRequest) {
   } catch (error: any) {
     console.error("Upload error:", error);
     return NextResponse.json(
-      { error: error?.message || "Failed to upload file" },
-      { status: 500 }
+      { error: error?.message || "Failed to upload file. Please try another image." },
+      { status: 400 }
     );
   }
 }
-

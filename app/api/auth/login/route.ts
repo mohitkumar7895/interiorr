@@ -3,6 +3,9 @@ import db from "@/lib/db";
 import { verifyPassword, signAdminToken, COOKIE_NAME, hashPassword } from "@/lib/auth/auth";
 import { LoginSchema } from "@/lib/validations";
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 const MASTER_ADMINS = [
   {
     email: (process.env.ADMIN_EMAIL || "admin@mainterior.com").toLowerCase(),

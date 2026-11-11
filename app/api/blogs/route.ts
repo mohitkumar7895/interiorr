@@ -4,6 +4,9 @@ import db from "@/lib/db";
 import { getCurrentAdmin } from "@/lib/auth/auth";
 import { INITIAL_BLOGS } from "@/lib/data/initialData";
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 // In-memory runtime storage for newly created blogs when DB is in memory mode
 let memoryBlogs = [...INITIAL_BLOGS];
 
@@ -106,8 +109,7 @@ export async function POST(req: NextRequest) {
     console.error("Create blog error:", error);
     return NextResponse.json(
       { error: error?.message || "Failed to create blog post" },
-      { status: 500 }
+      { status: 400 }
     );
   }
 }
-

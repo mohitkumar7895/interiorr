@@ -4,6 +4,9 @@ import db from "@/lib/db";
 import { getCurrentAdmin } from "@/lib/auth/auth";
 import { INITIAL_BLOGS } from "@/lib/data/initialData";
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 export async function GET(
   req: NextRequest,
   { params }: { params: { id: string } }
@@ -32,7 +35,7 @@ export async function GET(
   } catch (error) {
     const blog = INITIAL_BLOGS.find((b) => b.id === params.id || b.slug === params.id);
     if (blog) return NextResponse.json({ success: true, blog });
-    return NextResponse.json({ error: "Failed to fetch blog" }, { status: 500 });
+    return NextResponse.json({ error: "Blog not found" }, { status: 404 });
   }
 }
 
@@ -97,7 +100,7 @@ export async function PUT(
     console.error("Update blog error:", error);
     return NextResponse.json(
       { error: error?.message || "Failed to update blog post" },
-      { status: 500 }
+      { status: 400 }
     );
   }
 }
@@ -128,8 +131,7 @@ export async function DELETE(
   } catch (error: any) {
     return NextResponse.json(
       { error: error?.message || "Failed to delete blog post" },
-      { status: 500 }
+      { status: 400 }
     );
   }
 }
-

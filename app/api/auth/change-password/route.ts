@@ -1,7 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
-import bcrypt from "bcryptjs";
 import db from "@/lib/db";
 import { getCurrentAdmin, hashPassword, verifyPassword } from "@/lib/auth/auth";
+
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
 
 export async function POST(req: NextRequest) {
   try {
@@ -96,7 +98,7 @@ export async function POST(req: NextRequest) {
     console.error("Password change error:", error);
     return NextResponse.json(
       { error: error?.message || "Failed to change password." },
-      { status: 500 }
+      { status: 400 }
     );
   }
 }

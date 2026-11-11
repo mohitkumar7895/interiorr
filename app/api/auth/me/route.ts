@@ -1,8 +1,11 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { getCurrentAdmin } from "@/lib/auth/auth";
 import db from "@/lib/db";
 
-export async function GET() {
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
+export async function GET(req: NextRequest) {
   const session = await getCurrentAdmin();
   if (!session) {
     return NextResponse.json({ authenticated: false }, { status: 401 });
@@ -15,7 +18,9 @@ export async function GET() {
         where: { id: session.id },
         select: { id: true, email: true, name: true, role: true, avatar: true },
       });
-    } catch {}
+    } catch (dbErr) {
+      console.warn("DB lookup error in /api/auth/me:", dbErr);
+    }
 
     return NextResponse.json({
       authenticated: true,

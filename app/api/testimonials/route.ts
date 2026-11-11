@@ -4,24 +4,34 @@ import db from '@/lib/db';
 import { getCurrentAdmin } from "@/lib/auth/auth";
 import { INITIAL_TESTIMONIALS } from "@/lib/data/initialData";
 
-export async function GET() {
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
+let memoryTestimonials: any[] = INITIAL_TESTIMONIALS.map((t, idx) => ({
+  ...t,
+  id: (t as any).id || `test-init-${idx + 1}`,
+  isPublished: true,
+  orderIndex: idx,
+  createdAt: new Date().toISOString(),
+}));
+
+export async function GET(req: NextRequest) {
   try {
-    let testimonials = await db.testimonials.findMany({
-      orderBy: { orderIndex: "asc" },
-    });
+    let testimonials: any[] = [];
+    try {
+      testimonials = await db.testimonials.findMany({
+        orderBy: { orderIndex: "asc" },
+      });
+    } catch (dbErr) {
+      console.warn("DB lookup error in /api/testimonials GET:", dbErr);
+    }
+
     if (!testimonials || testimonials.length === 0) {
-      testimonials = INITIAL_TESTIMONIALS.map((t, idx) => ({
-        ...t,
-        id: (t as any).id || `test-init-${idx + 1}`,
-      }));
+      testimonials = memoryTestimonials;
     }
     return NextResponse.json({ success: true, testimonials });
   } catch (error) {
-    const testimonials = INITIAL_TESTIMONIALS.map((t, idx) => ({
-      ...t,
-      id: (t as any).id || `test-init-${idx + 1}`,
-    }));
-    return NextResponse.json({ success: true, testimonials });
+    return NextResponse.json({ success: true, testimonials: memoryTestimonials });
   }
 }
 
@@ -39,22 +49,42 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Client name and review are required" }, { status: 400 });
     }
 
-    const test = await db.testimonials.create({
-      data: {
-        clientName,
-        clientRole: clientRole || "Homeowner",
-        clientLocation: clientLocation || "Sector 120, Noida",
-        rating: rating ? parseInt(rating) : 5,
-        reviewText,
-        isPublished: isPublished ?? true,
-        orderIndex: orderIndex ? parseInt(orderIndex) : 0,
-      },
-    });
+    const testData = {
+      id: `test-${Date.now()}`,
+      clientName,
+      clientRole: clientRole || "Homeowner",
+      clientLocation: clientLocation || "Sector 120, Noida",
+      rating: rating ? parseInt(rating) : 5,
+      reviewText,
+      isPublished: isPublished ?? true,
+      orderIndex: orderIndex ? parseInt(orderIndex) : 0,
+      createdAt: new Date().toISOString(),
+    };
 
-    revalidatePath("/", "page");
+    let test = testData;
+    try {
+      test = await db.testimonials.create({
+        data: {
+          clientName: testData.clientName,
+          clientRole: testData.clientRole,
+          clientLocation: testData.clientLocation,
+          rating: testData.rating,
+          reviewText: testData.reviewText,
+          isPublished: testData.isPublished,
+          orderIndex: testData.orderIndex,
+        },
+      });
+    } catch (dbErr) {
+      console.warn("DB error creating testimonial, using memory store:", dbErr);
+      memoryTestimonials.push(test);
+    }
+
+    try {
+      revalidatePath("/", "page");
+    } catch {}
+
     return NextResponse.json({ success: true, testimonial: test }, { status: 201 });
   } catch (error: any) {
-    return NextResponse.json({ error: error.message || "Failed to create testimonial" }, { status: 500 });
+    return NextResponse.json({ error: error?.message || "Invalid testimonial data" }, { status: 400 });
   }
 }
-
