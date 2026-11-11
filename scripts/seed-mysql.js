@@ -157,6 +157,23 @@ async function seed() {
     "UPDATE Services SET featuredImage = '/images/services/wooden-work.jpg' WHERE slug = 'wooden-work'"
   ).catch(() => {});
 
+  // 6. Seed SEO Settings for Home
+  await conn.query(
+    `INSERT INTO SEOSettings (id, pageRoute, metaTitle, metaDesc, keywords, canonicalUrl, ogTitle, ogDesc)
+     VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+     ON DUPLICATE KEY UPDATE metaTitle = VALUES(metaTitle), ogTitle = VALUES(ogTitle), keywords = VALUES(keywords)`,
+    [
+      uid(),
+      "/",
+      "MA Carpenter and Interior Service Greater Noida",
+      "Discover premium interior design, modular kitchens, custom woodwork, and complete home interior solutions in Greater Noida, Sector 120 Noida and Delhi NCR by MA Carpenter and Interior.",
+      "ma carpenter and interior service greater noida, interior service greater noida, carpenter greater noida, interior design noida, carpenter noida, modular kitchen sector 120, custom furniture noida, luxury home interior, MA carpenter and interior",
+      "https://macarpenterandinterior.com",
+      "MA Carpenter and Interior Service Greater Noida",
+      "Bespoke luxury interior design, modular kitchens, and master craftsmanship in Greater Noida, Sector 120 Noida and Delhi NCR.",
+    ]
+  ).catch(() => {});
+
   console.log("Database seeded successfully via native MySQL!");
   await conn.end();
 }

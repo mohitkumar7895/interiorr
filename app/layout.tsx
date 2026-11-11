@@ -16,12 +16,15 @@ const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://macarpenterandinter
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "MA Carpenter and Interior | Luxury Interior Design & Custom Woodwork Noida",
+    default: "MA Carpenter and Interior Service Greater Noida",
     template: "%s | MA Carpenter and Interior",
   },
   description:
-    "Discover premium interior design, modular kitchens, custom woodwork, and complete home interior solutions in Sector 120, Noida by MA Carpenter and Interior.",
+    "Discover premium interior design, modular kitchens, custom woodwork, and complete home interior solutions in Greater Noida, Sector 120 Noida and Delhi NCR by MA Carpenter and Interior.",
   keywords: [
+    "ma carpenter and interior service greater noida",
+    "interior service greater noida",
+    "carpenter greater noida",
     "interior design noida",
     "carpenter noida",
     "modular kitchen sector 120",
@@ -40,9 +43,9 @@ export const metadata: Metadata = {
     canonical: "./",
   },
   openGraph: {
-    title: "MA Carpenter and Interior | Designing Spaces, Defining Lifestyles",
+    title: "MA Carpenter and Interior Service Greater Noida",
     description:
-      "Bespoke luxury interior design, modular kitchens, and master craftsmanship in Sector 120, Noida.",
+      "Bespoke luxury interior design, modular kitchens, and master craftsmanship in Greater Noida, Sector 120 Noida and Delhi NCR.",
     url: siteUrl,
     siteName: "MA Carpenter and Interior",
     images: [
@@ -58,9 +61,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "MA Carpenter and Interior | Luxury Interior Design Noida",
+    title: "MA Carpenter and Interior Service Greater Noida",
     description:
-      "Transforming spaces into mastercrafted sanctuaries in Sector 120, Noida and Delhi NCR.",
+      "Transforming spaces into mastercrafted sanctuaries in Greater Noida, Sector 120 Noida and Delhi NCR.",
     images: ["/images/ma-reference-branding.jpg"],
   },
   robots: {

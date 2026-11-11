@@ -1,4 +1,5 @@
 import React from "react";
+import type { Metadata } from "next";
 import db from "@/lib/db";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
@@ -22,6 +23,33 @@ import {
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
+
+export async function generateMetadata(): Promise<Metadata> {
+  try {
+    const seo = await db.sEOSettings.findUnique({ where: { pageRoute: "/" } });
+    if (seo?.metaTitle) {
+      return {
+        title: {
+          absolute: seo.metaTitle,
+        },
+        description: seo.metaDesc || undefined,
+        keywords: seo.keywords ? seo.keywords.split(",").map((k: string) => k.trim()) : undefined,
+        openGraph: {
+          title: seo.ogTitle || seo.metaTitle,
+          description: seo.ogDesc || seo.metaDesc || undefined,
+        },
+      };
+    }
+  } catch {}
+
+  return {
+    title: {
+      absolute: "MA Carpenter and Interior Service Greater Noida",
+    },
+    description:
+      "Discover premium interior design, modular kitchens, custom woodwork, and complete home interior solutions in Greater Noida, Sector 120 Noida and Delhi NCR by MA Carpenter and Interior.",
+  };
+}
 
 export default async function HomePage() {
   // Fetch SiteSettings and page data concurrently in parallel
