@@ -292,8 +292,8 @@ export default function AdminServicesPage() {
 
       {/* Add / Edit Service Modal */}
       {isModalOpen && (
-        <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
-          <div className="bg-brand-charcoal border border-brand-gold/30 rounded-3xl max-w-2xl w-full p-6 sm:p-8 space-y-5 my-8">
+        <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-3 sm:p-4 overflow-y-auto">
+          <div className="bg-brand-charcoal border border-brand-gold/30 rounded-2xl sm:rounded-3xl max-w-2xl w-full p-5 sm:p-8 space-y-5 my-auto max-h-[90vh] overflow-y-auto">
             <div className="flex items-center justify-between border-b border-brand-gold/20 pb-4">
               <h3 className="font-serif text-xl font-bold text-white">
                 {editingService ? `Edit Service: ${editingService.title}` : "Add New Service"}
