@@ -50,7 +50,7 @@ export default function Navbar() {
 
   const navLinks = [
     { label: "Home", href: "/" },
-    { label: "About Us", href: "/about" },
+    { label: "About Us", shortLabel: "About", href: "/about" },
     {
       label: "Services",
       href: "/services",
@@ -59,7 +59,7 @@ export default function Navbar() {
     { label: "Projects", href: "/projects" },
     { label: "Gallery", href: "/gallery" },
     { label: "Blog", href: "/blogs" },
-    { label: "Contact Us", href: "/contact" },
+    { label: "Contact Us", shortLabel: "Contact", href: "/contact" },
   ];
 
   const featuredServices = [
@@ -123,17 +123,17 @@ export default function Navbar() {
         className={`w-full transition-all duration-300 ${
           isScrolled
             ? "bg-brand-black/95 backdrop-blur-md shadow-2xl border-b border-brand-gold/30 py-2.5 sm:py-3"
-            : "bg-gradient-to-b from-brand-black/95 via-brand-black/85 to-brand-black/60 backdrop-blur-sm border-b border-brand-gold/20 py-3.5 sm:py-4"
+            : "bg-gradient-to-b from-brand-black/95 via-brand-black/85 to-brand-black/60 backdrop-blur-sm border-b border-brand-gold/20 py-3 sm:py-4"
         }`}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between gap-4">
+        <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-3 xl:px-6 2xl:px-8 flex items-center justify-between gap-2 lg:gap-2.5 xl:gap-4">
           {/* Logo on Left */}
           <div className="flex-shrink-0">
             <MaLogo variant="horizontal" />
           </div>
 
           {/* Desktop Navigation Links */}
-          <div className="hidden lg:flex items-center gap-3.5 xl:gap-6 2xl:gap-8 flex-shrink-0">
+          <div className="hidden lg:flex items-center gap-1 min-[1120px]:gap-2 xl:gap-5 2xl:gap-7 flex-shrink-0">
             {navLinks.map((link) => {
               const isActive = pathname === link.href;
 
@@ -147,16 +147,17 @@ export default function Navbar() {
                   >
                     <Link
                       href={link.href}
-                      className={`flex items-center gap-1 text-[11px] xl:text-xs 2xl:text-[13px] tracking-wider uppercase font-semibold transition-all whitespace-nowrap ${
+                      className={`flex items-center gap-1 text-[11px] min-[1120px]:text-xs 2xl:text-[13px] tracking-normal min-[1120px]:tracking-wider uppercase font-semibold transition-all px-1.5 min-[1120px]:px-2 py-1 whitespace-nowrap ${
                         pathname.startsWith("/services")
                           ? "text-brand-gold font-bold"
                           : "text-brand-creamSoft hover:text-brand-gold"
                       }`}
                     >
-                      <span>{link.label}</span>
+                      <span className="hidden min-[1120px]:inline">{link.label}</span>
+                      <span className="min-[1120px]:hidden">{link.shortLabel || link.label}</span>
                       <ChevronDown
                         size={13}
-                        className={`transition-transform duration-200 ${
+                        className={`transition-transform duration-200 shrink-0 ${
                           servicesDropdownOpen ? "rotate-180 text-brand-gold" : ""
                         }`}
                       />
@@ -214,13 +215,14 @@ export default function Navbar() {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className={`relative text-[11px] xl:text-xs 2xl:text-[13px] tracking-wider uppercase font-semibold transition-all py-1 whitespace-nowrap ${
+                  className={`relative text-[11px] min-[1120px]:text-xs 2xl:text-[13px] tracking-normal min-[1120px]:tracking-wider uppercase font-semibold transition-all px-1.5 min-[1120px]:px-2 py-1 whitespace-nowrap ${
                     isActive
                       ? "text-brand-gold font-bold"
                       : "text-brand-creamSoft hover:text-brand-gold"
                   }`}
                 >
-                  {link.label}
+                  <span className="hidden min-[1120px]:inline">{link.label}</span>
+                  <span className="min-[1120px]:hidden">{link.shortLabel || link.label}</span>
                   {isActive && (
                     <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-brand-gold to-transparent" />
                   )}
@@ -230,23 +232,23 @@ export default function Navbar() {
           </div>
 
           {/* Desktop Right CTA Buttons */}
-          <div className="hidden lg:flex items-center gap-2 xl:gap-3 flex-shrink-0">
+          <div className="hidden lg:flex items-center gap-1.5 min-[1120px]:gap-2 xl:gap-3 flex-shrink-0">
             <a
               href={`tel:+91${phone}`}
-              className="flex items-center gap-1.5 text-xs font-semibold text-brand-gold hover:text-white transition-colors px-2.5 xl:px-3 py-2 border border-brand-gold/30 rounded-xl hover:border-brand-gold/60 hover:bg-brand-gold/10 whitespace-nowrap"
+              className="flex items-center gap-1.5 text-xs font-semibold text-brand-gold hover:text-white transition-colors p-2 xl:px-3 xl:py-2 border border-brand-gold/30 rounded-xl hover:border-brand-gold/60 hover:bg-brand-gold/10 whitespace-nowrap shrink-0"
               title="Call Monish Pasha"
             >
-              <Phone size={13} />
+              <Phone size={13} className="shrink-0" />
               <span className="hidden xl:inline">+91 {phone}</span>
-              <span className="xl:hidden">Call</span>
+              <span className="hidden min-[1120px]:inline xl:hidden text-[11px]">Call</span>
             </a>
 
             <Link
               href="/contact"
-              className="relative group overflow-hidden px-3.5 xl:px-4 py-2 xl:py-2.5 rounded-xl bg-gradient-to-r from-brand-gold via-brand-goldLight to-brand-goldDark text-brand-black text-[11px] xl:text-xs font-bold uppercase tracking-wider shadow-gold-sm hover:shadow-gold-md hover:scale-[1.02] active:scale-95 transition-all duration-300 whitespace-nowrap"
+              className="relative group overflow-hidden px-2.5 min-[1120px]:px-3.5 xl:px-4 py-1.5 xl:py-2.5 rounded-xl bg-gradient-to-r from-brand-gold via-brand-goldLight to-brand-goldDark text-brand-black text-[10.5px] min-[1120px]:text-[11px] xl:text-xs font-bold uppercase tracking-wider shadow-gold-sm hover:shadow-gold-md hover:scale-[1.02] active:scale-95 transition-all duration-300 whitespace-nowrap shrink-0"
             >
-              <span className="relative z-10 flex items-center gap-1.5">
-                <Sparkles size={13} />
+              <span className="relative z-10 flex items-center gap-1 sm:gap-1.5">
+                <Sparkles size={12} className="shrink-0" />
                 <span>Free Consultation</span>
               </span>
               <span className="absolute inset-0 bg-white/20 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700" />

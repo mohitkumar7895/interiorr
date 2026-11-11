@@ -84,7 +84,7 @@ export default function ConsultationSection() {
   )}`;
 
   return (
-    <section className="relative py-24 bg-brand-black border-t border-brand-gold/20 overflow-hidden" id="consultation">
+    <section className="relative py-20 sm:py-24 bg-brand-black border-t border-brand-gold/20 overflow-hidden scroll-mt-28 sm:scroll-mt-32" id="consultation">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           {/* Left Column: Direct Consultation Details */}

@@ -85,8 +85,8 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     <div className="min-h-screen bg-brand-black text-brand-cream">
       <Navbar />
 
-      <main className="pt-28">
-        <article className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <main className="pt-28 sm:pt-32 lg:pt-36">
+        <article className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 sm:pt-8 pb-16">
           {/* Breadcrumb & Back Link */}
           <div className="flex items-center justify-between mb-8">
             <Link

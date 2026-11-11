@@ -37,9 +37,9 @@ export default async function ProjectsPage() {
     <div className="min-h-screen bg-brand-black text-brand-cream">
       <Navbar />
 
-      <main className="pt-28">
+      <main className="pt-28 sm:pt-32 lg:pt-36">
         {/* Projects Hero Header */}
-        <section className="relative py-20 bg-gradient-to-b from-brand-charcoal via-brand-black to-brand-black border-b border-brand-gold/20 overflow-hidden">
+        <section className="relative pt-8 sm:pt-12 lg:pt-16 pb-16 sm:pb-20 bg-gradient-to-b from-brand-charcoal via-brand-black to-brand-black border-b border-brand-gold/20 overflow-hidden">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
             <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-brand-gold/10 border border-brand-gold/30 text-brand-gold text-xs font-semibold uppercase tracking-wider mb-6">
               <Sparkles size={13} />
