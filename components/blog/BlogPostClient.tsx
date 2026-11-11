@@ -474,3 +474,4 @@ export default function BlogPostClient({ blog, relatedBlogs }: BlogPostClientPro
     </>
   );
 }
+

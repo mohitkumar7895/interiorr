@@ -418,3 +418,4 @@ export default function BlogsClient({ blogs }: BlogsClientProps) {
     </div>
   );
 }
+

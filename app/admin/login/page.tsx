@@ -10,8 +10,8 @@ import MaLogo from "@/components/ui/MaLogo";
 
 export default function AdminLoginPage() {
   const router = useRouter();
-  const [email, setEmail] = useState("admin@mainterior.com");
-  const [password, setPassword] = useState("admin123");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -117,16 +117,6 @@ export default function AdminLoginPage() {
                   className="w-full pl-10 pr-4 py-3 rounded-xl bg-brand-surface border border-brand-gold/20 focus:border-brand-gold text-brand-cream text-xs outline-none transition-colors"
                 />
               </div>
-            </div>
-
-            {/* Quick Helper for convenience */}
-            <div className="p-3 rounded-xl bg-brand-gold/5 border border-brand-gold/20 text-[11px] text-gray-300">
-              <span className="font-semibold text-brand-gold">Default Credentials:</span>
-              <p className="mt-0.5 text-gray-400">
-                Email: <code className="text-white">admin@mainterior.com</code> or <code className="text-white">Monishpasha233@gmail.com</code>
-                <br />
-                Password: <code className="text-white">admin123</code>
-              </p>
             </div>
 
             <button
