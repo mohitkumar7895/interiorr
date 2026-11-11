@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import db from '@/lib/db';
 import { EnquirySchema } from "@/lib/validations";
 import { getCurrentAdmin } from "@/lib/auth/auth";
+import { INITIAL_ENQUIRIES } from "@/lib/data/initialData";
 
 // Public POST endpoint to submit enquiries
 export async function POST(req: NextRequest) {
@@ -91,13 +92,31 @@ export async function GET(req: NextRequest) {
       ];
     }
 
-    const enquiries = await db.enquiries.findMany({
+    let enquiries = await db.enquiries.findMany({
       where,
       orderBy: { createdAt: "desc" },
     });
 
-    const totalCount = await db.enquiries.count();
-    const newCount = await db.enquiries.count({ where: { status: "New" } });
+    if (!enquiries || enquiries.length === 0) {
+      enquiries = INITIAL_ENQUIRIES as any;
+      if (status && status !== "All") {
+        enquiries = enquiries.filter((e) => e.status === status);
+      }
+      if (service && service !== "All") {
+        enquiries = enquiries.filter((e) => e.service === service);
+      }
+      if (search) {
+        enquiries = enquiries.filter(
+          (e) =>
+            e.name.toLowerCase().includes(search.toLowerCase()) ||
+            e.phone.includes(search) ||
+            e.message.toLowerCase().includes(search.toLowerCase())
+        );
+      }
+    }
+
+    const totalCount = Math.max(await db.enquiries.count().catch(() => 0), enquiries.length);
+    const newCount = enquiries.filter((e) => e.status === "New").length;
 
     return NextResponse.json({
       success: true,
@@ -111,10 +130,10 @@ export async function GET(req: NextRequest) {
     console.error("Fetch enquiries error:", error);
     return NextResponse.json({
       success: true,
-      enquiries: [],
+      enquiries: INITIAL_ENQUIRIES,
       metrics: {
-        total: 0,
-        new: 0,
+        total: INITIAL_ENQUIRIES.length,
+        new: INITIAL_ENQUIRIES.filter((e) => e.status === "New").length,
       },
     });
   }

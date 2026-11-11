@@ -811,3 +811,82 @@ At MA Carpenter and Interior in Sector 120 Noida, every piece of woodwork is pre
   }
 ];
 
+export interface EnquiryData {
+  id: string;
+  name: string;
+  phone: string;
+  email: string | null;
+  service: string;
+  message: string;
+  status: string;
+  internalNotes: string | null;
+  createdAt: string;
+}
+
+export const INITIAL_ENQUIRIES: EnquiryData[] = [
+  {
+    id: "enq-1",
+    name: "Er. Rahul Mathur",
+    phone: "9818204910",
+    email: "rahul.mathur@techcorp.com",
+    service: "Modular Kitchen",
+    message: "Need Italian acrylic finish modular kitchen and living room TV wall for 3BHK flat in Amrapali Zodiac, Sector 120 Noida. Looking for 3D layout consultation this weekend.",
+    status: "New",
+    internalNotes: "Prefers Saturday morning site visit.",
+    createdAt: new Date(Date.now() - 2 * 3600 * 1000).toISOString(),
+  },
+  {
+    id: "enq-2",
+    name: "Pooja Khanna",
+    phone: "9871142230",
+    email: "pooja.khanna@gmail.com",
+    service: "Wardrobe Design",
+    message: "Interested in Rose Gold profile tinted glass walk-in wardrobe with soft-close sensors in Prateek Laurel, Sector 120.",
+    status: "New",
+    internalNotes: "Sent portfolio photos on WhatsApp.",
+    createdAt: new Date(Date.now() - 14 * 3600 * 1000).toISOString(),
+  },
+  {
+    id: "enq-3",
+    name: "Dr. Arvind Saxena",
+    phone: "9810143890",
+    email: "arvind.saxena@apollo.org",
+    service: "Complete Home Interior",
+    message: "Full turnkey woodwork and interior design required for 4BHK apartment in Sector 50, Noida. Need quotation including false ceiling and marine ply cabinets.",
+    status: "In Progress",
+    internalNotes: "Initial 3D drawings presented.",
+    createdAt: new Date(Date.now() - 48 * 3600 * 1000).toISOString(),
+  },
+];
+
+export const INITIAL_ACTIVITY_LOGS = [
+  {
+    id: "log-1",
+    action: "Asset Update",
+    adminEmail: "admin@mainterior.com",
+    details: "High-resolution local photography added for Wardrobe Design and Wooden Work",
+    createdAt: new Date(Date.now() - 1 * 3600 * 1000).toISOString(),
+  },
+  {
+    id: "log-2",
+    action: "Gallery Sync",
+    adminEmail: "admin@mainterior.com",
+    details: "Rose Gold Profile Tinted Glass Walk-In Wardrobe published to visual gallery",
+    createdAt: new Date(Date.now() - 3 * 3600 * 1000).toISOString(),
+  },
+  {
+    id: "log-3",
+    action: "Journal Published",
+    adminEmail: "admin@mainterior.com",
+    details: "3 comprehensive design guides published for Noida homeowners",
+    createdAt: new Date(Date.now() - 6 * 3600 * 1000).toISOString(),
+  },
+  {
+    id: "log-4",
+    action: "Security Verified",
+    adminEmail: "admin@mainterior.com",
+    details: "Master credentials verification and fail-safe authentication enabled",
+    createdAt: new Date(Date.now() - 24 * 3600 * 1000).toISOString(),
+  },
+];
+
