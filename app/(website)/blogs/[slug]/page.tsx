@@ -14,6 +14,9 @@ interface BlogPostPageProps {
   };
 }
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 export async function generateMetadata({ params }: BlogPostPageProps): Promise<Metadata> {
   const { slug } = params;
   let blog: any = null;
@@ -44,8 +47,6 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
     },
   };
 }
-
-export const revalidate = 60;
 
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
   const { slug } = params;

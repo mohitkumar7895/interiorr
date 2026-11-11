@@ -26,6 +26,9 @@ interface ServiceDetailPageProps {
   };
 }
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 export async function generateMetadata({ params }: ServiceDetailPageProps): Promise<Metadata> {
   const { slug } = params;
   let service: any = null;
@@ -54,8 +57,6 @@ export async function generateMetadata({ params }: ServiceDetailPageProps): Prom
     },
   };
 }
-
-export const revalidate = 60;
 
 export default async function ServiceDetailPage({ params }: ServiceDetailPageProps) {
   const { slug } = params;

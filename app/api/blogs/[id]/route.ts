@@ -2,7 +2,6 @@ import { NextRequest, NextResponse } from "next/server";
 import { revalidatePath } from "next/cache";
 import db from "@/lib/db";
 import { getCurrentAdmin } from "@/lib/auth/auth";
-import { INITIAL_BLOGS } from "@/lib/data/initialData";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
@@ -12,19 +11,16 @@ export async function GET(
   { params }: { params: { id: string } }
 ) {
   try {
-    let blog: any = null;
-    try {
-      if ((db as any).blogs) {
-        blog = await (db as any).blogs.findFirst({
-          where: {
-            OR: [{ id: params.id }, { slug: params.id }],
-          },
-        });
-      }
-    } catch {}
+    let blog = await db.blogs.findFirst({
+      where: {
+        OR: [{ id: params.id }, { slug: params.id }],
+      },
+    });
 
     if (!blog) {
-      blog = INITIAL_BLOGS.find((b) => b.id === params.id || b.slug === params.id);
+      blog = await db.blogs.findUnique({
+        where: { slug: params.id },
+      });
     }
 
     if (!blog) {
@@ -33,8 +29,6 @@ export async function GET(
 
     return NextResponse.json({ success: true, blog });
   } catch (error) {
-    const blog = INITIAL_BLOGS.find((b) => b.id === params.id || b.slug === params.id);
-    if (blog) return NextResponse.json({ success: true, blog });
     return NextResponse.json({ error: "Blog not found" }, { status: 404 });
   }
 }
@@ -64,38 +58,30 @@ export async function PUT(
     } = body;
 
     const cleanSlug = (slug || title || "article").toLowerCase().replace(/[^a-z0-9]+/g, "-");
-    const updatedBlog = {
-      id: params.id,
-      slug: cleanSlug,
-      title,
-      excerpt,
-      content,
-      featuredImage,
-      category: category || "Interior Design",
-      author: author || session.name || "Monish Pasha",
-      readTime: readTime || "4 min read",
-      publishedAt: new Date().toLocaleDateString("en-US", { month: "long", year: "numeric" }),
-      isPublished: isPublished ?? true,
-      tags: Array.isArray(tags) ? tags : (tags || "").split(",").map((t: string) => t.trim()).filter(Boolean),
-    };
+    const updated = await db.blogs.update({
+      where: { id: params.id },
+      data: {
+        ...(title && { title }),
+        slug: cleanSlug,
+        ...(excerpt !== undefined && { excerpt }),
+        ...(content !== undefined && { content }),
+        ...(featuredImage !== undefined && { featuredImage }),
+        ...(category !== undefined && { category }),
+        ...(author !== undefined && { author }),
+        ...(readTime !== undefined && { readTime }),
+        ...(tags !== undefined && { tags: Array.isArray(tags) ? tags : (tags || "").split(",").map((t: string) => t.trim()).filter(Boolean) }),
+        ...(isPublished !== undefined && { isPublished }),
+      },
+    });
 
     try {
-      if ((db as any).blogs) {
-        await (db as any).blogs.update({
-          where: { id: params.id },
-          data: updatedBlog,
-        });
-      }
-    } catch (dbErr) {
-      console.warn("DB offline, updated blog in runtime:", dbErr);
-    }
-
-    try {
+      revalidatePath("/", "layout");
+      revalidatePath("/", "page");
       revalidatePath("/blogs", "page");
       revalidatePath(`/blogs/${cleanSlug}`, "page");
     } catch {}
 
-    return NextResponse.json({ success: true, blog: updatedBlog });
+    return NextResponse.json({ success: true, blog: updated });
   } catch (error: any) {
     console.error("Update blog error:", error);
     return NextResponse.json(
@@ -115,15 +101,13 @@ export async function DELETE(
   }
 
   try {
-    try {
-      if ((db as any).blogs) {
-        await (db as any).blogs.delete({
-          where: { id: params.id },
-        });
-      }
-    } catch {}
+    await db.blogs.delete({
+      where: { id: params.id },
+    });
 
     try {
+      revalidatePath("/", "layout");
+      revalidatePath("/", "page");
       revalidatePath("/blogs", "page");
     } catch {}
 

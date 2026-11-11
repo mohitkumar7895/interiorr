@@ -30,7 +30,8 @@ export const metadata: Metadata = {
     "Explore our complete range of 12 luxury interior design, modular kitchen, bespoke wardrobe, and master carpentry services in Noida.",
 };
 
-export const revalidate = 60;
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
 
 export default async function ServicesPage() {
   let services: any[] = [];

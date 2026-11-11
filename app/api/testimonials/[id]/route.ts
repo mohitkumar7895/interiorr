@@ -19,35 +19,21 @@ export async function PUT(
     const body = await req.json();
     const { clientName, clientRole, clientLocation, rating, reviewText, isPublished, orderIndex } = body;
 
-    let updated: any = null;
-    try {
-      updated = await db.testimonials.update({
-        where: { id: params.id },
-        data: {
-          ...(clientName && { clientName }),
-          ...(clientRole && { clientRole }),
-          ...(clientLocation && { clientLocation }),
-          ...(rating !== undefined && { rating: parseInt(rating) }),
-          ...(reviewText && { reviewText }),
-          ...(isPublished !== undefined && { isPublished }),
-          ...(orderIndex !== undefined && { orderIndex: parseInt(orderIndex) }),
-        },
-      });
-    } catch (dbErr) {
-      console.warn("DB update error in /api/testimonials/[id]:", dbErr);
-      updated = {
-        id: params.id,
-        clientName: clientName || "Client",
-        clientRole: clientRole || "Homeowner",
-        clientLocation: clientLocation || "Noida",
-        rating: rating !== undefined ? parseInt(rating) : 5,
-        reviewText: reviewText || "",
-        isPublished: isPublished ?? true,
-        orderIndex: orderIndex !== undefined ? parseInt(orderIndex) : 0,
-      };
-    }
+    const updated = await db.testimonials.update({
+      where: { id: params.id },
+      data: {
+        ...(clientName && { clientName }),
+        ...(clientRole && { clientRole }),
+        ...(clientLocation && { clientLocation }),
+        ...(rating !== undefined && { rating: parseInt(rating) }),
+        ...(reviewText && { reviewText }),
+        ...(isPublished !== undefined && { isPublished }),
+        ...(orderIndex !== undefined && { orderIndex: parseInt(orderIndex) }),
+      },
+    });
 
     try {
+      revalidatePath("/", "layout");
       revalidatePath("/", "page");
     } catch {}
 
@@ -67,15 +53,12 @@ export async function DELETE(
   }
 
   try {
-    try {
-      await db.testimonials.delete({
-        where: { id: params.id },
-      });
-    } catch (dbErr) {
-      console.warn("DB delete error in /api/testimonials/[id]:", dbErr);
-    }
+    await db.testimonials.delete({
+      where: { id: params.id },
+    });
 
     try {
+      revalidatePath("/", "layout");
       revalidatePath("/", "page");
     } catch {}
 

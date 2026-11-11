@@ -28,6 +28,9 @@ interface ProjectDetailPageProps {
   };
 }
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 export async function generateMetadata({ params }: ProjectDetailPageProps): Promise<Metadata> {
   const { slug } = params;
   let project: any = null;
@@ -56,8 +59,6 @@ export async function generateMetadata({ params }: ProjectDetailPageProps): Prom
     },
   };
 }
-
-export const revalidate = 60;
 
 export default async function ProjectDetailPage({ params }: ProjectDetailPageProps) {
   const { slug } = params;

@@ -1,5 +1,19 @@
 import { pool, query, queryOne, execute, initDatabaseTables } from "./mysql";
 import crypto from "crypto";
+import {
+  jsonServices,
+  jsonProjects,
+  jsonGallery,
+  jsonGalleryCategories,
+  jsonTestimonials,
+  jsonBlogs,
+  jsonSiteSettings,
+  jsonHomeSections,
+  jsonSEO,
+  jsonEnquiries,
+  jsonAdmin,
+  jsonActivityLogs,
+} from "./jsonStore";
 
 export function generateId(): string {
   return crypto.randomUUID();
@@ -8,56 +22,95 @@ export function generateId(): string {
 export const db = {
   admin: {
     async findUnique({ where, select }: { where: { email?: string; id?: string }; select?: any }) {
-      if (where.email) {
-        return queryOne("SELECT * FROM Admin WHERE email = ? LIMIT 1", [where.email.toLowerCase()]);
-      }
-      if (where.id) {
-        return queryOne("SELECT * FROM Admin WHERE id = ? LIMIT 1", [where.id]);
-      }
-      return null;
+      try {
+        if (where.email) {
+          const row = await queryOne("SELECT * FROM Admin WHERE email = ? LIMIT 1", [where.email.toLowerCase()]);
+          if (row) return row;
+        }
+        if (where.id) {
+          const row = await queryOne("SELECT * FROM Admin WHERE id = ? LIMIT 1", [where.id]);
+          if (row) return row;
+        }
+      } catch {}
+      return jsonAdmin.findUnique({ where });
     },
     async create({ data, include }: { data: any; include?: any }) {
-      const id = data.id || generateId();
-      await execute(
-        "INSERT INTO Admin (id, email, password, name, role, avatar) VALUES (?, ?, ?, ?, ?, ?)",
-        [id, data.email.toLowerCase(), data.password, data.name, data.role || "superadmin", data.avatar || null]
-      );
-      return queryOne("SELECT * FROM Admin WHERE id = ?", [id]);
+      const jsonRes = jsonAdmin.create({ data });
+      try {
+        const id = jsonRes.id;
+        await execute(
+          "INSERT INTO Admin (id, email, password, name, role, avatar) VALUES (?, ?, ?, ?, ?, ?)",
+          [id, data.email.toLowerCase(), data.password, data.name, data.role || "superadmin", data.avatar || null]
+        );
+      } catch {}
+      return jsonRes;
     },
     async upsert({ where, update, create }: { where: { email: string }; update: any; create: any }) {
-      const existing = await queryOne("SELECT id FROM Admin WHERE email = ?", [where.email.toLowerCase()]);
-      if (existing) {
-        if (update.password) {
-          await execute("UPDATE Admin SET password = ?, name = ?, role = ? WHERE email = ?", [
-            update.password,
-            update.name || "Admin",
-            update.role || "superadmin",
-            where.email.toLowerCase(),
-          ]);
+      const jsonRes = jsonAdmin.upsert({ where, update, create });
+      try {
+        const existing = await queryOne("SELECT id FROM Admin WHERE email = ?", [where.email.toLowerCase()]);
+        if (existing) {
+          if (update.password) {
+            await execute("UPDATE Admin SET password = ?, name = ?, role = ? WHERE email = ?", [
+              update.password,
+              update.name || "Admin",
+              update.role || "superadmin",
+              where.email.toLowerCase(),
+            ]);
+          }
+        } else {
+          const id = create.id || generateId();
+          await execute(
+            "INSERT INTO Admin (id, email, password, name, role) VALUES (?, ?, ?, ?, ?)",
+            [id, where.email.toLowerCase(), create.password, create.name, create.role || "superadmin"]
+          );
         }
-        return queryOne("SELECT * FROM Admin WHERE email = ?", [where.email.toLowerCase()]);
-      } else {
-        const id = create.id || generateId();
-        await execute(
-          "INSERT INTO Admin (id, email, password, name, role) VALUES (?, ?, ?, ?, ?)",
-          [id, where.email.toLowerCase(), create.password, create.name, create.role || "superadmin"]
-        );
-        return queryOne("SELECT * FROM Admin WHERE id = ?", [id]);
-      }
+      } catch {}
+      return jsonRes;
     },
   },
 
   siteSettings: {
     async findUnique({ where }: { where: { id: string } }) {
-      const row = await queryOne("SELECT * FROM SiteSettings WHERE id = ? LIMIT 1", [where.id]);
-      return row;
+      try {
+        const row = await queryOne("SELECT * FROM SiteSettings WHERE id = ? LIMIT 1", [where.id]);
+        if (row) return row;
+      } catch {}
+      return jsonSiteSettings.findUnique({ where });
     },
     async upsert({ where, update, create }: { where: { id: string }; update: any; create: any }) {
-      const existing = await queryOne("SELECT id FROM SiteSettings WHERE id = ?", [where.id]);
-      if (existing) {
+      const jsonRes = jsonSiteSettings.upsert({ where, update, create });
+      try {
+        const existing = await queryOne("SELECT id FROM SiteSettings WHERE id = ?", [where.id]);
+        if (existing) {
+          const fields: string[] = [];
+          const values: any[] = [];
+          for (const [k, v] of Object.entries(update)) {
+            if (v !== undefined) {
+              fields.push(`${k} = ?`);
+              values.push(v);
+            }
+          }
+          if (fields.length > 0) {
+            values.push(where.id);
+            await execute(`UPDATE SiteSettings SET ${fields.join(", ")} WHERE id = ?`, values);
+          }
+        } else {
+          const id = create.id || "default";
+          const keys = Object.keys(create);
+          const placeholders = keys.map(() => "?").join(", ");
+          const values = Object.values(create);
+          await execute(`INSERT INTO SiteSettings (${keys.join(", ")}) VALUES (${placeholders})`, values);
+        }
+      } catch {}
+      return jsonRes;
+    },
+    async update({ where, data, include }: { where: { id: string }; data: any; include?: any }) {
+      const jsonRes = jsonSiteSettings.update({ where, data });
+      try {
         const fields: string[] = [];
         const values: any[] = [];
-        for (const [k, v] of Object.entries(update)) {
+        for (const [k, v] of Object.entries(data)) {
           if (v !== undefined) {
             fields.push(`${k} = ?`);
             values.push(v);
@@ -67,589 +120,699 @@ export const db = {
           values.push(where.id);
           await execute(`UPDATE SiteSettings SET ${fields.join(", ")} WHERE id = ?`, values);
         }
-        return queryOne("SELECT * FROM SiteSettings WHERE id = ?", [where.id]);
-      } else {
-        const id = create.id || "default";
-        const keys = Object.keys(create);
-        const placeholders = keys.map(() => "?").join(", ");
-        const values = Object.values(create);
-        await execute(`INSERT INTO SiteSettings (${keys.join(", ")}) VALUES (${placeholders})`, values);
-        return queryOne("SELECT * FROM SiteSettings WHERE id = ?", [id]);
-      }
-    },
-    async update({ where, data, include }: { where: { id: string }; data: any; include?: any }) {
-      const fields: string[] = [];
-      const values: any[] = [];
-      for (const [k, v] of Object.entries(data)) {
-        if (v !== undefined) {
-          fields.push(`${k} = ?`);
-          values.push(v);
-        }
-      }
-      if (fields.length > 0) {
-        values.push(where.id);
-        await execute(`UPDATE SiteSettings SET ${fields.join(", ")} WHERE id = ?`, values);
-      }
-      return queryOne("SELECT * FROM SiteSettings WHERE id = ?", [where.id]);
+      } catch {}
+      return jsonRes;
     },
   },
 
   homeSections: {
     async findMany({ orderBy }: { orderBy?: { orderIndex?: "asc" | "desc" } } = {}) {
-      const direction = orderBy?.orderIndex === "desc" ? "DESC" : "ASC";
-      const rows = await query(`SELECT * FROM HomeSections ORDER BY orderIndex ${direction}`);
-      return rows.map((r) => ({ ...r, isEnabled: Boolean(r.isEnabled) }));
+      try {
+        const direction = orderBy?.orderIndex === "desc" ? "DESC" : "ASC";
+        const rows = await query(`SELECT * FROM HomeSections ORDER BY orderIndex ${direction}`);
+        if (rows && rows.length > 0) return rows;
+      } catch {}
+      return jsonHomeSections.findMany();
     },
     async update({ where, data }: { where: { sectionKey: string }; data: any }) {
-      const fields: string[] = [];
-      const values: any[] = [];
-      for (const [k, v] of Object.entries(data)) {
-        if (v !== undefined) {
-          fields.push(`${k} = ?`);
-          values.push(v);
+      const jsonRes = jsonHomeSections.update({ where, data });
+      try {
+        const fields: string[] = [];
+        const values: any[] = [];
+        for (const [k, v] of Object.entries(data)) {
+          if (v !== undefined) {
+            fields.push(`${k} = ?`);
+            values.push(k === "isEnabled" ? (v ? 1 : 0) : v);
+          }
         }
-      }
-      if (fields.length > 0) {
-        values.push(where.sectionKey);
-        await execute(`UPDATE HomeSections SET ${fields.join(", ")} WHERE sectionKey = ?`, values);
-      }
-      return queryOne("SELECT * FROM HomeSections WHERE sectionKey = ?", [where.sectionKey]);
-    },
-    async upsert({ where, update, create }: { where: { sectionKey: string }; update: any; create: any }) {
-      const existing = await queryOne("SELECT id FROM HomeSections WHERE sectionKey = ?", [where.sectionKey]);
-      if (existing) {
-        await execute("UPDATE HomeSections SET title = ?, orderIndex = ? WHERE sectionKey = ?", [
-          update.title,
-          update.orderIndex || 0,
-          where.sectionKey,
-        ]);
-        return queryOne("SELECT * FROM HomeSections WHERE sectionKey = ?", [where.sectionKey]);
-      } else {
-        const id = generateId();
-        await execute(
-          "INSERT INTO HomeSections (id, sectionKey, title, orderIndex, isEnabled) VALUES (?, ?, ?, ?, ?)",
-          [id, where.sectionKey, create.title, create.orderIndex || 0, create.isEnabled ?? true]
-        );
-        return queryOne("SELECT * FROM HomeSections WHERE id = ?", [id]);
-      }
+        if (fields.length > 0) {
+          values.push(where.sectionKey);
+          await execute(`UPDATE HomeSections SET ${fields.join(", ")} WHERE sectionKey = ?`, values);
+        }
+      } catch {}
+      return jsonRes;
     },
   },
 
   services: {
     async findMany({ where, orderBy, take, select }: { where?: any; orderBy?: any; take?: number; select?: any } = {}) {
-      let sql = "SELECT * FROM Services";
-      const params: any[] = [];
-
-      if (where?.isPublished !== undefined) {
-        sql += " WHERE isPublished = ?";
-        params.push(where.isPublished ? 1 : 0);
-      }
-
-      sql += " ORDER BY orderIndex ASC";
-      if (take) {
-        sql += ` LIMIT ${parseInt(String(take))}`;
-      }
-
-      const rows = await query(sql, params);
-      return rows.map((r) => ({ ...r, isPublished: Boolean(r.isPublished) }));
+      try {
+        let sql = "SELECT * FROM Services";
+        const params: any[] = [];
+        if (where?.isPublished !== undefined) {
+          sql += " WHERE isPublished = ?";
+          params.push(where.isPublished ? 1 : 0);
+        }
+        sql += " ORDER BY orderIndex ASC";
+        if (take) {
+          sql += ` LIMIT ${parseInt(String(take))}`;
+        }
+        const rows = await query(sql, params);
+        if (rows && rows.length > 0) {
+          return rows.map((r) => ({ ...r, isPublished: Boolean(r.isPublished) }));
+        }
+      } catch {}
+      return jsonServices.findMany({ where, orderBy, take });
     },
     async findUnique({ where }: { where: { slug?: string; id?: string } }) {
-      let row = null;
-      if (where.slug) {
-        row = await queryOne("SELECT * FROM Services WHERE slug = ? LIMIT 1", [where.slug]);
-      } else if (where.id) {
-        row = await queryOne("SELECT * FROM Services WHERE id = ? LIMIT 1", [where.id]);
-      }
-      if (row) {
-        row.isPublished = Boolean(row.isPublished);
-      }
-      return row;
+      try {
+        let row = null;
+        if (where.slug) {
+          row = await queryOne("SELECT * FROM Services WHERE slug = ? LIMIT 1", [where.slug]);
+        } else if (where.id) {
+          row = await queryOne("SELECT * FROM Services WHERE id = ? LIMIT 1", [where.id]);
+        }
+        if (row) {
+          return { ...row, isPublished: Boolean(row.isPublished) };
+        }
+      } catch {}
+      return jsonServices.findUnique({ where });
     },
     async create({ data, include }: { data: any; include?: any }) {
-      const id = data.id || generateId();
-      await execute(
-        `INSERT INTO Services (id, slug, title, category, shortDesc, fullDesc, icon, featuredImage, images, features, benefits, seoTitle, seoDesc, isPublished, orderIndex)
-         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
-        [
-          id,
-          data.slug,
-          data.title,
-          data.category || "Interior",
-          data.shortDesc,
-          data.fullDesc,
-          data.icon || "Hammer",
-          data.featuredImage,
-          typeof data.images === "string" ? data.images : JSON.stringify(data.images || []),
-          typeof data.features === "string" ? data.features : JSON.stringify(data.features || []),
-          typeof data.benefits === "string" ? data.benefits : JSON.stringify(data.benefits || []),
-          data.seoTitle || null,
-          data.seoDesc || null,
-          data.isPublished ?? true ? 1 : 0,
-          data.orderIndex || 0,
-        ]
-      );
-      return queryOne("SELECT * FROM Services WHERE id = ?", [id]);
+      const jsonRes = jsonServices.create({ data });
+      try {
+        const id = jsonRes.id;
+        await execute(
+          `INSERT INTO Services (id, slug, title, category, shortDesc, fullDesc, icon, featuredImage, images, features, benefits, seoTitle, seoDesc, isPublished, orderIndex)
+           VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+          [
+            id,
+            jsonRes.slug,
+            jsonRes.title,
+            jsonRes.category || "Interior",
+            jsonRes.shortDesc,
+            jsonRes.fullDesc,
+            jsonRes.icon || "Hammer",
+            jsonRes.featuredImage,
+            jsonRes.images,
+            jsonRes.features,
+            jsonRes.benefits,
+            jsonRes.seoTitle || null,
+            jsonRes.seoDesc || null,
+            jsonRes.isPublished ? 1 : 0,
+            jsonRes.orderIndex || 0,
+          ]
+        );
+      } catch {}
+      return jsonRes;
     },
     async update({ where, data, include }: { where: { id: string }; data: any; include?: any }) {
-      const fields: string[] = [];
-      const values: any[] = [];
-      for (const [k, v] of Object.entries(data)) {
-        if (v !== undefined) {
-          fields.push(`${k} = ?`);
-          values.push(k === "isPublished" ? (v ? 1 : 0) : v);
+      const jsonRes = jsonServices.update({ where, data });
+      try {
+        const fields: string[] = [];
+        const values: any[] = [];
+        for (const [k, v] of Object.entries(data)) {
+          if (v !== undefined) {
+            fields.push(`${k} = ?`);
+            values.push(k === "isPublished" ? (v ? 1 : 0) : v);
+          }
         }
-      }
-      if (fields.length > 0) {
-        values.push(where.id);
-        await execute(`UPDATE Services SET ${fields.join(", ")} WHERE id = ?`, values);
-      }
-      return queryOne("SELECT * FROM Services WHERE id = ?", [where.id]);
+        if (fields.length > 0) {
+          values.push(where.id);
+          await execute(`UPDATE Services SET ${fields.join(", ")} WHERE id = ?`, values);
+        }
+      } catch {}
+      return jsonRes;
     },
     async delete({ where }: { where: { id: string } }) {
-      await execute("DELETE FROM Services WHERE id = ?", [where.id]);
-      return { id: where.id };
+      const jsonRes = jsonServices.delete({ where });
+      try {
+        await execute("DELETE FROM Services WHERE id = ?", [where.id]);
+      } catch {}
+      return jsonRes;
     },
     async count() {
-      const res = await queryOne<{ total: number }>("SELECT COUNT(*) as total FROM Services");
-      return res ? Number(res.total) : 0;
+      try {
+        const res = await queryOne<{ total: number }>("SELECT COUNT(*) as total FROM Services");
+        if (res) return Number(res.total);
+      } catch {}
+      return jsonServices.count();
     },
   },
 
   projects: {
     async findMany({ where, orderBy, take, include, select }: { where?: any; orderBy?: any; take?: number; include?: any; select?: any } = {}) {
-      let sql = "SELECT * FROM Projects";
-      const params: any[] = [];
-      const conditions: string[] = [];
-
-      if (where?.isPublished !== undefined) {
-        conditions.push("isPublished = ?");
-        params.push(where.isPublished ? 1 : 0);
-      }
-      if (where?.isFeatured !== undefined) {
-        conditions.push("isFeatured = ?");
-        params.push(where.isFeatured ? 1 : 0);
-      }
-
-      if (conditions.length > 0) {
-        sql += ` WHERE ${conditions.join(" AND ")}`;
-      }
-
-      sql += " ORDER BY orderIndex ASC";
-      if (take) {
-        sql += ` LIMIT ${parseInt(String(take))}`;
-      }
-
-      const rows = await query(sql, params);
-
-      // Fetch related images if include.images
-      if (include?.images && rows.length > 0) {
-        const projectIds = rows.map((r) => r.id);
-        const placeholders = projectIds.map(() => "?").join(",");
-        const images = await query(`SELECT * FROM ProjectImages WHERE projectId IN (${placeholders}) ORDER BY orderIndex ASC`, projectIds);
-        
-        return rows.map((p) => ({
-          ...p,
-          isPublished: Boolean(p.isPublished),
-          isFeatured: Boolean(p.isFeatured),
-          images: images.filter((img) => img.projectId === p.id),
-        }));
-      }
-
-      return rows.map((p) => ({
-        ...p,
-        isPublished: Boolean(p.isPublished),
-        isFeatured: Boolean(p.isFeatured),
-      }));
+      try {
+        let sql = "SELECT * FROM Projects";
+        const params: any[] = [];
+        if (where?.isPublished !== undefined) {
+          sql += " WHERE isPublished = ?";
+          params.push(where.isPublished ? 1 : 0);
+        }
+        sql += " ORDER BY orderIndex ASC";
+        if (take) {
+          sql += ` LIMIT ${parseInt(String(take))}`;
+        }
+        const rows = await query(sql, params);
+        if (rows && rows.length > 0) {
+          const projs = rows.map((r) => ({ ...r, isPublished: Boolean(r.isPublished), isFeatured: Boolean(r.isFeatured) }));
+          if (include?.images) {
+            const projectIds = projs.map((p) => p.id);
+            if (projectIds.length > 0) {
+              const placeholders = projectIds.map(() => "?").join(", ");
+              const images = await query(`SELECT * FROM ProjectImages WHERE projectId IN (${placeholders}) ORDER BY orderIndex ASC`, projectIds).catch(() => []);
+              return projs.map((p) => ({
+                ...p,
+                images: images.filter((img) => img.projectId === p.id),
+              }));
+            }
+          }
+          return projs;
+        }
+      } catch {}
+      return jsonProjects.findMany({ where, orderBy, take, include });
     },
     async findUnique({ where, include }: { where: { slug?: string; id?: string }; include?: any }) {
-      let p = null;
-      if (where.slug) {
-        p = await queryOne("SELECT * FROM Projects WHERE slug = ? LIMIT 1", [where.slug]);
-      } else if (where.id) {
-        p = await queryOne("SELECT * FROM Projects WHERE id = ? LIMIT 1", [where.id]);
-      }
-      if (!p) return null;
-
-      p.isPublished = Boolean(p.isPublished);
-      p.isFeatured = Boolean(p.isFeatured);
-
-      if (include?.images) {
-        p.images = await query("SELECT * FROM ProjectImages WHERE projectId = ? ORDER BY orderIndex ASC", [p.id]);
-      }
-
-      return p;
+      try {
+        let row = null;
+        if (where.slug) {
+          row = await queryOne("SELECT * FROM Projects WHERE slug = ? LIMIT 1", [where.slug]);
+        } else if (where.id) {
+          row = await queryOne("SELECT * FROM Projects WHERE id = ? LIMIT 1", [where.id]);
+        }
+        if (row) {
+          row.isPublished = Boolean(row.isPublished);
+          row.isFeatured = Boolean(row.isFeatured);
+          if (include?.images) {
+            const images = await query("SELECT * FROM ProjectImages WHERE projectId = ? ORDER BY orderIndex ASC", [row.id]).catch(() => []);
+            row.images = images;
+          }
+          return row;
+        }
+      } catch {}
+      return jsonProjects.findUnique({ where });
     },
     async create({ data, include }: { data: any; include?: any }) {
-      const id = data.id || generateId();
-      await execute(
-        `INSERT INTO Projects (id, slug, title, category, client, location, completedDate, area, shortDesc, description, featuredImage, beforeImage, afterImage, isPublished, isFeatured, orderIndex)
-         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
-        [
-          id,
-          data.slug,
-          data.title,
-          data.category || "Living Room",
-          data.client || null,
-          data.location || "Noida, NCR",
-          data.completedDate || null,
-          data.area || "1,850 sq.ft",
-          data.shortDesc,
-          data.description,
-          data.featuredImage,
-          data.beforeImage || null,
-          data.afterImage || null,
-          data.isPublished ?? true ? 1 : 0,
-          data.isFeatured ?? false ? 1 : 0,
-          data.orderIndex || 0,
-        ]
-      );
-
-      if (data.images?.create && Array.isArray(data.images.create)) {
-        for (const img of data.images.create) {
-          const imgId = generateId();
-          await execute(
-            "INSERT INTO ProjectImages (id, projectId, imageUrl, caption, orderIndex) VALUES (?, ?, ?, ?, ?)",
-            [imgId, id, img.imageUrl, img.caption || null, img.orderIndex || 0]
-          );
-        }
-      }
-
-      return this.findUnique({ where: { id }, include: { images: true } });
+      const jsonRes = jsonProjects.create({ data });
+      try {
+        const id = jsonRes.id;
+        await execute(
+          `INSERT INTO Projects (id, slug, title, category, client, location, completedDate, area, shortDesc, description, featuredImage, beforeImage, afterImage, isPublished, isFeatured, orderIndex)
+           VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+          [
+            id,
+            jsonRes.slug,
+            jsonRes.title,
+            jsonRes.category || "Living Room",
+            jsonRes.client || null,
+            jsonRes.location || "Noida, NCR",
+            jsonRes.completedDate || null,
+            jsonRes.area || "1,850 sq.ft",
+            jsonRes.shortDesc || "",
+            jsonRes.description || "",
+            jsonRes.featuredImage,
+            jsonRes.beforeImage || null,
+            jsonRes.afterImage || null,
+            jsonRes.isPublished ? 1 : 0,
+            jsonRes.isFeatured ? 1 : 0,
+            jsonRes.orderIndex || 0,
+          ]
+        );
+      } catch {}
+      return jsonRes;
     },
     async update({ where, data, include }: { where: { id: string }; data: any; include?: any }) {
-      const fields: string[] = [];
-      const values: any[] = [];
-      for (const [k, v] of Object.entries(data)) {
-        if (v !== undefined && k !== "images") {
-          fields.push(`${k} = ?`);
-          values.push(k === "isPublished" || k === "isFeatured" ? (v ? 1 : 0) : v);
+      const jsonRes = jsonProjects.update({ where, data });
+      try {
+        const fields: string[] = [];
+        const values: any[] = [];
+        for (const [k, v] of Object.entries(data)) {
+          if (v !== undefined && k !== "images") {
+            fields.push(`${k} = ?`);
+            values.push(k === "isPublished" || k === "isFeatured" ? (v ? 1 : 0) : v);
+          }
         }
-      }
-      if (fields.length > 0) {
-        values.push(where.id);
-        await execute(`UPDATE Projects SET ${fields.join(", ")} WHERE id = ?`, values);
-      }
-      return this.findUnique({ where: { id: where.id }, include: { images: true } });
+        if (fields.length > 0) {
+          values.push(where.id);
+          await execute(`UPDATE Projects SET ${fields.join(", ")} WHERE id = ?`, values);
+        }
+      } catch {}
+      return jsonRes;
     },
     async delete({ where }: { where: { id: string } }) {
-      await execute("DELETE FROM ProjectImages WHERE projectId = ?", [where.id]);
-      await execute("DELETE FROM Projects WHERE id = ?", [where.id]);
-      return { id: where.id };
+      const jsonRes = jsonProjects.delete({ where });
+      try {
+        await execute("DELETE FROM ProjectImages WHERE projectId = ?", [where.id]).catch(() => {});
+        await execute("DELETE FROM Projects WHERE id = ?", [where.id]);
+      } catch {}
+      return jsonRes;
     },
     async count() {
-      const res = await queryOne<{ total: number }>("SELECT COUNT(*) as total FROM Projects");
-      return res ? Number(res.total) : 0;
+      try {
+        const res = await queryOne<{ total: number }>("SELECT COUNT(*) as total FROM Projects");
+        if (res) return Number(res.total);
+      } catch {}
+      return jsonProjects.count();
     },
   },
 
   galleryCategories: {
     async findMany({ orderBy }: { orderBy?: any } = {}) {
-      return query("SELECT * FROM GalleryCategories ORDER BY orderIndex ASC");
+      try {
+        const rows = await query("SELECT * FROM GalleryCategories ORDER BY orderIndex ASC");
+        if (rows && rows.length > 0) return rows;
+      } catch {}
+      return jsonGalleryCategories.findMany();
     },
-    async upsert({ where, update, create }: { where: { slug: string }; update: any; create: any }) {
-      const existing = await queryOne("SELECT id FROM GalleryCategories WHERE slug = ?", [where.slug]);
-      if (existing) {
-        await execute("UPDATE GalleryCategories SET name = ? WHERE slug = ?", [update.name, where.slug]);
-        return queryOne("SELECT * FROM GalleryCategories WHERE slug = ?", [where.slug]);
-      } else {
-        const id = generateId();
-        await execute("INSERT INTO GalleryCategories (id, slug, name, orderIndex) VALUES (?, ?, ?, ?)", [
+    async findUnique({ where }: { where: { slug?: string; id?: string } }) {
+      try {
+        let row = null;
+        if (where.slug) {
+          row = await queryOne("SELECT * FROM GalleryCategories WHERE slug = ? LIMIT 1", [where.slug]);
+        } else if (where.id) {
+          row = await queryOne("SELECT * FROM GalleryCategories WHERE id = ? LIMIT 1", [where.id]);
+        }
+        if (row) return row;
+      } catch {}
+      return jsonGalleryCategories.findUnique({ where });
+    },
+    async create({ data }: { data: any }) {
+      const jsonRes = jsonGalleryCategories.create({ data });
+      try {
+        const id = jsonRes.id;
+        await execute("INSERT INTO GalleryCategories (id, name, slug, orderIndex) VALUES (?, ?, ?, ?)", [
           id,
-          where.slug,
-          create.name,
-          create.orderIndex || 0,
+          jsonRes.name,
+          jsonRes.slug,
+          jsonRes.orderIndex || 0,
         ]);
-        return queryOne("SELECT * FROM GalleryCategories WHERE id = ?", [id]);
-      }
+      } catch {}
+      return jsonRes;
     },
   },
 
   gallery: {
-    async findMany({ where, include, orderBy, take }: { where?: any; include?: any; orderBy?: any; take?: number } = {}) {
-      let sql = `
-        SELECT g.*, c.name as categoryName, c.slug as categorySlug
-        FROM Gallery g
-        LEFT JOIN GalleryCategories c ON g.categoryId = c.id
-      `;
-      const params: any[] = [];
-      const conditions: string[] = [];
-
-      if (where?.isFeatured !== undefined) {
-        conditions.push("g.isFeatured = ?");
-        params.push(where.isFeatured ? 1 : 0);
-      }
-      if (where?.categoryId) {
-        conditions.push("g.categoryId = ?");
-        params.push(where.categoryId);
-      }
-
-      if (conditions.length > 0) {
-        sql += ` WHERE ${conditions.join(" AND ")}`;
-      }
-
-      sql += " ORDER BY g.orderIndex ASC";
-      if (take) {
-        sql += ` LIMIT ${parseInt(String(take))}`;
-      }
-
-      const rows = await query(sql, params);
-      return rows.map((r) => ({
-        ...r,
-        isFeatured: Boolean(r.isFeatured),
-        category: {
-          id: r.categoryId,
-          name: r.categoryName || "Showcase",
-          slug: r.categorySlug || "showcase",
-        },
-      }));
-    },
-    async create({ data, include }: { data: any; include?: any }) {
-      const id = data.id || generateId();
-      await execute(
-        "INSERT INTO Gallery (id, title, categoryId, imageUrl, thumbnail, isFeatured, orderIndex) VALUES (?, ?, ?, ?, ?, ?, ?)",
-        [
-          id,
-          data.title,
-          data.categoryId,
-          data.imageUrl,
-          data.thumbnail || null,
-          data.isFeatured ?? false ? 1 : 0,
-          data.orderIndex || 0,
-        ]
-      );
-      const row = await queryOne(
-        `SELECT g.*, c.name as categoryName, c.slug as categorySlug
-         FROM Gallery g LEFT JOIN GalleryCategories c ON g.categoryId = c.id WHERE g.id = ?`,
-        [id]
-      );
-      return {
-        ...row,
-        isFeatured: Boolean(row.isFeatured),
-        category: { id: row.categoryId, name: row.categoryName, slug: row.categorySlug },
-      };
-    },
-    async update({ where, data, include }: { where: { id: string }; data: any; include?: any }) {
-      const fields: string[] = [];
-      const values: any[] = [];
-      for (const [k, v] of Object.entries(data)) {
-        if (v !== undefined) {
-          fields.push(`${k} = ?`);
-          values.push(k === "isFeatured" ? (v ? 1 : 0) : v);
+    async findMany({ where, orderBy, take, include }: { where?: any; orderBy?: any; take?: number; include?: any } = {}) {
+      try {
+        let sql = "SELECT * FROM Gallery";
+        const params: any[] = [];
+        if (where?.isFeatured !== undefined) {
+          sql += " WHERE isFeatured = ?";
+          params.push(where.isFeatured ? 1 : 0);
         }
-      }
-      if (fields.length > 0) {
-        values.push(where.id);
-        await execute(`UPDATE Gallery SET ${fields.join(", ")} WHERE id = ?`, values);
-      }
-      return queryOne("SELECT * FROM Gallery WHERE id = ?", [where.id]);
+        sql += " ORDER BY orderIndex ASC";
+        if (take) {
+          sql += ` LIMIT ${parseInt(String(take))}`;
+        }
+        const rows = await query(sql, params);
+        if (rows && rows.length > 0) {
+          const items = rows.map((r) => ({ ...r, isFeatured: Boolean(r.isFeatured) }));
+          if (include?.category) {
+            const categories = await query("SELECT * FROM GalleryCategories").catch(() => []);
+            return items.map((item) => ({
+              ...item,
+              category: categories.find((c) => c.id === item.categoryId) || null,
+            }));
+          }
+          return items;
+        }
+      } catch {}
+      return jsonGallery.findMany({ where, orderBy, take, include });
+    },
+    async findUnique({ where, include }: { where: { id: string }; include?: any }) {
+      try {
+        const row = await queryOne("SELECT * FROM Gallery WHERE id = ? LIMIT 1", [where.id]);
+        if (row) {
+          row.isFeatured = Boolean(row.isFeatured);
+          if (include?.category && row.categoryId) {
+            row.category = await queryOne("SELECT * FROM GalleryCategories WHERE id = ?", [row.categoryId]).catch(() => null);
+          }
+          return row;
+        }
+      } catch {}
+      return jsonGallery.findUnique({ where });
+    },
+    async create({ data }: { data: any }) {
+      const jsonRes = jsonGallery.create({ data });
+      try {
+        const id = jsonRes.id;
+        await execute(
+          "INSERT INTO Gallery (id, title, categoryId, imageUrl, isFeatured, orderIndex) VALUES (?, ?, ?, ?, ?, ?)",
+          [
+            id,
+            jsonRes.title || "",
+            jsonRes.categoryId || null,
+            jsonRes.imageUrl,
+            jsonRes.isFeatured ? 1 : 0,
+            jsonRes.orderIndex || 0,
+          ]
+        );
+      } catch {}
+      return jsonRes;
+    },
+    async update({ where, data }: { where: { id: string }; data: any }) {
+      const jsonRes = jsonGallery.update({ where, data });
+      try {
+        const fields: string[] = [];
+        const values: any[] = [];
+        for (const [k, v] of Object.entries(data)) {
+          if (v !== undefined) {
+            fields.push(`${k} = ?`);
+            values.push(k === "isFeatured" ? (v ? 1 : 0) : v);
+          }
+        }
+        if (fields.length > 0) {
+          values.push(where.id);
+          await execute(`UPDATE Gallery SET ${fields.join(", ")} WHERE id = ?`, values);
+        }
+      } catch {}
+      return jsonRes;
     },
     async delete({ where }: { where: { id: string } }) {
-      await execute("DELETE FROM Gallery WHERE id = ?", [where.id]);
-      return { id: where.id };
+      const jsonRes = jsonGallery.delete({ where });
+      try {
+        await execute("DELETE FROM Gallery WHERE id = ?", [where.id]);
+      } catch {}
+      return jsonRes;
     },
-    async count({ where }: { where?: any } = {}) {
-      if (where?.categoryId) {
-        const res = await queryOne<{ total: number }>(
-          "SELECT COUNT(*) as total FROM Gallery WHERE categoryId = ?",
-          [where.categoryId]
-        );
-        return res ? Number(res.total) : 0;
-      }
-      const res = await queryOne<{ total: number }>("SELECT COUNT(*) as total FROM Gallery");
-      return res ? Number(res.total) : 0;
-    },
-  },
-
-  enquiries: {
-    async findMany({ where, orderBy, take, select }: { where?: any; orderBy?: any; take?: number; select?: any } = {}) {
-      let sql = "SELECT * FROM Enquiries";
-      const params: any[] = [];
-      const conditions: string[] = [];
-
-      if (where?.status) {
-        conditions.push("status = ?");
-        params.push(where.status);
-      }
-      if (where?.service) {
-        conditions.push("service = ?");
-        params.push(where.service);
-      }
-      if (where?.OR && Array.isArray(where.OR)) {
-        const searchVal = where.OR[0]?.name?.contains || "";
-        if (searchVal) {
-          conditions.push("(name LIKE ? OR phone LIKE ? OR email LIKE ? OR message LIKE ?)");
-          params.push(`%${searchVal}%`, `%${searchVal}%`, `%${searchVal}%`, `%${searchVal}%`);
-        }
-      }
-
-      if (conditions.length > 0) {
-        sql += ` WHERE ${conditions.join(" AND ")}`;
-      }
-
-      sql += " ORDER BY createdAt DESC";
-      if (take) {
-        sql += ` LIMIT ${parseInt(String(take))}`;
-      }
-      return query(sql, params);
-    },
-    async create({ data, include }: { data: any; include?: any }) {
-      const id = data.id || generateId();
-      await execute(
-        "INSERT INTO Enquiries (id, name, phone, email, service, message, status, internalNotes) VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
-        [
-          id,
-          data.name,
-          data.phone,
-          data.email || null,
-          data.service || "General Consultation",
-          data.message,
-          data.status || "New",
-          data.internalNotes || null,
-        ]
-      );
-      return queryOne("SELECT * FROM Enquiries WHERE id = ?", [id]);
-    },
-    async update({ where, data, include }: { where: { id: string }; data: any; include?: any }) {
-      const fields: string[] = [];
-      const values: any[] = [];
-      for (const [k, v] of Object.entries(data)) {
-        if (v !== undefined) {
-          fields.push(`${k} = ?`);
-          values.push(v);
-        }
-      }
-      if (fields.length > 0) {
-        values.push(where.id);
-        await execute(`UPDATE Enquiries SET ${fields.join(", ")} WHERE id = ?`, values);
-      }
-      return queryOne("SELECT * FROM Enquiries WHERE id = ?", [where.id]);
-    },
-    async delete({ where }: { where: { id: string } }) {
-      await execute("DELETE FROM Enquiries WHERE id = ?", [where.id]);
-      return { id: where.id };
-    },
-    async count({ where }: { where?: any } = {}) {
-      if (where?.status) {
-        const res = await queryOne<{ total: number }>(
-          "SELECT COUNT(*) as total FROM Enquiries WHERE status = ?",
-          [where.status]
-        );
-        return res ? Number(res.total) : 0;
-      }
-      const res = await queryOne<{ total: number }>("SELECT COUNT(*) as total FROM Enquiries");
-      return res ? Number(res.total) : 0;
+    async count() {
+      try {
+        const res = await queryOne<{ total: number }>("SELECT COUNT(*) as total FROM Gallery");
+        if (res) return Number(res.total);
+      } catch {}
+      return jsonGallery.count();
     },
   },
 
   testimonials: {
-    async findMany({ where, orderBy }: { where?: any; orderBy?: any } = {}) {
-      let sql = "SELECT * FROM Testimonials";
-      const params: any[] = [];
-      if (where?.isPublished !== undefined) {
-        sql += " WHERE isPublished = ?";
-        params.push(where.isPublished ? 1 : 0);
-      }
-      sql += " ORDER BY orderIndex ASC";
-      const rows = await query(sql, params);
-      return rows.map((r) => ({ ...r, isPublished: Boolean(r.isPublished) }));
-    },
-    async create({ data, include }: { data: any; include?: any }) {
-      const id = data.id || generateId();
-      await execute(
-        "INSERT INTO Testimonials (id, clientName, clientRole, clientLocation, avatarUrl, rating, reviewText, isPublished, orderIndex) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)",
-        [
-          id,
-          data.clientName,
-          data.clientRole || "Homeowner",
-          data.clientLocation || "Sector 120, Noida",
-          data.avatarUrl || null,
-          data.rating || 5,
-          data.reviewText,
-          data.isPublished ?? true ? 1 : 0,
-          data.orderIndex || 0,
-        ]
-      );
-      return queryOne("SELECT * FROM Testimonials WHERE id = ?", [id]);
-    },
-    async update({ where, data, include }: { where: { id: string }; data: any; include?: any }) {
-      const fields: string[] = [];
-      const values: any[] = [];
-      for (const [k, v] of Object.entries(data)) {
-        if (v !== undefined) {
-          fields.push(`${k} = ?`);
-          values.push(k === "isPublished" ? (v ? 1 : 0) : v);
+    async findMany({ where, orderBy, take }: { where?: any; orderBy?: any; take?: number } = {}) {
+      try {
+        let sql = "SELECT * FROM Testimonials";
+        const params: any[] = [];
+        if (where?.isPublished !== undefined) {
+          sql += " WHERE isPublished = ?";
+          params.push(where.isPublished ? 1 : 0);
         }
-      }
-      if (fields.length > 0) {
-        values.push(where.id);
-        await execute(`UPDATE Testimonials SET ${fields.join(", ")} WHERE id = ?`, values);
-      }
-      return queryOne("SELECT * FROM Testimonials WHERE id = ?", [where.id]);
+        sql += " ORDER BY orderIndex ASC";
+        if (take) {
+          sql += ` LIMIT ${parseInt(String(take))}`;
+        }
+        const rows = await query(sql, params);
+        if (rows && rows.length > 0) {
+          return rows.map((r) => ({ ...r, isPublished: Boolean(r.isPublished) }));
+        }
+      } catch {}
+      return jsonTestimonials.findMany({ where, orderBy, take });
+    },
+    async findUnique({ where }: { where: { id: string } }) {
+      try {
+        const row = await queryOne("SELECT * FROM Testimonials WHERE id = ? LIMIT 1", [where.id]);
+        if (row) return { ...row, isPublished: Boolean(row.isPublished) };
+      } catch {}
+      return jsonTestimonials.findUnique({ where });
+    },
+    async create({ data }: { data: any }) {
+      const jsonRes = jsonTestimonials.create({ data });
+      try {
+        const id = jsonRes.id;
+        await execute(
+          `INSERT INTO Testimonials (id, clientName, clientRole, clientLocation, rating, reviewText, isPublished, orderIndex)
+           VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
+          [
+            id,
+            jsonRes.clientName,
+            jsonRes.clientRole || "Homeowner",
+            jsonRes.clientLocation || "Sector 120, Noida",
+            jsonRes.rating || 5,
+            jsonRes.reviewText,
+            jsonRes.isPublished ? 1 : 0,
+            jsonRes.orderIndex || 0,
+          ]
+        );
+      } catch {}
+      return jsonRes;
+    },
+    async update({ where, data }: { where: { id: string }; data: any }) {
+      const jsonRes = jsonTestimonials.update({ where, data });
+      try {
+        const fields: string[] = [];
+        const values: any[] = [];
+        for (const [k, v] of Object.entries(data)) {
+          if (v !== undefined) {
+            fields.push(`${k} = ?`);
+            values.push(k === "isPublished" ? (v ? 1 : 0) : v);
+          }
+        }
+        if (fields.length > 0) {
+          values.push(where.id);
+          await execute(`UPDATE Testimonials SET ${fields.join(", ")} WHERE id = ?`, values);
+        }
+      } catch {}
+      return jsonRes;
     },
     async delete({ where }: { where: { id: string } }) {
-      await execute("DELETE FROM Testimonials WHERE id = ?", [where.id]);
-      return { id: where.id };
+      const jsonRes = jsonTestimonials.delete({ where });
+      try {
+        await execute("DELETE FROM Testimonials WHERE id = ?", [where.id]);
+      } catch {}
+      return jsonRes;
     },
     async count() {
-      const res = await queryOne<{ total: number }>("SELECT COUNT(*) as total FROM Testimonials");
-      return res ? Number(res.total) : 0;
+      try {
+        const res = await queryOne<{ total: number }>("SELECT COUNT(*) as total FROM Testimonials");
+        if (res) return Number(res.total);
+      } catch {}
+      return jsonTestimonials.count();
+    },
+  },
+
+  blogs: {
+    async findMany(options?: { where?: any; orderBy?: any; take?: number }) {
+      try {
+        let sql = "SELECT * FROM Blogs";
+        const params: any[] = [];
+        if (options?.where?.isPublished !== undefined) {
+          sql += " WHERE isPublished = ?";
+          params.push(options.where.isPublished ? 1 : 0);
+        }
+        sql += " ORDER BY publishedAt DESC";
+        if (options?.take) {
+          sql += ` LIMIT ${parseInt(String(options.take))}`;
+        }
+        const rows = await query(sql, params);
+        if (rows && rows.length > 0) {
+          return rows.map((r) => ({ ...r, isPublished: Boolean(r.isPublished) }));
+        }
+      } catch {}
+      return jsonBlogs.findMany(options);
+    },
+    async findFirst({ where }: { where: { OR?: Array<{ id?: string; slug?: string }> } }) {
+      return jsonBlogs.findFirst({ where });
+    },
+    async findUnique({ where }: { where: { slug?: string; id?: string } }) {
+      return jsonBlogs.findUnique({ where });
+    },
+    async create({ data }: { data: any }) {
+      const jsonRes = jsonBlogs.create({ data });
+      try {
+        const id = jsonRes.id;
+        await execute(
+          `INSERT INTO Blogs (id, slug, title, excerpt, content, featuredImage, category, author, readTime, publishedAt, isPublished)
+           VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+          [
+            id,
+            jsonRes.slug,
+            jsonRes.title,
+            jsonRes.excerpt,
+            jsonRes.content,
+            jsonRes.featuredImage,
+            jsonRes.category || "Interior Design",
+            jsonRes.author || "Monish Pasha",
+            jsonRes.readTime || "4 min read",
+            jsonRes.publishedAt,
+            jsonRes.isPublished ? 1 : 0,
+          ]
+        );
+      } catch {}
+      return jsonRes;
+    },
+    async update({ where, data }: { where: { id: string }; data: any }) {
+      const jsonRes = jsonBlogs.update({ where, data });
+      try {
+        const fields: string[] = [];
+        const values: any[] = [];
+        for (const [k, v] of Object.entries(data)) {
+          if (v !== undefined) {
+            fields.push(`${k} = ?`);
+            values.push(k === "isPublished" ? (v ? 1 : 0) : v);
+          }
+        }
+        if (fields.length > 0) {
+          values.push(where.id);
+          await execute(`UPDATE Blogs SET ${fields.join(", ")} WHERE id = ?`, values);
+        }
+      } catch {}
+      return jsonRes;
+    },
+    async delete({ where }: { where: { id: string } }) {
+      const jsonRes = jsonBlogs.delete({ where });
+      try {
+        await execute("DELETE FROM Blogs WHERE id = ?", [where.id]);
+      } catch {}
+      return jsonRes;
+    },
+    async count() {
+      return jsonBlogs.count();
     },
   },
 
   sEOSettings: {
     async findMany({ orderBy }: { orderBy?: any } = {}) {
-      return query("SELECT * FROM SEOSettings ORDER BY pageRoute ASC");
+      try {
+        const rows = await query("SELECT * FROM SEOSettings ORDER BY pageRoute ASC");
+        if (rows && rows.length > 0) return rows;
+      } catch {}
+      return jsonSEO.findMany();
     },
-    async findUnique({ where }: { where: { pageRoute: string } }) {
-      return queryOne("SELECT * FROM SEOSettings WHERE pageRoute = ? LIMIT 1", [where.pageRoute]);
+    async findUnique({ where }: { where: { pageRoute?: string; id?: string } }) {
+      try {
+        if (where.pageRoute) {
+          const row = await queryOne("SELECT * FROM SEOSettings WHERE pageRoute = ? LIMIT 1", [where.pageRoute]);
+          if (row) return row;
+        }
+        if (where.id) {
+          const row = await queryOne("SELECT * FROM SEOSettings WHERE id = ? LIMIT 1", [where.id]);
+          if (row) return row;
+        }
+      } catch {}
+      return jsonSEO.findUnique({ where });
     },
     async upsert({ where, update, create }: { where: { pageRoute: string }; update: any; create: any }) {
-      const existing = await queryOne("SELECT id FROM SEOSettings WHERE pageRoute = ?", [where.pageRoute]);
-      if (existing) {
+      const jsonRes = jsonSEO.upsert({ where, update, create });
+      try {
+        const existing = await queryOne("SELECT id FROM SEOSettings WHERE pageRoute = ?", [where.pageRoute]);
+        if (existing) {
+          await execute(
+            `UPDATE SEOSettings SET metaTitle = ?, metaDesc = ?, keywords = ?, canonicalUrl = ?, ogTitle = ?, ogDesc = ? WHERE pageRoute = ?`,
+            [
+              update.metaTitle,
+              update.metaDesc,
+              update.keywords || "",
+              update.canonicalUrl || null,
+              update.ogTitle || update.metaTitle,
+              update.ogDesc || update.metaDesc,
+              where.pageRoute,
+            ]
+          );
+        } else {
+          const id = create.id || generateId();
+          await execute(
+            `INSERT INTO SEOSettings (id, pageRoute, metaTitle, metaDesc, keywords, canonicalUrl, ogTitle, ogDesc) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
+            [
+              id,
+              where.pageRoute,
+              create.metaTitle,
+              create.metaDesc,
+              create.keywords || "",
+              create.canonicalUrl || null,
+              create.ogTitle || create.metaTitle,
+              create.ogDesc || create.metaDesc,
+            ]
+          );
+        }
+      } catch {}
+      return jsonRes;
+    },
+  },
+
+  enquiries: {
+    async findMany({ where, orderBy, take }: { where?: any; orderBy?: any; take?: number } = {}) {
+      try {
+        let sql = "SELECT * FROM Enquiries";
+        const params: any[] = [];
+        if (where?.status && where.status !== "All") {
+          sql += " WHERE status = ?";
+          params.push(where.status);
+        }
+        sql += " ORDER BY createdAt DESC";
+        if (take) {
+          sql += ` LIMIT ${parseInt(String(take))}`;
+        }
+        const rows = await query(sql, params);
+        if (rows && rows.length > 0) return rows;
+      } catch {}
+      return jsonEnquiries.findMany({ where, orderBy });
+    },
+    async findUnique({ where }: { where: { id: string } }) {
+      try {
+        const row = await queryOne("SELECT * FROM Enquiries WHERE id = ? LIMIT 1", [where.id]);
+        if (row) return row;
+      } catch {}
+      return jsonEnquiries.findUnique({ where });
+    },
+    async create({ data }: { data: any }) {
+      const jsonRes = jsonEnquiries.create({ data });
+      try {
+        const id = jsonRes.id;
         await execute(
-          `UPDATE SEOSettings SET metaTitle = ?, metaDesc = ?, keywords = ?, canonicalUrl = ?, ogTitle = ?, ogDesc = ? WHERE pageRoute = ?`,
-          [
-            update.metaTitle,
-            update.metaDesc,
-            update.keywords || "",
-            update.canonicalUrl || null,
-            update.ogTitle || update.metaTitle,
-            update.ogDesc || update.metaDesc,
-            where.pageRoute,
-          ]
+          `INSERT INTO Enquiries (id, name, phone, email, service, message, status) VALUES (?, ?, ?, ?, ?, ?, ?)`,
+          [id, jsonRes.name, jsonRes.phone, jsonRes.email || null, jsonRes.service, jsonRes.message, jsonRes.status || "New"]
         );
-        return queryOne("SELECT * FROM SEOSettings WHERE pageRoute = ?", [where.pageRoute]);
-      } else {
-        const id = generateId();
-        await execute(
-          `INSERT INTO SEOSettings (id, pageRoute, metaTitle, metaDesc, keywords, canonicalUrl, ogTitle, ogDesc) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
-          [
-            id,
-            where.pageRoute,
-            create.metaTitle,
-            create.metaDesc,
-            create.keywords || "",
-            create.canonicalUrl || null,
-            create.ogTitle || create.metaTitle,
-            create.ogDesc || create.metaDesc,
-          ]
-        );
-        return queryOne("SELECT * FROM SEOSettings WHERE id = ?", [id]);
-      }
+      } catch {}
+      return jsonRes;
+    },
+    async update({ where, data }: { where: { id: string }; data: any }) {
+      const jsonRes = jsonEnquiries.update({ where, data });
+      try {
+        const fields: string[] = [];
+        const values: any[] = [];
+        for (const [k, v] of Object.entries(data)) {
+          if (v !== undefined) {
+            fields.push(`${k} = ?`);
+            values.push(v);
+          }
+        }
+        if (fields.length > 0) {
+          values.push(where.id);
+          await execute(`UPDATE Enquiries SET ${fields.join(", ")} WHERE id = ?`, values);
+        }
+      } catch {}
+      return jsonRes;
+    },
+    async delete({ where }: { where: { id: string } }) {
+      const jsonRes = jsonEnquiries.delete({ where });
+      try {
+        await execute("DELETE FROM Enquiries WHERE id = ?", [where.id]);
+      } catch {}
+      return jsonRes;
+    },
+    async count(options?: { where?: any }) {
+      try {
+        let sql = "SELECT COUNT(*) as total FROM Enquiries";
+        const params: any[] = [];
+        if (options?.where?.status) {
+          sql += " WHERE status = ?";
+          params.push(options.where.status);
+        }
+        const res = await queryOne<{ total: number }>(sql, params);
+        if (res) return Number(res.total);
+      } catch {}
+      return jsonEnquiries.count(options);
     },
   },
 
   activityLogs: {
-    async create({ data, include }: { data: any; include?: any }) {
-      const id = generateId();
-      await execute(
-        "INSERT INTO ActivityLogs (id, action, adminEmail, details, ipAddress) VALUES (?, ?, ?, ?, ?)",
-        [id, data.action, data.adminEmail, data.details || null, data.ipAddress || "localhost"]
-      );
-    },
     async findMany({ orderBy, take }: { orderBy?: any; take?: number } = {}) {
-      const limit = take ? parseInt(String(take)) : 10;
-      return query(`SELECT * FROM ActivityLogs ORDER BY createdAt DESC LIMIT ${limit}`);
+      try {
+        let sql = "SELECT * FROM ActivityLogs ORDER BY timestamp DESC";
+        if (take) {
+          sql += ` LIMIT ${parseInt(String(take))}`;
+        }
+        const rows = await query(sql);
+        if (rows && rows.length > 0) return rows;
+      } catch {}
+      return jsonActivityLogs.findMany({ take });
+    },
+    async create({ data }: { data: any }) {
+      const jsonRes = jsonActivityLogs.create({ data });
+      try {
+        const id = jsonRes.id;
+        await execute(
+          `INSERT INTO ActivityLogs (id, action, adminEmail, details, ipAddress) VALUES (?, ?, ?, ?, ?)`,
+          [id, jsonRes.action, jsonRes.adminEmail, jsonRes.details || null, jsonRes.ipAddress || null]
+        );
+      } catch {}
+      return jsonRes;
     },
   },
 };

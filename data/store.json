@@ -1,0 +1,1066 @@
+{
+  "services": [
+    {
+      "slug": "interior-design",
+      "title": "Interior Design",
+      "category": "Interior",
+      "shortDesc": "End-to-end luxury architectural interior design tailored for bespoke residential and executive lifestyle environments.",
+      "fullDesc": "MA Carpenter and Interior delivers world-class interior design services for luxury apartments, villas, and commercial spaces across Noida and the NCR. From architectural spatial layout and 3D photorealistic renderings to lighting schematics and curated material selection, we blend timeless craftsmanship with contemporary ergonomics to build spaces that reflect your prestige.",
+      "icon": "Compass",
+      "featuredImage": "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1600&q=80",
+      "images": "[\"https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1200&q=80\",\"https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1200&q=80\",\"https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80\"]",
+      "features": "[\"Architectural 3D & 2D Layouts\",\"Bespoke Material & Finish Palette\",\"Curated Ambient & Accent Lighting\",\"Turnkey Project Management\",\"Budget Estimation & Timeline Tracking\"]",
+      "benefits": "[\"Optimized spatial efficiency and fluid circulation\",\"Substantial increase in property market value\",\"Single-point turnkey accountability\",\"Exclusive access to factory-grade carpentry finishes\"]",
+      "seoTitle": "Luxury Interior Design Services in Noida | MA Carpenter & Interior",
+      "seoDesc": "Transform your living space with bespoke luxury interior design services by MA Carpenter and Interior in Sector 120, Noida.",
+      "orderIndex": 1,
+      "id": "srv-init-1",
+      "isPublished": true
+    },
+    {
+      "slug": "modular-kitchen",
+      "title": "Modular Kitchen",
+      "category": "Kitchen",
+      "shortDesc": "German and Italian inspired ergonomic modular kitchens engineered with marine-grade waterproof ply and luxury acrylic/PU finishes.",
+      "fullDesc": "Cooking becomes an art form in our ergonomically planned modular kitchens. MA Carpenter and Interior builds modular kitchen layouts including Island, L-Shape, Parallel, and U-Shape configs. We use high-density waterproof plywood, quartz/granite stone countertops, Blum and Hettich soft-close hardware, and scratch-resistant acrylic and lacquered glass finishes.",
+      "icon": "Utensils",
+      "featuredImage": "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=1600&q=80",
+      "images": "[\"https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=1200&q=80\",\"https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&fit=crop&w=1200&q=80\",\"https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=1200&q=80\"]",
+      "features": "[\"Waterproof BWP Marine Grade Core\",\"Premium Blum & Hettich Hydraulic Hardware\",\"Smart Pull-Out Pantries & Corner Magic Carousels\",\"Scratch & Heat-Resistant Quartz Slabs\",\"Integrated Microwave & Appliance Enclosures\"]",
+      "benefits": "[\"Maximum storage efficiency in compact footprints\",\"Seamless soft-close quiet operation for decades\",\"Effortless cleaning with anti-fingerprint coatings\",\"10-Year hardware and structural warranty\"]",
+      "seoTitle": "Modular Kitchen Design in Noida | MA Carpenter and Interior",
+      "seoDesc": "Discover custom modular kitchens in Noida with waterproof ply, premium acrylic finishes, and soft-close hardware.",
+      "orderIndex": 2,
+      "id": "srv-init-2",
+      "isPublished": true
+    },
+    {
+      "slug": "bedroom-interior",
+      "title": "Bedroom Interior",
+      "category": "Interior",
+      "shortDesc": "Sanctuaries of relaxation featuring acoustic wall paneling, integrated headboards, mood lighting, and concealed wardrobe systems.",
+      "fullDesc": "Your master bedroom should be an intimate haven of serenity. We design complete bedroom interiors including upholstered acoustic wall paneling, custom floating platform beds with hydraulic storage, bespoke nightstands, hidden dressing areas, and ambient layered LED profile illumination.",
+      "icon": "BedDouble",
+      "featuredImage": "https://images.unsplash.com/photo-1616594039964-ae9021a400a0?auto=format&fit=crop&w=1600&q=80",
+      "images": "[\"https://images.unsplash.com/photo-1616594039964-ae9021a400a0?auto=format&fit=crop&w=1200&q=80\",\"https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?auto=format&fit=crop&w=1200&q=80\",\"https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=1200&q=80\"]",
+      "features": "[\"Velvet & Leatherette Upholstered Headboards\",\"Acoustic Fluted Wooden Wall Louvers\",\"Concealed Walk-In Closets & Dressers\",\"Warm Cove & Recessed Reading Illumination\",\"Solid Teak & Engineered Hardwood Beds\"]",
+      "benefits": "[\"Restful sound-dampened sleep environment\",\"Clutter-free storage beneath pneumatic bed frames\",\"Warm golden aesthetic for high-end boutique hotel comfort\"]",
+      "seoTitle": "Master Bedroom Interior Design Noida | MA Carpenter & Interior",
+      "seoDesc": "Elevate your private sanctuary with luxury bedroom interiors and bespoke master suites by MA Carpenter in Noida.",
+      "orderIndex": 3,
+      "id": "srv-init-3",
+      "isPublished": true
+    },
+    {
+      "slug": "living-room-interior",
+      "title": "Living Room Interior",
+      "category": "Interior",
+      "shortDesc": "Grand salon aesthetics with Italian marble backdrops, fluted wooden cladding, champagne gold trims, and bespoke modular seating.",
+      "fullDesc": "Create an unforgettable first impression for your guests. MA Carpenter and Interior specializes in grand living room architecture featuring book-matched Italian marble TV consoles, CNC-cut metallic lattice screens, fluted charcoal and gold accent louvers, and bespoke sectional seating arrangements.",
+      "icon": "Armchair",
+      "featuredImage": "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1600&q=80",
+      "images": "[\"https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1200&q=80\",\"https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1200&q=80\",\"https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80\"]",
+      "features": "[\"Book-Matched Italian Marble Feature Walls\",\"Custom Media Walls with Gold Reveal Trims\",\"Architectural Floating False Ceiling Lighting\",\"Bespoke Center & Console Accent Tables\",\"Motorized Curtains & Acoustic Drapes\"]",
+      "benefits": "[\"Showstopper luxury living that wows every guest\",\"Clean wire-free concealed entertainment consoles\",\"Harmonious flow connecting living and dining areas\"]",
+      "seoTitle": "Luxury Living Room Interior Design Noida | MA Carpenter",
+      "seoDesc": "Transform your living room into an architectural masterpiece with custom marble, wood paneling, and golden accents.",
+      "orderIndex": 4,
+      "id": "srv-init-4",
+      "isPublished": true
+    },
+    {
+      "slug": "custom-furniture",
+      "title": "Custom Furniture",
+      "category": "Carpentry",
+      "shortDesc": "Handcrafted solid teak, sheesham, and engineered hardwood furniture made to measure by seasoned master artisans.",
+      "fullDesc": "Say goodbye to mass-produced furniture that fails within two years. Our in-house carpenters craft solid wood dining tables, artisanal credenzas, custom ergonomic desks, and statement accent chairs tailored to your exact measurements, fabric selections, and finish tastes.",
+      "icon": "Hammer",
+      "featuredImage": "https://images.unsplash.com/photo-1538688525198-9b88f6f53126?auto=format&fit=crop&w=1600&q=80",
+      "images": "[\"https://images.unsplash.com/photo-1538688525198-9b88f6f53126?auto=format&fit=crop&w=1200&q=80\",\"https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=1200&q=80\"]",
+      "features": "[\"Seasoned Grade-A Solid Teak & Walnut\",\"Traditional Mortise & Tenon Joinery\",\"Custom PU & Italian Polyurethane Polish\",\"Export-Quality Brass & Gold Metal Accents\",\"Endless Fabric Options: Velvet, Suede, Linen\"]",
+      "benefits": "[\"Generational durability built to last decades\",\"Exact size precision for awkward corners and niches\",\"Exclusive one-of-a-kind design not found in stores\"]",
+      "seoTitle": "Custom Handcrafted Furniture Noida | MA Carpenter and Interior",
+      "seoDesc": "Order custom solid wood furniture, bespoke dining sets, and artisanal wood work from MA Carpenter in Sector 120 Noida.",
+      "orderIndex": 5,
+      "id": "srv-init-5",
+      "isPublished": true
+    },
+    {
+      "slug": "wardrobe-design",
+      "title": "Wardrobe Design",
+      "category": "Carpentry",
+      "shortDesc": "Floor-to-ceiling modular sliding, lacquered glass, walk-in closets, and hinged wardrobes with interior sensor illumination.",
+      "fullDesc": "Organize your life with high-fashion wardrobe designs. We fabricate walk-in dressing suites, tinted reflective glass wardrobes with aluminum gold profiles, floor-to-ceiling sliding sliders, and velvet-lined jewelry drawers that elevate your daily routine.",
+      "icon": "Sparkles",
+      "featuredImage": "/images/services/wardrobe-design.jpg",
+      "images": "[\"/images/services/wardrobe-design.jpg\",\"/images/gallery/rose-gold-wardrobe.jpg\",\"https://images.unsplash.com/photo-1595428774223-ef52624120d2?auto=format&fit=crop&w=1200&q=80\"]",
+      "features": "[\"Tinted Fluted Glass with Rose Gold Aluminum Frames\",\"Concealed LED Strip Lighting with Door Sensors\",\"Pneumatic Pull-Down Garment Hanger Rods\",\"Bespoke Velvet-Lined Watch & Accessory Organizers\",\"Full-Length Heated De-Misting Mirrors\"]",
+      "benefits": "[\"100% maximized ceiling-height storage\",\"Smooth soft-glide sliding doors with no derailment\",\"Sophisticated boutique display aesthetic\"]",
+      "seoTitle": "Luxury Modular Wardrobes Noida | MA Carpenter and Interior",
+      "seoDesc": "Explore custom sliding, walk-in, and lacquered glass wardrobes in Noida by MA Carpenter and Interior.",
+      "orderIndex": 6,
+      "id": "srv-init-6",
+      "isPublished": true
+    },
+    {
+      "slug": "tv-unit-design",
+      "title": "TV Unit Design",
+      "category": "Interior",
+      "shortDesc": "Statement entertainment media walls combining fluted panels, backlit onyx/marble, and floating storage drawers.",
+      "fullDesc": "Upgrade your entertainment experience with custom television consoles and media feature walls. We integrate acoustic back-panels, concealed conduit cable management, floating consoles, and dimmable accent lighting for theater-grade elegance.",
+      "icon": "Tv",
+      "featuredImage": "https://images.unsplash.com/photo-1593784991095-a205069470b6?auto=format&fit=crop&w=1600&q=80",
+      "images": "[\"https://images.unsplash.com/photo-1593784991095-a205069470b6?auto=format&fit=crop&w=1200&q=80\",\"https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80\"]",
+      "features": "[\"Backlit Translucent Onyx & Italian Marble\",\"Charcoal & Champagne Gold Fluted Louvers\",\"Flush Push-to-Open Hidden Storage Compartments\",\"Surround Sound Speaker Recesses\",\"Zero-Cable Visible Management Guarantee\"]",
+      "benefits": "[\"Clean clutter-free focal point for the living room\",\"Houses soundbars, gaming consoles, and routers discreetly\",\"Durable heat-resistant materials\"]",
+      "seoTitle": "Modern TV Unit Design Noida | MA Carpenter and Interior",
+      "seoDesc": "Discover custom TV unit designs, marble feature walls, and floating media consoles in Noida.",
+      "orderIndex": 7,
+      "id": "srv-init-7",
+      "isPublished": true
+    },
+    {
+      "slug": "office-interior",
+      "title": "Office Interior",
+      "category": "Interior",
+      "shortDesc": "Productive, executive office environments, CEO cabins, and corporate conference rooms designed to impress clients.",
+      "fullDesc": "Impress your corporate visitors and empower team productivity with MA Carpenter and Interior's corporate and home-office solutions. From sleek CEO desks with brass inlays to acoustic meeting pods and ergonomic workstations, we craft commercial prestige.",
+      "icon": "Briefcase",
+      "featuredImage": "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1600&q=80",
+      "images": "[\"https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&q=80\",\"https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&w=1200&q=80\"]",
+      "features": "[\"Executive Solid Hardwood Desk Suites\",\"Sound-Dampened Acoustic Wall Cladding\",\"Cable Raceway & Conference AV Integration\",\"Reception Feature Louvers with 3D Brass Brand Logos\",\"LED Anti-Glare Workstation Task Lighting\"]",
+      "benefits": "[\"Enhanced employee focus and professional morale\",\"Memorable brand presence for prospective clients\",\"Fast-track handover ensuring zero business downtime\"]",
+      "seoTitle": "Commercial & Office Interior Design Noida | MA Carpenter",
+      "seoDesc": "Design premium corporate offices, conference suites, and executive cabins in Noida with MA Carpenter and Interior.",
+      "orderIndex": 8,
+      "id": "srv-init-8",
+      "isPublished": true
+    },
+    {
+      "slug": "false-ceiling",
+      "title": "False Ceiling",
+      "category": "Interior",
+      "shortDesc": "Architectural Gyproc POP false ceilings with magnetic track lighting, cove illumination, and wooden rafters.",
+      "fullDesc": "Ceilings are your room's fifth wall. We install precision Saint-Gobain Gyproc false ceilings with recessed magnetic track lights, perimeter warm white cove lighting, acoustic wooden rafters, and zero-crack seamless finishes.",
+      "icon": "Layers",
+      "featuredImage": "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1600&q=80",
+      "images": "[\"https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1200&q=80\"]",
+      "features": "[\"Original Saint-Gobain Gyproc Sheets & Framing\",\"Modern Magnetic Low-Voltage Track Lights\",\"Warm White & RGB Dimmable Hidden Coves\",\"Decorative Teak Wood Ceiling Rafters\",\"Crack-Resistant Anti-Sagging Guarantee\"]",
+      "benefits": "[\"Thermal insulation that lowers AC electricity bills\",\"Conceals ugly wiring, beams, and ductwork effortlessly\",\"Creates dramatic luxury ambiance with layered lighting\"]",
+      "seoTitle": "Modern False Ceiling Contractor Noida | MA Carpenter",
+      "seoDesc": "Install premium POP false ceilings, wooden rafters, and magnetic track lights in Noida with MA Carpenter.",
+      "orderIndex": 9,
+      "id": "srv-init-9",
+      "isPublished": true
+    },
+    {
+      "slug": "complete-home-interior",
+      "title": "Complete Home Interior",
+      "category": "Interior",
+      "shortDesc": "Comprehensive end-to-end turnkey interior transformation from bare shell to luxury move-in ready residence.",
+      "fullDesc": "Experience seamless peace of mind with our turnkey home interior package. We take full responsibility for civil alterations, false ceilings, plumbing, electricals, modular kitchen, wardrobes, custom carpentry, painting, wallpaper, and final deep-cleaning.",
+      "icon": "Home",
+      "featuredImage": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=80",
+      "images": "[\"https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80\",\"https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1200&q=80\"]",
+      "features": "[\"Dedicated On-Site Project Architect\",\"Fixed Pricing with Zero Hidden Surprises\",\"Weekly Video & Photo Progress Milestone Reports\",\"Material Authenticity Certifications Provided\",\"Complimentary Post-Handover Deep Cleaning\"]",
+      "benefits": "[\"Save 100+ hours of dealing with multiple contractors\",\"Guaranteed on-time 45 to 60 day completion\",\"Consistent luxury design language throughout all rooms\"]",
+      "seoTitle": "Turnkey Complete Home Interiors Noida | MA Carpenter and Interior",
+      "seoDesc": "Turnkey home interiors in Noida. From 2BHK to luxury villas, get complete end-to-end design and execution.",
+      "orderIndex": 10,
+      "id": "srv-init-10",
+      "isPublished": true
+    },
+    {
+      "slug": "carpenter-services",
+      "title": "Carpenter Services",
+      "category": "Carpentry",
+      "shortDesc": "On-site master carpentry for door frame fixing, structural partitions, repair, hardware alignment, and fitting.",
+      "fullDesc": "Backed by years of heritage carpentry in Noida, our experienced wood artisans offer professional carpentry services. We repair jammed doors, align sagging modular hinges, replace damaged laminates, install heavy main doors, and construct custom room dividers.",
+      "icon": "Wrench",
+      "featuredImage": "https://images.unsplash.com/photo-1581783342308-f792dbdd27c5?auto=format&fit=crop&w=1600&q=80",
+      "images": "[\"https://images.unsplash.com/photo-1581783342308-f792dbdd27c5?auto=format&fit=crop&w=1200&q=80\"]",
+      "features": "[\"Door Frame & Heavy Entrance Teak Door Installation\",\"Laminate Replacement & Edge-Banding\",\"Hettich & Blum Hardware Fitting & Realignment\",\"Lock, Handle, & Hydraulic Damper Fixing\",\"Prompt On-Demand Technician Visits in Noida\"]",
+      "benefits": "[\"Fix irritating squeaks, misalignments, and loose hinges\",\"Expert diagnosis preventing costly furniture replacement\",\"Transparent upfront material & labor pricing\"]",
+      "seoTitle": "Professional Carpenter Services in Noida | MA Carpenter",
+      "seoDesc": "Need an expert carpenter in Sector 120 Noida? Call 8714114418 for door fittings, repairs, and master woodwork.",
+      "orderIndex": 11,
+      "id": "srv-init-11",
+      "isPublished": true
+    },
+    {
+      "slug": "wooden-work",
+      "title": "Wooden Work",
+      "category": "Carpentry",
+      "shortDesc": "Fine architectural woodwork, fluted wooden columns, wood wall cladding, intricate jali partitions, and pergolas.",
+      "fullDesc": "Add organic warmth and grandeur with bespoke architectural woodwork. From solid wood pergolas on terraces to intricate CNC wood jali dividers and fluted wood accent columns, MA Carpenter and Interior crafts wood into pure art.",
+      "icon": "Box",
+      "featuredImage": "/images/services/wooden-work.jpg",
+      "images": "[\"/images/services/wooden-work.jpg\"]",
+      "features": "[\"CNC Cut Geometric Wooden Jali Screens\",\"Fluted Solid Wood & Veneer Wall Cladding\",\"Bespoke Wooden Mandirs & Prayer Niches\",\"Terrace & Balcony Hardwood Pergolas\",\"Melamine & PU Clear Matte/Gloss Coatings\"]",
+      "benefits": "[\"Rich timeless aesthetic that synthetic materials cannot match\",\"Natural warmth and acoustic dampening\",\"Custom stained to match existing flooring and doors\"]",
+      "seoTitle": "Architectural Wooden Work & Jali Noida | MA Carpenter",
+      "seoDesc": "Custom wooden panelling, CNC jali dividers, and exterior wood pergolas by MA Carpenter and Interior Noida.",
+      "orderIndex": 12,
+      "id": "srv-init-12",
+      "isPublished": true
+    }
+  ],
+  "projects": [
+    {
+      "slug": "the-grand-regal-living-room",
+      "title": "The Grand Regal Living Room",
+      "category": "Living Room",
+      "client": "Dr. Alok Srivastava",
+      "location": "Sector 120, Noida",
+      "completedDate": "October 2026",
+      "area": "650 sq.ft",
+      "shortDesc": "Opulent salon with book-matched Italian marble, fluted charcoal wood paneling, and champagne gold trim.",
+      "description": "Designed for a distinguished physician family in Sector 120 Noida, this living room was completely overhauled from an empty concrete shell into a grand entertaining hall. The centerpiece is a 12-foot book-matched Statuario marble television wall flanked by vertical fluted louvers finished in deep charcoal and illuminated with recessed 3000K warm gold LED profiles. The false ceiling features nested floating steps with integrated magnetic track fixtures.",
+      "featuredImage": "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1600&q=80",
+      "beforeImage": "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=1200&q=80",
+      "afterImage": "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1200&q=80",
+      "isFeatured": true,
+      "orderIndex": 1,
+      "galleryImages": [
+        {
+          "imageUrl": "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1200&q=80",
+          "caption": "Main salon overview showing bookmatched marble feature wall"
+        },
+        {
+          "imageUrl": "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1200&q=80",
+          "caption": "Custom ceiling detail with gold cove lighting"
+        },
+        {
+          "imageUrl": "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1200&q=80",
+          "caption": "Bespoke velvet lounge furniture and fluted coffee tables"
+        }
+      ],
+      "id": "proj-init-1",
+      "isPublished": true,
+      "images": [
+        {
+          "id": "img-1-1",
+          "projectId": "proj-init-1",
+          "imageUrl": "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1200&q=80",
+          "caption": "Main salon overview showing bookmatched marble feature wall",
+          "orderIndex": 0
+        },
+        {
+          "id": "img-1-2",
+          "projectId": "proj-init-1",
+          "imageUrl": "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1200&q=80",
+          "caption": "Custom ceiling detail with gold cove lighting",
+          "orderIndex": 1
+        },
+        {
+          "id": "img-1-3",
+          "projectId": "proj-init-1",
+          "imageUrl": "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1200&q=80",
+          "caption": "Bespoke velvet lounge furniture and fluted coffee tables",
+          "orderIndex": 2
+        }
+      ]
+    },
+    {
+      "slug": "serenity-master-suite",
+      "title": "Serenity Master Suite & Dressing",
+      "category": "Bedroom",
+      "client": "Mr. & Mrs. Kapoor",
+      "location": "Sector 137, Noida",
+      "completedDate": "September 2026",
+      "area": "420 sq.ft",
+      "shortDesc": "Acoustic fluted wood headboard, floating platform king bed, and glass walk-in wardrobe.",
+      "description": "A tranquil sanctuary designed for restful sleep and effortless mornings. Featuring an uninterrupted 14-foot wide acoustic fluted wooden headboard wall with integrated bronze reading sconces, a custom hydraulic platform bed crafted from seasoned hardwood, and a walk-in wardrobe enclosed by rose-gold tinted fluted glass sliders with internal sensor-activated illumination.",
+      "featuredImage": "https://images.unsplash.com/photo-1616594039964-ae9021a400a0?auto=format&fit=crop&w=1600&q=80",
+      "beforeImage": "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=1200&q=80",
+      "afterImage": "https://images.unsplash.com/photo-1616594039964-ae9021a400a0?auto=format&fit=crop&w=1200&q=80",
+      "isFeatured": true,
+      "orderIndex": 2,
+      "galleryImages": [
+        {
+          "imageUrl": "https://images.unsplash.com/photo-1616594039964-ae9021a400a0?auto=format&fit=crop&w=1200&q=80",
+          "caption": "Master king bed with integrated floating nightstands"
+        },
+        {
+          "imageUrl": "https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?auto=format&fit=crop&w=1200&q=80",
+          "caption": "Acoustic wood panel detail and soft amber lighting"
+        },
+        {
+          "imageUrl": "/images/services/wardrobe-design.jpg",
+          "caption": "Walk-in wardrobe with velvet-lined organizers"
+        }
+      ],
+      "id": "proj-init-2",
+      "isPublished": true,
+      "images": [
+        {
+          "id": "img-2-1",
+          "projectId": "proj-init-2",
+          "imageUrl": "https://images.unsplash.com/photo-1616594039964-ae9021a400a0?auto=format&fit=crop&w=1200&q=80",
+          "caption": "Master king bed with integrated floating nightstands",
+          "orderIndex": 0
+        },
+        {
+          "id": "img-2-2",
+          "projectId": "proj-init-2",
+          "imageUrl": "https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?auto=format&fit=crop&w=1200&q=80",
+          "caption": "Acoustic wood panel detail and soft amber lighting",
+          "orderIndex": 1
+        },
+        {
+          "id": "img-2-3",
+          "projectId": "proj-init-2",
+          "imageUrl": "/images/services/wardrobe-design.jpg",
+          "caption": "Walk-in wardrobe with velvet-lined organizers",
+          "orderIndex": 2
+        }
+      ]
+    },
+    {
+      "slug": "the-aurum-island-kitchen",
+      "title": "The Aurum Island Modular Kitchen",
+      "category": "Modular Kitchen",
+      "client": "Vikram Malhotra",
+      "location": "Sector 74, Noida",
+      "completedDate": "August 2026",
+      "area": "280 sq.ft",
+      "shortDesc": "German-engineered modular kitchen featuring Calacatta gold quartz and matte black acrylic cabinetry.",
+      "description": "Engineered for a culinary enthusiast, this modular kitchen pairs high-gloss and matte anti-fingerprint acrylic finishes with imported Calacatta Gold quartz countertops with waterfall edges. Complete with Blum touch-to-open servo drawers, an expansive breakfast island with under-counter storage, and seamless integrated kitchen appliances.",
+      "featuredImage": "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=1600&q=80",
+      "beforeImage": "https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&w=1200&q=80",
+      "afterImage": "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=1200&q=80",
+      "isFeatured": true,
+      "orderIndex": 3,
+      "galleryImages": [
+        {
+          "imageUrl": "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=1200&q=80",
+          "caption": "Central prep island with waterfall quartz"
+        },
+        {
+          "imageUrl": "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&fit=crop&w=1200&q=80",
+          "caption": "Soft-close Blum hydraulic lift-up overhead cabinets"
+        }
+      ],
+      "id": "proj-init-3",
+      "isPublished": true,
+      "images": [
+        {
+          "id": "img-3-1",
+          "projectId": "proj-init-3",
+          "imageUrl": "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=1200&q=80",
+          "caption": "Central prep island with waterfall quartz",
+          "orderIndex": 0
+        },
+        {
+          "id": "img-3-2",
+          "projectId": "proj-init-3",
+          "imageUrl": "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&fit=crop&w=1200&q=80",
+          "caption": "Soft-close Blum hydraulic lift-up overhead cabinets",
+          "orderIndex": 1
+        }
+      ]
+    },
+    {
+      "slug": "the-executive-study-library",
+      "title": "The Executive Study & Home Library",
+      "category": "Study Room",
+      "client": "Advocate Rajesh Verma",
+      "location": "Sector 50, Noida",
+      "completedDate": "July 2026",
+      "area": "320 sq.ft",
+      "shortDesc": "Floor-to-ceiling solid walnut bookshelves with warm LED illumination and executive leather desk.",
+      "description": "Designed for a Senior Advocate, this private study and home office exudes intellectual gravitas. Features floor-to-ceiling custom solid walnut cabinetry, illuminated book cubbies, a handcrafted executive desk with concealed power grommets, and sound-absorbing herringbone wall slats.",
+      "featuredImage": "https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=1600&q=80",
+      "beforeImage": "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=1200&q=80",
+      "afterImage": "https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=1200&q=80",
+      "isFeatured": true,
+      "orderIndex": 4,
+      "galleryImages": [
+        {
+          "imageUrl": "https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=1200&q=80",
+          "caption": "Custom library wall with integrated warm lighting"
+        },
+        {
+          "imageUrl": "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&q=80",
+          "caption": "Artisanal walnut executive desk"
+        }
+      ],
+      "id": "proj-init-4",
+      "isPublished": true,
+      "images": [
+        {
+          "id": "img-4-1",
+          "projectId": "proj-init-4",
+          "imageUrl": "https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=1200&q=80",
+          "caption": "Custom library wall with integrated warm lighting",
+          "orderIndex": 0
+        },
+        {
+          "id": "img-4-2",
+          "projectId": "proj-init-4",
+          "imageUrl": "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&q=80",
+          "caption": "Artisanal walnut executive desk",
+          "orderIndex": 1
+        }
+      ]
+    },
+    {
+      "slug": "tech-corp-headquarters",
+      "title": "TechCorp Executive Corporate Suite",
+      "category": "Office Interior",
+      "client": "TechCorp Global Solutions",
+      "location": "Sector 62, Noida",
+      "completedDate": "June 2026",
+      "area": "3,200 sq.ft",
+      "shortDesc": "Modern corporate interior with geometric acoustic ceilings, reception feature wall, and glass conference suites.",
+      "description": "A turnkey office transformation delivering 40 ergonomic workstations, 3 executive director cabins, a 16-seater boardroom with integrated motorized display lifts, and a striking black-and-gold reception foyer featuring the company's laser-cut brass emblem.",
+      "featuredImage": "https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&w=1600&q=80",
+      "beforeImage": "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&q=80",
+      "afterImage": "https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&w=1200&q=80",
+      "isFeatured": false,
+      "orderIndex": 5,
+      "galleryImages": [
+        {
+          "imageUrl": "https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&w=1200&q=80",
+          "caption": "Open plan collaboration zone with acoustic baffles"
+        }
+      ],
+      "id": "proj-init-5",
+      "isPublished": true,
+      "images": [
+        {
+          "id": "img-5-1",
+          "projectId": "proj-init-5",
+          "imageUrl": "https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&w=1200&q=80",
+          "caption": "Open plan collaboration zone with acoustic baffles",
+          "orderIndex": 0
+        }
+      ]
+    },
+    {
+      "slug": "bespoke-handcrafted-furniture-collection",
+      "title": "Artisanal Teak & Brass Furniture Suite",
+      "category": "Furniture",
+      "client": "Mrs. Sunita Goel",
+      "location": "Sector 128, Noida",
+      "completedDate": "May 2026",
+      "area": "Turnkey Furniture",
+      "shortDesc": "Handcrafted 8-seater live-edge dining table, credenza with brass inlays, and accent armchairs.",
+      "description": "Custom commissioned furniture collection crafted in our Noida carpentry facility. Highlights include an 8-seater dining table from seasoned single-slab teakwood, a cocktail credenza with fluted doors and brushed gold handles, and velvet occasional chairs.",
+      "featuredImage": "https://images.unsplash.com/photo-1538688525198-9b88f6f53126?auto=format&fit=crop&w=1600&q=80",
+      "beforeImage": "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=1200&q=80",
+      "afterImage": "https://images.unsplash.com/photo-1538688525198-9b88f6f53126?auto=format&fit=crop&w=1200&q=80",
+      "isFeatured": false,
+      "orderIndex": 6,
+      "galleryImages": [
+        {
+          "imageUrl": "https://images.unsplash.com/photo-1538688525198-9b88f6f53126?auto=format&fit=crop&w=1200&q=80",
+          "caption": "Solid wood detail with golden accents"
+        }
+      ],
+      "id": "proj-init-6",
+      "isPublished": true,
+      "images": [
+        {
+          "id": "img-6-1",
+          "projectId": "proj-init-6",
+          "imageUrl": "https://images.unsplash.com/photo-1538688525198-9b88f6f53126?auto=format&fit=crop&w=1200&q=80",
+          "caption": "Solid wood detail with golden accents",
+          "orderIndex": 0
+        }
+      ]
+    },
+    {
+      "slug": "the-palm-springs-penthouse-turnkey",
+      "title": "The Palm Springs 4BHK Penthouse",
+      "category": "Complete Home Interior",
+      "client": "Arun & Neha Singhania",
+      "location": "Expressway Sector 137, Noida",
+      "completedDate": "April 2026",
+      "area": "3,800 sq.ft",
+      "shortDesc": "Full turnkey luxury transformation across 4 bedrooms, drawing room, modular kitchen, and terrace deck.",
+      "description": "A complete turnkey residence executed in 55 days from empty shell to keys-in-hand luxury. Includes complete electrical rewiring, Gyproc designer false ceilings, Italian marble flooring polishing, bespoke modular kitchen with quartz counter, 4 custom bedroom suites with walk-in wardrobes, and an outdoor wooden pergola terrace deck.",
+      "featuredImage": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=80",
+      "beforeImage": "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=1200&q=80",
+      "afterImage": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80",
+      "isFeatured": true,
+      "orderIndex": 7,
+      "galleryImages": [
+        {
+          "imageUrl": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80",
+          "caption": "Grand double-height foyer with champagne gold accents"
+        }
+      ],
+      "id": "proj-init-7",
+      "isPublished": true,
+      "images": [
+        {
+          "id": "img-7-1",
+          "projectId": "proj-init-7",
+          "imageUrl": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80",
+          "caption": "Grand double-height foyer with champagne gold accents",
+          "orderIndex": 0
+        }
+      ]
+    }
+  ],
+  "galleryCategories": [
+    {
+      "slug": "living-room",
+      "name": "Living Room",
+      "orderIndex": 1,
+      "id": "cat-init-1"
+    },
+    {
+      "slug": "bedroom",
+      "name": "Bedroom",
+      "orderIndex": 2,
+      "id": "cat-init-2"
+    },
+    {
+      "slug": "modular-kitchen",
+      "name": "Modular Kitchen",
+      "orderIndex": 3,
+      "id": "cat-init-3"
+    },
+    {
+      "slug": "study-room",
+      "name": "Study Room",
+      "orderIndex": 4,
+      "id": "cat-init-4"
+    },
+    {
+      "slug": "luxury-wardrobes",
+      "name": "Luxury Wardrobes",
+      "orderIndex": 5,
+      "id": "cat-init-5"
+    },
+    {
+      "slug": "custom-woodwork",
+      "name": "Custom Woodwork",
+      "orderIndex": 6,
+      "id": "cat-init-6"
+    }
+  ],
+  "gallery": [
+    {
+      "title": "Modern Minimalist Living Room with Golden Accents",
+      "categorySlug": "living-room",
+      "imageUrl": "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1600&q=80",
+      "isFeatured": true,
+      "orderIndex": 1,
+      "id": "gal-init-1",
+      "categoryId": "cat-init-1",
+      "category": {
+        "id": "cat-init-1",
+        "name": "Living Room",
+        "slug": "living-room"
+      }
+    },
+    {
+      "title": "Executive Master Bedroom Suite with Fluted Wood Paneling",
+      "categorySlug": "bedroom",
+      "imageUrl": "https://images.unsplash.com/photo-1616594039964-ae9021a400a0?auto=format&fit=crop&w=1600&q=80",
+      "isFeatured": true,
+      "orderIndex": 2,
+      "id": "gal-init-2",
+      "categoryId": "cat-init-2",
+      "category": {
+        "id": "cat-init-2",
+        "name": "Bedroom",
+        "slug": "bedroom"
+      }
+    },
+    {
+      "title": "Luxury Island Modular Kitchen with Quartz Breakfast Bar",
+      "categorySlug": "modular-kitchen",
+      "imageUrl": "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=1600&q=80",
+      "isFeatured": true,
+      "orderIndex": 3,
+      "id": "gal-init-3",
+      "categoryId": "cat-init-3",
+      "category": {
+        "id": "cat-init-3",
+        "name": "Modular Kitchen",
+        "slug": "modular-kitchen"
+      }
+    },
+    {
+      "title": "Warm Wood Executive Study & Custom Library Shelf",
+      "categorySlug": "study-room",
+      "imageUrl": "https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=1600&q=80",
+      "isFeatured": true,
+      "orderIndex": 4,
+      "id": "gal-init-4",
+      "categoryId": "cat-init-4",
+      "category": {
+        "id": "cat-init-4",
+        "name": "Study Room",
+        "slug": "study-room"
+      }
+    },
+    {
+      "title": "Rose Gold Profile Tinted Glass Walk-In Wardrobe",
+      "categorySlug": "luxury-wardrobes",
+      "imageUrl": "/images/gallery/rose-gold-wardrobe.jpg",
+      "isFeatured": true,
+      "orderIndex": 5,
+      "id": "gal-init-5",
+      "categoryId": "cat-init-5",
+      "category": {
+        "id": "cat-init-5",
+        "name": "Luxury Wardrobes",
+        "slug": "luxury-wardrobes"
+      }
+    },
+    {
+      "title": "Handcrafted Teakwood Console & Brass Joinery",
+      "categorySlug": "custom-woodwork",
+      "imageUrl": "https://images.unsplash.com/photo-1538688525198-9b88f6f53126?auto=format&fit=crop&w=1600&q=80",
+      "isFeatured": true,
+      "orderIndex": 6,
+      "id": "gal-init-6",
+      "categoryId": "cat-init-6",
+      "category": {
+        "id": "cat-init-6",
+        "name": "Custom Woodwork",
+        "slug": "custom-woodwork"
+      }
+    },
+    {
+      "title": "Grand Drawing Room with Italian Statuario TV Wall",
+      "categorySlug": "living-room",
+      "imageUrl": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=80",
+      "isFeatured": false,
+      "orderIndex": 7,
+      "id": "gal-init-7",
+      "categoryId": "cat-init-1",
+      "category": {
+        "id": "cat-init-1",
+        "name": "Living Room",
+        "slug": "living-room"
+      }
+    },
+    {
+      "title": "Boutique Hotel-Style Master Bedroom with Cove Lighting",
+      "categorySlug": "bedroom",
+      "imageUrl": "https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?auto=format&fit=crop&w=1600&q=80",
+      "isFeatured": false,
+      "orderIndex": 8,
+      "id": "gal-init-8",
+      "categoryId": "cat-init-2",
+      "category": {
+        "id": "cat-init-2",
+        "name": "Bedroom",
+        "slug": "bedroom"
+      }
+    },
+    {
+      "title": "Sleek Handleless Modular Kitchen with Built-in Appliances",
+      "categorySlug": "modular-kitchen",
+      "imageUrl": "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&fit=crop&w=1600&q=80",
+      "isFeatured": false,
+      "orderIndex": 9,
+      "id": "gal-init-9",
+      "categoryId": "cat-init-3",
+      "category": {
+        "id": "cat-init-3",
+        "name": "Modular Kitchen",
+        "slug": "modular-kitchen"
+      }
+    },
+    {
+      "title": "Home Office Pod with Hidden Wire Concealment",
+      "categorySlug": "study-room",
+      "imageUrl": "https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&w=1600&q=80",
+      "isFeatured": false,
+      "orderIndex": 10,
+      "id": "gal-init-10",
+      "categoryId": "cat-init-4",
+      "category": {
+        "id": "cat-init-4",
+        "name": "Study Room",
+        "slug": "study-room"
+      }
+    },
+    {
+      "title": "Floor-to-Ceiling High Gloss Sliding Wardrobe Suite",
+      "categorySlug": "luxury-wardrobes",
+      "imageUrl": "https://images.unsplash.com/photo-1595428774223-ef52624120d2?auto=format&fit=crop&w=1600&q=80",
+      "isFeatured": false,
+      "orderIndex": 11,
+      "id": "gal-init-11",
+      "categoryId": "cat-init-5",
+      "category": {
+        "id": "cat-init-5",
+        "name": "Luxury Wardrobes",
+        "slug": "luxury-wardrobes"
+      }
+    },
+    {
+      "title": "Artisanal Wooden Wall Paneling & Architectural Louvers",
+      "categorySlug": "custom-woodwork",
+      "imageUrl": "/images/services/wooden-work.jpg",
+      "isFeatured": false,
+      "orderIndex": 12,
+      "id": "gal-init-12",
+      "categoryId": "cat-init-6",
+      "category": {
+        "id": "cat-init-6",
+        "name": "Custom Woodwork",
+        "slug": "custom-woodwork"
+      }
+    }
+  ],
+  "testimonials": [
+    {
+      "clientName": "Er. Rahul Mathur",
+      "clientRole": "Senior Tech Director, Amrapali Zodiac",
+      "clientLocation": "Sector 120, Noida",
+      "rating": 5,
+      "reviewText": "MA Carpenter and Interior transformed our 3BHK into an absolute dream home. Monish and his carpentry team delivered flawless modular kitchen finishes and living room marble work ahead of schedule. The golden and charcoal accents look like a 5-star hotel!",
+      "orderIndex": 1,
+      "id": "test-init-1",
+      "isPublished": true
+    },
+    {
+      "clientName": "Pooja & Sameer Khanna",
+      "clientRole": "Homeowners, Prateek Laurel",
+      "clientLocation": "Sector 120, Noida",
+      "rating": 5,
+      "reviewText": "Finding genuine, honest master carpenters in Noida was tough until we met MA Carpenter. From custom hydraulic beds to walk-in glass wardrobes, every drawer slide and soft-close hinge operates like clockwork. Extremely transparent and reliable.",
+      "orderIndex": 2,
+      "id": "test-init-2",
+      "isPublished": true
+    },
+    {
+      "clientName": "Dr. Arvind Saxena",
+      "clientRole": "Consultant Physician",
+      "clientLocation": "Sector 50, Noida",
+      "rating": 5,
+      "reviewText": "Their attention to woodwork details, wood grain alignment, and Gyproc false ceiling perfection is unmatched. The 3D designs they presented were executed with 100% precision. Strongly recommended for turnkey luxury home interiors.",
+      "orderIndex": 3,
+      "id": "test-init-3",
+      "isPublished": true
+    },
+    {
+      "clientName": "Meenakshi Bhatnagar",
+      "clientRole": "Interior Architect",
+      "clientLocation": "Sector 137, Noida",
+      "rating": 5,
+      "reviewText": "As an architect, I am very picky with carpenter joinery and edge banding. MA Carpenter and Interior's workshop has the precision of high-end factory fabrication with the care of true artisanal woodworking. Remarkable service!",
+      "orderIndex": 4,
+      "id": "test-init-4",
+      "isPublished": true
+    }
+  ],
+  "blogs": [
+    {
+      "id": "blog-1",
+      "slug": "top-modular-kitchen-layouts-noida",
+      "title": "Top Modular Kitchen Layouts for 3BHK Apartments in Noida",
+      "excerpt": "Discover how L-shaped, parallel, and island modular kitchen layouts maximize culinary ergonomics and storage in Noida high-rise residences.",
+      "content": "When designing a kitchen for modern 3BHK apartments in Noida (such as in Sector 120, Sector 137, or Sector 78), homeowners often struggle to balance storage capacity with open floor movement. \n\n### 1. The Parallel Galley Layout\nFor apartments with long, narrow kitchen footprints, the parallel layout is unmatched. It creates an intuitive 'work triangle' between the sink, refrigerator, and cooking hob. Using Blum or Hettich tandem boxes ensures that every centimeter of depth is easily accessible.\n\n### 2. The L-Shaped Modular Kitchen\nThe L-shape remains the most versatile layout for open-concept dining and living layouts. We recommend installing corner carousel pull-outs or LeMans corner units to eliminate dead corners.\n\n### 3. Kitchen Island with Calacatta Quartz\nIf your floor plan allows at least 12 feet of width, adding a central island provides a prep station, breakfast bar, and hidden trash pull-out.\n\n### Material Recommendation:\nAlways insist on BWP (Boiling Water Proof) Marine Grade 710 plywood for the under-sink and base cabinetry, coupled with scratch-resistant anti-fingerprint acrylic or PU finishes.",
+      "featuredImage": "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=1200&q=80",
+      "category": "Modular Kitchen",
+      "author": "Monish Pasha",
+      "readTime": "5 min read",
+      "publishedAt": "November 2026",
+      "isPublished": true,
+      "tags": [
+        "Modular Kitchen",
+        "Noida 3BHK",
+        "Plywood",
+        "Interior Tips"
+      ]
+    },
+    {
+      "id": "blog-2",
+      "slug": "glass-vs-wood-wardrobe-guide",
+      "title": "Tinted Fluted Glass vs. Solid Wood Wardrobes: Which One Suits Your Bedroom?",
+      "excerpt": "A detailed comparison of rose gold profile tinted glass walk-in wardrobes versus traditional teakwood sliding systems for modern master bedrooms.",
+      "content": "Choosing the right wardrobe design sets the tone for your master bedroom suite. Over the past year in Noida luxury apartments, two clear trends have dominated: tinted reflective glass systems and handcrafted wooden louvers.\n\n### The Appeal of Tinted Fluted Glass Wardrobes\nGlass wardrobes framed in rose gold or champagne aluminum create the sensation of a high-end luxury fashion boutique:\n- **Visual Depth**: Reflective bronze glass reflects ambient cove light, making compact bedrooms feel twice as large.\n- **Sensor Illumination**: Concealed vertical LED strips automatically illuminate your clothing collection when doors slide open.\n- **Maintenance**: Dust-proof seals prevent any airborne particles from entering delicate garments.\n\n### Handcrafted Teak & Fluted Wood Wardrobes\nFor homeowners seeking organic warmth, nothing beats natural wood:\n- **Timeless Durability**: Solid teak or seasoned commercial core with natural wood veneer withstands decades of daily use.\n- **Acoustic Softness**: Wood naturally absorbs sound, creating a calm, quiet sanctuary for sleep.\n\n### The MA Carpenter Verdict:\nA hybrid approach often works best: choose solid wood carcass structures with tinted glass sliding shutters in the master suite!",
+      "featuredImage": "/images/gallery/rose-gold-wardrobe.jpg",
+      "category": "Wardrobe Design",
+      "author": "Monish Pasha",
+      "readTime": "4 min read",
+      "publishedAt": "November 2026",
+      "isPublished": true,
+      "tags": [
+        "Wardrobes",
+        "Glass Wardrobe",
+        "Master Bedroom",
+        "Luxury Closets"
+      ]
+    },
+    {
+      "id": "blog-3",
+      "slug": "choosing-marine-ply-for-home-interiors",
+      "title": "Architectural Woodwork & Waterproof Plywood: The Complete Homeowner Guide",
+      "excerpt": "Why BWP Marine grade plywood and authentic teak wood carpentry deliver decades of structural durability over particle board.",
+      "content": "Many homeowners ask why custom carpenter-made interiors outlast ready-made flat-pack furniture. The secret lies in material composition and precision joinery.\n\n### Commercial Ply vs. BWP Marine Ply (IS:710)\n- **MDF & Particle Board**: Highly prone to swelling and warping when exposed to Delhi NCR's monsoon humidity.\n- **BWP Marine Ply (IS 710)**: Bonded with synthetic phenol formaldehyde resin, it resists boiling water for over 72 hours without delamination. Essential for all kitchens and bathroom vanities.\n\n### Architectural Woodwork & Jali Screens\nCNC-carved wooden partitions and fluted wall cladding bring architectural elegance to foyers and dining areas. Staining with polyurethane (PU) matte coats preserves the authentic grain while providing anti-scratch protection.\n\nAt MA Carpenter and Interior in Sector 120 Noida, every piece of woodwork is precision-calibrated in our in-house facility before site installation.",
+      "featuredImage": "/images/services/wooden-work.jpg",
+      "category": "Carpentry & Woodwork",
+      "author": "Monish Pasha",
+      "readTime": "6 min read",
+      "publishedAt": "November 2026",
+      "isPublished": true,
+      "tags": [
+        "Carpentry",
+        "Woodwork",
+        "Plywood",
+        "Quality Standards"
+      ]
+    },
+    {
+      "id": "blog-4",
+      "slug": "false-ceiling-lighting-design-trends-noida",
+      "title": "Modern False Ceiling & Magnetic Track Light Trends for Noida Luxury Homes",
+      "excerpt": "From seamless cove ambient illumination to recessed magnetic profile tracks, discover how modern gypsum ceilings elevate high-rise interiors.",
+      "content": "A luxury home interior is never complete without cohesive architectural ceiling and lighting choreography. In Noida's high-rise towers (where slab heights typically range from 9.5 to 10.5 feet), a poorly designed drop ceiling can make rooms feel cramped, while a professionally executed ceiling expands visual volume.\n\n### 1. Perimeter Cove Lighting with 3000K Warm White LEDs\nRather than relying on harsh overhead downlights, perimeter cove lighting reflects illumination against the upper ceiling slab. We specify high-CRI (Color Rendering Index > 90) dotless COB LED strips concealed within 3-inch recessed coves. This eliminates glare and bathes the living room in warm, hotel-grade ambient luxury.\n\n### 2. Flush Magnetic Track Lighting\nMagnetic track systems have revolutionized modern apartment illumination:\n- **Modular Flexibility**: Magnetic track spotlights, linear diffusers, and pendant accent lamps can be repositioned or swapped in seconds without any tools or rewiring.\n- **Architectural Minimalism**: The matte black aluminum track sits completely flush within the Gyproc plasterboard, creating dramatic linear geometry across the room.\n- **Dual Dimming Zones**: Control ambient diffuse lighting and focused art spotlights on separate dimmer channels.\n\n### 3. Gyproc Saint-Gobain Moisture-Resistant Framing\nMany cheap contractors cut corners by using local chalk POP or thin tin channels that sag and crack within 18 months. At MA Carpenter and Interior, we exclusively install Saint-Gobain Gyproc 12.5mm boards fastened to heavy-gauge galvanized steel GI frameworks with anti-rust expansion anchors.\n\n### 4. Acoustic Isolation & Concealed AC Ducting\nFalse ceilings provide the perfect plenum for concealing copper refrigerant pipes, AC drains, and home theater acoustic dampeners, keeping your ceiling clean and uncluttered.",
+      "featuredImage": "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=1200&q=80",
+      "category": "False Ceiling",
+      "author": "Monish Pasha",
+      "readTime": "5 min read",
+      "publishedAt": "November 2026",
+      "isPublished": true,
+      "tags": [
+        "False Ceiling",
+        "Magnetic Track",
+        "Cove Lighting",
+        "Gyproc",
+        "Noida Luxury"
+      ]
+    },
+    {
+      "id": "blog-5",
+      "slug": "interior-design-cost-breakdown-3bhk-noida",
+      "title": "3BHK Full Turnkey Interior Cost Breakdown in Noida (2026 Practical Guide)",
+      "excerpt": "A transparent, realistic cost analysis covering modular kitchens, custom wardrobes, false ceilings, electrical, and master carpentry joinery.",
+      "content": "Budgeting for a full turnkey interior in Noida (Sector 120, Sector 137, Sector 78, or Noida Expressway) often feels overwhelming due to contradictory contractor quotes. Here is an honest, itemized breakdown based on actual material specifications from our workshop.\n\n### 1. The Modular Kitchen (₹1.8 Lakh - ₹3.5 Lakh)\nThe heart of any home. Costs vary based on carcass core and shutter finish:\n- **Carcass**: 16mm/18mm BWP IS:710 Marine Plywood (imperative for Noida tap water resistance).\n- **Shutters**: Anti-scratch matte acrylic or 4-side laser edge-banded PU finishes.\n- **Hardware**: Blum or Hettich soft-close tandem drawers, cutlery organizers, and spice pullouts.\n- **Countertop**: Calacatta quartz or composite granite (₹280 - ₹450 / sq ft).\n\n### 2. Master & Guest Wardrobes (₹2.2 Lakh - ₹4.5 Lakh)\n- **Standard 7x8 ft Sliding Wardrobe**: ₹75,000 - ₹1,10,000 with high-gloss laminates.\n- **Rose Gold Profile Tinted Glass Walk-In**: ₹1,35,000 - ₹1,95,000 with concealed vertical sensor LEDs and aluminum framework.\n\n### 3. Designer False Ceiling & Electricals (₹90,000 - ₹1.6 Lakh)\n- **Gyproc POP False Ceiling**: ₹95 - ₹125 per sq ft (including framing, board, taping, and primer).\n- **Designer Lighting**: Magnetic tracks, COB spot lights, and concealed profile channels.\n\n### 4. Living Room Paneling & TV Unit (₹80,000 - ₹1.8 Lakh)\n- Backlit Italian Statuario or translucent onyx marble wall panel with fluted charcoal louvers and a floating hydraulic drawer console.\n\n### Key Advice: Factory Finish vs. On-Site Carpentry\nA hybrid approach delivers the best value. Base modular carcasses fabricated on precision CNC machines paired with master carpenters on-site for custom wall scribing and seamless edge trim.",
+      "featuredImage": "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1200&q=80",
+      "category": "Cost Guides",
+      "author": "Monish Pasha",
+      "readTime": "7 min read",
+      "publishedAt": "November 2026",
+      "isPublished": true,
+      "tags": [
+        "Interior Cost",
+        "3BHK Noida",
+        "Budget Guide",
+        "Turnkey Interiors",
+        "Price Breakdown"
+      ]
+    },
+    {
+      "id": "blog-6",
+      "slug": "grand-living-room-marble-fluted-wall-designs",
+      "title": "Living Room Accent Walls: Italian Marble, Fluted Louvers & Floating Consoles",
+      "excerpt": "How to craft a stunning 5-star hotel ambiance in your main living hall using backlit translucent marble, acoustic louvers, and bespoke media consoles.",
+      "content": "The living room wall is the primary centerpiece of your entire residence. When guests step into your apartment in Noida, the feature wall immediately establishes the caliber of your interior craftsmanship.\n\n### 1. Bookmatched Italian Statuario with Backlit Onyx\nNothing matches the visual gravity of authentic Italian marble:\n- **Bookmatching**: Veins are mirrored across two or four slabs, creating an organic architectural artwork.\n- **Translucent Onyx Inserts**: Installing warm 3000K diffused LED sheets behind translucent onyx panels creates an ethereal evening glow that serves as mood lighting.\n\n### 2. Charcoal & Teak Fluted Louver Cladding\nFluted vertical louvers (WPC or natural wood veneer) introduce rich texture and acoustic dampening:\n- **Visual Height**: Vertical slats draw the eye upward, making high-rise ceilings appear significantly loftier.\n- **Acoustic Performance**: Wood slats break sound reflections, eliminating room echo and enhancing TV home-theatre acoustics.\n\n### 3. Floating Hydraulic TV Media Consoles\nBulky floor-standing TV cabinets look dated and collect dust. We design wall-mounted floating consoles with:\n- **Concealed Conduits**: 2-inch concealed PVC wall pipes route all HDMI and power cords invisibly behind the marble.\n- **Hydraulic Lift Hinges**: Soft-opening hydraulic drop-down shutters for PlayStation, set-top boxes, and soundbars.\n- **Underglow Ambient Strip**: Concealed downward LED wash creates the illusion that the console is floating on air.\n\n### The MA Carpenter Assurance:\nEvery marble slab is mechanically fastened with brass dry-cladding brackets alongside specialized epoxy adhesive to guarantee structural stability for generations.",
+      "featuredImage": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80",
+      "category": "Living Room",
+      "author": "Monish Pasha",
+      "readTime": "6 min read",
+      "publishedAt": "November 2026",
+      "isPublished": true,
+      "tags": [
+        "Living Room",
+        "Italian Marble",
+        "TV Unit",
+        "Fluted Wall",
+        "Accent Walls"
+      ]
+    }
+  ],
+  "siteSettings": {
+    "id": "default",
+    "siteName": "MA Carpenter and Interior",
+    "tagline": "Luxury Woodwork & Turnkey Interiors",
+    "phone": "8714114418",
+    "whatsapp": "8714114418",
+    "email": "Monishpasha233@gmail.com",
+    "address": "Shop No. 6, Sector 120, Noida, Uttar Pradesh - 201301",
+    "workingHours": "Mon - Sun: 9:00 AM - 8:30 PM",
+    "experienceYears": 15,
+    "completedProjects": 450,
+    "happyClients": 380,
+    "teamMembers": 25,
+    "heroTitle": "Luxury Woodwork & Turnkey Interiors",
+    "heroSubtitle": "Transforming residential and executive spaces into mastercrafted sanctuaries in Sector 120 Noida and Delhi NCR.",
+    "heroImages": "[\"https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1920&q=80\",\"https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1920&q=80\",\"https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=1920&q=80\"]",
+    "facebookUrl": "https://facebook.com",
+    "instagramUrl": "https://instagram.com",
+    "youtubeUrl": "https://youtube.com",
+    "pinterestUrl": "https://pinterest.com",
+    "googleMapsUrl": "https://maps.google.com/?q=Sector+120+Noida"
+  },
+  "homeSections": [
+    {
+      "id": "sec-hero",
+      "sectionKey": "hero",
+      "title": "Hero Section",
+      "isEnabled": true,
+      "orderIndex": 1
+    },
+    {
+      "id": "sec-about",
+      "sectionKey": "about",
+      "title": "About Section",
+      "isEnabled": true,
+      "orderIndex": 2
+    },
+    {
+      "id": "sec-services",
+      "sectionKey": "services",
+      "title": "Services Section",
+      "isEnabled": true,
+      "orderIndex": 3
+    },
+    {
+      "id": "sec-projects",
+      "sectionKey": "projects",
+      "title": "Projects Section",
+      "isEnabled": true,
+      "orderIndex": 4
+    },
+    {
+      "id": "sec-process",
+      "sectionKey": "process",
+      "title": "Process Section",
+      "isEnabled": true,
+      "orderIndex": 5
+    },
+    {
+      "id": "sec-whyUs",
+      "sectionKey": "whyUs",
+      "title": "Why Choose Us",
+      "isEnabled": true,
+      "orderIndex": 6
+    },
+    {
+      "id": "sec-testimonials",
+      "sectionKey": "testimonials",
+      "title": "Testimonials Section",
+      "isEnabled": true,
+      "orderIndex": 7
+    },
+    {
+      "id": "sec-cta",
+      "sectionKey": "cta",
+      "title": "Call to Action",
+      "isEnabled": true,
+      "orderIndex": 8
+    },
+    {
+      "id": "sec-blogs",
+      "sectionKey": "blogs",
+      "title": "Latest Articles",
+      "isEnabled": true,
+      "orderIndex": 9
+    },
+    {
+      "id": "sec-contact",
+      "sectionKey": "contact",
+      "title": "Contact Section",
+      "isEnabled": true,
+      "orderIndex": 10
+    }
+  ],
+  "sEOSettings": [
+    {
+      "pageRoute": "/",
+      "metaTitle": "MA Carpenter and Interior | Luxury Interior Design & Custom Woodwork Noida",
+      "metaDesc": "Discover premium interior design, modular kitchens, custom woodwork, and complete home interior solutions in Sector 120, Noida by MA Carpenter and Interior.",
+      "keywords": "interior design noida, carpenter noida, modular kitchen sector 120, custom furniture noida, luxury home interior, MA carpenter and interior",
+      "id": "seo-init-1"
+    },
+    {
+      "pageRoute": "/about",
+      "metaTitle": "About Us | MA Carpenter and Interior Noida",
+      "metaDesc": "Learn about MA Carpenter and Interior's heritage in luxury interior architecture, master carpentry, and turnkey home renovations in Noida.",
+      "keywords": "about MA carpenter, interior design company noida, master carpenter sector 120, turnkey home interior",
+      "id": "seo-init-2"
+    },
+    {
+      "pageRoute": "/services",
+      "metaTitle": "Our Services | MA Carpenter and Interior",
+      "metaDesc": "Explore our 12 premium interior design and carpentry services: modular kitchens, custom furniture, wardrobes, TV units, false ceilings, and turnkey homes.",
+      "keywords": "interior design services, modular kitchen noida, wardrobe design, carpenter services noida",
+      "id": "seo-init-3"
+    },
+    {
+      "pageRoute": "/projects",
+      "metaTitle": "Interior Design Portfolio & Projects | MA Carpenter and Interior",
+      "metaDesc": "Browse our luxury interior design and carpentry project portfolio across Noida and Delhi NCR with before/after transformations.",
+      "keywords": "interior portfolio, living room projects, modular kitchen photos, before after interior",
+      "id": "seo-init-4"
+    },
+    {
+      "pageRoute": "/gallery",
+      "metaTitle": "Interior Gallery | MA Carpenter and Interior",
+      "metaDesc": "Explore high-resolution photography of luxury living rooms, bedrooms, modular kitchens, and custom woodwork by MA Carpenter and Interior.",
+      "keywords": "interior gallery, interior design photos noida, bedroom designs, kitchen layouts",
+      "id": "seo-init-5"
+    },
+    {
+      "pageRoute": "/contact",
+      "metaTitle": "Contact Us & Free Consultation | MA Carpenter and Interior Noida",
+      "metaDesc": "Get in touch with MA Carpenter and Interior at Shop No. 6, Sector 120, Noida. Call 8714114418 for free site consultation and 3D estimates.",
+      "keywords": "contact interior designer noida, carpenter phone number noida, sector 120 carpenter",
+      "id": "seo-init-6"
+    },
+    {
+      "pageRoute": "/blogs",
+      "metaTitle": "Interior & Carpentry Design Blogs | MA Carpenter and Interior Noida",
+      "metaDesc": "Read expert guides, modular kitchen layouts, wardrobe trends, and woodworking advice from master artisans at MA Carpenter & Interior.",
+      "keywords": "interior design blog noida, modular kitchen tips, wardrobe design ideas, carpentry advice",
+      "id": "seo-init-7"
+    }
+  ],
+  "enquiries": [
+    {
+      "id": "enq-1",
+      "name": "Er. Rahul Mathur",
+      "phone": "9818204910",
+      "email": "rahul.mathur@techcorp.com",
+      "service": "Modular Kitchen",
+      "message": "Need Italian acrylic finish modular kitchen and living room TV wall for 3BHK flat in Amrapali Zodiac, Sector 120 Noida. Looking for 3D layout consultation this weekend.",
+      "status": "New",
+      "internalNotes": "Prefers Saturday morning site visit.",
+      "createdAt": "2026-11-11T11:19:02.601Z"
+    },
+    {
+      "id": "enq-2",
+      "name": "Pooja Khanna",
+      "phone": "9871142230",
+      "email": "pooja.khanna@gmail.com",
+      "service": "Wardrobe Design",
+      "message": "Interested in Rose Gold profile tinted glass walk-in wardrobe with soft-close sensors in Prateek Laurel, Sector 120.",
+      "status": "New",
+      "internalNotes": "Sent portfolio photos on WhatsApp.",
+      "createdAt": "2026-11-10T23:19:02.602Z"
+    },
+    {
+      "id": "enq-3",
+      "name": "Dr. Arvind Saxena",
+      "phone": "9810143890",
+      "email": "arvind.saxena@apollo.org",
+      "service": "Complete Home Interior",
+      "message": "Full turnkey woodwork and interior design required for 4BHK apartment in Sector 50, Noida. Need quotation including false ceiling and marine ply cabinets.",
+      "status": "In Progress",
+      "internalNotes": "Initial 3D drawings presented.",
+      "createdAt": "2026-11-09T13:19:02.602Z"
+    }
+  ],
+  "admin": [
+    {
+      "id": "admin-master",
+      "email": "admin@mainterior.com",
+      "name": "Monish Pasha",
+      "role": "superadmin",
+      "password": "$2a$10$wN16D8eW5vBf4X3Rj5eG0O.wXnB1H8aB6x5J3M7K8Y9Q1Z5X6Y7Z8"
+    }
+  ],
+  "activityLogs": []
+}

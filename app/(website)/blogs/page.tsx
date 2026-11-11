@@ -14,7 +14,8 @@ export const metadata: Metadata = {
     "Expert articles on modular kitchen planning, luxury wardrobe design, BWP waterproof marine plywood, and turnkey home renovations in Sector 120, Noida.",
 };
 
-export const revalidate = 60;
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
 
 export default async function BlogsPage() {
   let blogs: any[] = [];

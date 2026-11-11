@@ -20,7 +20,8 @@ import {
   INITIAL_GALLERY_CATEGORIES,
 } from "@/lib/data/initialData";
 
-export const revalidate = 60; // Instant response with 60s background ISR; admin mutations purge cache on-demand
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
 
 export default async function HomePage() {
   // Fetch SiteSettings and page data concurrently in parallel
