@@ -1,7 +1,7 @@
 import React from "react";
 import type { Metadata } from "next";
 import Link from "next/link";
-import Image from "next/image";
+import SafeImage from "@/components/ui/SafeImage";
 import db from '@/lib/db';
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
@@ -86,7 +86,7 @@ export default async function ServicesPage() {
                     <div>
                       {/* Image Header */}
                       <div className="relative h-48 sm:h-56 md:h-60 w-full overflow-hidden">
-                        <Image
+                        <SafeImage
                           src={service.featuredImage}
                           alt={service.title}
                           fill
@@ -94,7 +94,7 @@ export default async function ServicesPage() {
                           quality={80}
                           className="object-cover group-hover:scale-105 transition-transform duration-700"
                         />
-                        <div className="absolute inset-0 bg-gradient-to-t from-brand-surface via-transparent to-transparent" />
+                        <div className="absolute inset-0 bg-gradient-to-t from-brand-surface via-transparent to-transparent pointer-events-none" />
 
                         <div className="absolute top-4 left-4 bg-black/80 backdrop-blur-md px-3 py-1 rounded-full border border-brand-gold/40 text-[10px] font-bold uppercase tracking-wider text-brand-gold">
                           {service.category || "Interior"}

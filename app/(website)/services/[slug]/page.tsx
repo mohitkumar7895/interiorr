@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
+import SafeImage from "@/components/ui/SafeImage";
 import db from '@/lib/db';
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
@@ -206,7 +207,7 @@ export default async function ServiceDetailPage({ params }: ServiceDetailPagePro
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                       {allImages.map((img, idx) => (
                         <div key={idx} className="relative h-64 rounded-2xl overflow-hidden border border-brand-gold/30 shadow-lg">
-                          <Image
+                          <SafeImage
                             src={img}
                             alt={`${service.title} Photo ${idx + 1}`}
                             fill

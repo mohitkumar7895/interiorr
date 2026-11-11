@@ -28,7 +28,10 @@ export default async function ProjectsPage() {
     console.error("Projects page query error:", err);
   }
 
-  const displayProjects = projects.length > 0 ? projects : INITIAL_PROJECTS;
+  const displayProjects =
+    projects.length > 0
+      ? projects
+      : INITIAL_PROJECTS.map((p, idx) => ({ ...p, id: `init-prj-${idx}` }));
 
   return (
     <div className="min-h-screen bg-brand-black text-brand-cream">

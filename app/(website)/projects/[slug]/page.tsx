@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
+import SafeImage from "@/components/ui/SafeImage";
 import db from '@/lib/db';
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
@@ -81,6 +82,13 @@ export default async function ProjectDetailPage({ params }: ProjectDetailPagePro
   }
 
   const phone = process.env.NEXT_PUBLIC_PHONE || "8714114418";
+
+  const galleryPhotos =
+    project.images && project.images.length > 0
+      ? project.images
+      : project.galleryImages && project.galleryImages.length > 0
+        ? project.galleryImages
+        : [];
 
   return (
     <div className="min-h-screen bg-brand-black text-brand-cream">
@@ -162,7 +170,7 @@ export default async function ProjectDetailPage({ params }: ProjectDetailPagePro
               <div className="lg:col-span-8 space-y-12">
                 {/* Hero Showcase Image */}
                 <div className="relative h-[260px] sm:h-[380px] md:h-[480px] w-full rounded-2xl sm:rounded-3xl overflow-hidden border border-brand-gold/40 shadow-2xl">
-                  <Image
+                  <SafeImage
                     src={project.featuredImage}
                     alt={project.title}
                     fill
@@ -187,7 +195,7 @@ export default async function ProjectDetailPage({ params }: ProjectDetailPagePro
                           Initial Raw Space (Before)
                         </span>
                         <div className="relative h-52 sm:h-64 rounded-xl sm:rounded-2xl overflow-hidden border border-white/10">
-                          <Image
+                          <SafeImage
                             src={project.beforeImage}
                             alt="Before Renovation"
                             fill
@@ -203,7 +211,7 @@ export default async function ProjectDetailPage({ params }: ProjectDetailPagePro
                           Finished Luxury Handover (After)
                         </span>
                         <div className="relative h-52 sm:h-64 rounded-xl sm:rounded-2xl overflow-hidden border border-brand-gold/50 shadow-gold-sm">
-                          <Image
+                          <SafeImage
                             src={project.afterImage || project.featuredImage}
                             alt="After Masterpiece"
                             fill
@@ -228,18 +236,18 @@ export default async function ProjectDetailPage({ params }: ProjectDetailPagePro
                 </div>
 
                 {/* Multiple Gallery Images */}
-                {project.images && project.images.length > 0 && (
+                {galleryPhotos.length > 0 && (
                   <div>
                     <h3 className="font-serif text-2xl font-bold text-white mb-6">
                       Detailed Angles & Craftsmanship
                     </h3>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                      {project.images.map((img: any, idx: number) => (
+                      {galleryPhotos.map((img: any, idx: number) => (
                         <div
                           key={img.id || idx}
                           className="relative h-72 rounded-2xl overflow-hidden border border-brand-gold/25 shadow-lg group"
                         >
-                          <Image
+                          <SafeImage
                             src={img.imageUrl}
                             alt={img.caption || `Project View ${idx + 1}`}
                             fill

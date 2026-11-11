@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import Image from "next/image";
+import SafeImage from "@/components/ui/SafeImage";
 import {
   Sparkles,
   ArrowRight,
@@ -70,7 +70,8 @@ export default function FeaturedProjectsSection({ projects }: FeaturedProjectsSe
         {/* Projects Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
           {projects.map((project, idx) => {
-            const isShowingBefore = showBeforeMap[project.id];
+            const projectId = project.id || project.slug || `project-${idx}`;
+            const isShowingBefore = !!showBeforeMap[projectId];
             const currentImg =
               isShowingBefore && project.beforeImage
                 ? project.beforeImage
@@ -78,12 +79,12 @@ export default function FeaturedProjectsSection({ projects }: FeaturedProjectsSe
 
             return (
               <div
-                key={project.id}
-                className="group bg-brand-surface/70 border border-brand-gold/25 hover:border-brand-gold/60 rounded-3xl overflow-hidden transition-all duration-500 hover:shadow-2xl flex flex-col"
+                key={projectId}
+                className="group bg-brand-surface/70 border border-brand-gold/25 hover:border-brand-gold/60 rounded-2xl sm:rounded-3xl overflow-hidden transition-all duration-500 hover:shadow-2xl flex flex-col"
               >
                 {/* Image Container with Before/After Toggle */}
-                <div className="relative h-64 sm:h-80 md:h-96 w-full overflow-hidden bg-black">
-                  <Image
+                <div className="relative h-60 sm:h-80 md:h-96 w-full overflow-hidden bg-black">
+                  <SafeImage
                     src={currentImg}
                     alt={project.title}
                     fill
@@ -91,37 +92,39 @@ export default function FeaturedProjectsSection({ projects }: FeaturedProjectsSe
                     quality={80}
                     className="object-cover transition-all duration-700 group-hover:scale-105"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-brand-black/90 via-transparent to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-brand-black/90 via-transparent to-transparent pointer-events-none" />
 
-                  {/* Top Badges */}
-                  <div className="absolute top-3 left-3 sm:top-4 sm:left-4 flex items-center gap-2">
-                    <span className="bg-brand-black/85 backdrop-blur-md px-2.5 sm:px-3.5 py-1 rounded-full border border-brand-gold/40 text-[9px] sm:text-[10px] font-bold uppercase tracking-wider text-brand-gold">
-                      {project.category}
-                    </span>
-
-                    {project.area && (
-                      <span className="bg-brand-surface/85 backdrop-blur-md px-2.5 sm:px-3 py-1 rounded-full border border-white/20 text-[9px] sm:text-[10px] font-medium text-gray-300">
-                        {project.area}
+                  {/* Top Header Bar inside Image (Never collides) */}
+                  <div className="absolute top-2.5 inset-x-2.5 sm:top-4 sm:inset-x-4 flex items-center justify-between gap-2 z-20">
+                    <div className="flex items-center gap-1.5 sm:gap-2 min-w-0">
+                      <span className="bg-brand-black/90 backdrop-blur-md px-2.5 sm:px-3.5 py-1 rounded-full border border-brand-gold/40 text-[9px] sm:text-[10px] font-bold uppercase tracking-wider text-brand-gold truncate">
+                        {project.category}
                       </span>
+
+                      {project.area && (
+                        <span className="bg-brand-surface/90 backdrop-blur-md px-2 sm:px-3 py-1 rounded-full border border-white/20 text-[9px] sm:text-[10px] font-medium text-gray-300 truncate hidden min-[380px]:inline-block">
+                          {project.area}
+                        </span>
+                      )}
+                    </div>
+
+                    {/* Before / After Interactive Toggle Button */}
+                    {project.beforeImage && (
+                      <button
+                        onClick={() => toggleBeforeAfter(projectId)}
+                        className="flex-shrink-0 px-2.5 sm:px-3.5 py-1 sm:py-1.5 rounded-full bg-brand-black/95 hover:bg-brand-gold hover:text-brand-black text-brand-gold border border-brand-gold/50 text-[9px] sm:text-[11px] font-bold uppercase tracking-wider transition-all shadow-lg flex items-center gap-1.5 whitespace-nowrap active:scale-95"
+                      >
+                        <Layers size={11} />
+                        <span>{isShowingBefore ? "BEFORE" : "Tap: BEFORE"}</span>
+                      </button>
                     )}
                   </div>
 
-                  {/* Before / After Interactive Toggle Button */}
-                  {project.beforeImage && (
-                    <button
-                      onClick={() => toggleBeforeAfter(project.id)}
-                      className="absolute top-3 right-3 sm:top-4 sm:right-4 z-20 px-2.5 sm:px-3.5 py-1 sm:py-1.5 rounded-full bg-brand-black/90 hover:bg-brand-gold hover:text-brand-black text-brand-gold border border-brand-gold/50 text-[10px] sm:text-[11px] font-bold uppercase tracking-wider transition-all shadow-lg flex items-center gap-1.5"
-                    >
-                      <Layers size={12} />
-                      <span>{isShowingBefore ? "Showing: BEFORE" : "Tap for BEFORE"}</span>
-                    </button>
-                  )}
-
                   {/* Location Tag */}
                   {project.location && (
-                    <div className="absolute bottom-3 left-3 sm:bottom-4 sm:left-4 flex items-center gap-1.5 text-[11px] sm:text-xs text-brand-creamSoft bg-black/60 backdrop-blur-sm px-2.5 sm:px-3 py-1 rounded-lg border border-brand-gold/20">
-                      <MapPin size={12} className="text-brand-gold" />
-                      <span>{project.location}</span>
+                    <div className="absolute bottom-2.5 left-2.5 sm:bottom-4 sm:left-4 flex items-center gap-1.5 text-[10px] sm:text-xs text-brand-creamSoft bg-black/75 backdrop-blur-sm px-2.5 sm:px-3 py-1 rounded-lg border border-brand-gold/20 max-w-[85%] truncate">
+                      <MapPin size={12} className="text-brand-gold flex-shrink-0" />
+                      <span className="truncate">{project.location}</span>
                     </div>
                   )}
                 </div>

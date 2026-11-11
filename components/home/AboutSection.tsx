@@ -1,6 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
+import SafeImage from "@/components/ui/SafeImage";
 import {
   Award,
   CheckCircle2,
@@ -55,8 +56,8 @@ export default function AboutSection({
           <div className="lg:col-span-6 relative">
             <div className="relative mx-auto max-w-lg lg:max-w-none">
               {/* Primary Image */}
-              <div className="relative h-[300px] sm:h-[380px] md:h-[440px] rounded-2xl sm:rounded-3xl overflow-hidden border-2 border-brand-gold/40 shadow-2xl">
-                <Image
+              <div className="relative h-[280px] sm:h-[380px] md:h-[440px] rounded-2xl sm:rounded-3xl overflow-hidden border-2 border-brand-gold/40 shadow-2xl">
+                <SafeImage
                   src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1200&q=80"
                   alt="Architectural Masterpiece by MA Carpenter"
                   fill
@@ -64,12 +65,12 @@ export default function AboutSection({
                   quality={80}
                   className="object-cover hover:scale-105 transition-transform duration-700"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-brand-black/80 via-transparent to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-brand-black/80 via-transparent to-transparent pointer-events-none" />
                 
                 {/* Embedded Reference Brand Card Badge */}
-                <div className="absolute bottom-3 left-3 right-3 sm:bottom-4 sm:left-4 sm:right-4 p-3 sm:p-4 rounded-xl sm:rounded-2xl bg-brand-surface/90 backdrop-blur-md border border-brand-gold/40 text-brand-cream flex items-center justify-between">
-                  <div className="flex items-center gap-3">
-                    <div className="relative w-10 h-10 flex-shrink-0">
+                <div className="absolute bottom-2.5 left-2.5 right-2.5 sm:bottom-4 sm:left-4 sm:right-4 p-2.5 sm:p-4 rounded-xl sm:rounded-2xl bg-brand-surface/90 backdrop-blur-md border border-brand-gold/40 text-brand-cream flex items-center justify-between gap-2">
+                  <div className="flex items-center gap-2.5 sm:gap-3 min-w-0">
+                    <div className="relative w-8 h-8 sm:w-10 sm:h-10 flex-shrink-0">
                       <Image
                         src="/logo/ma-emblem.svg"
                         alt="MA"
@@ -78,16 +79,16 @@ export default function AboutSection({
                         className="object-contain"
                       />
                     </div>
-                    <div>
-                      <span className="font-serif font-bold text-xs text-white uppercase tracking-wider block">
+                    <div className="min-w-0">
+                      <span className="font-serif font-bold text-[11px] sm:text-xs text-white uppercase tracking-wider block truncate">
                         MA Carpenter and Interior
                       </span>
-                      <span className="text-[10px] text-brand-gold">
+                      <span className="text-[9px] sm:text-[10px] text-brand-gold block truncate">
                         Shop No. 6, Sector 120, Noida
                       </span>
                     </div>
                   </div>
-                  <span className="text-[10px] font-bold uppercase tracking-wider text-brand-gold bg-brand-gold/10 px-2.5 py-1 rounded-full border border-brand-gold/30">
+                  <span className="text-[9px] sm:text-[10px] font-bold uppercase tracking-wider text-brand-gold bg-brand-gold/10 px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-full border border-brand-gold/30 whitespace-nowrap flex-shrink-0">
                     Verified Studio
                   </span>
                 </div>

@@ -49,9 +49,9 @@ export default function MaLogo({
 
   // Horizontal variant (default for Navbar)
   return (
-    <Link href="/" className={`inline-flex items-center gap-3 group ${className}`}>
+    <Link href="/" className={`inline-flex items-center gap-2 sm:gap-3 group ${className}`}>
       {/* 3D Gold Emblem */}
-      <div className="relative w-12 h-12 flex-shrink-0 transition-transform duration-300 group-hover:scale-105">
+      <div className="relative w-9 h-9 sm:w-11 sm:h-11 md:w-12 md:h-12 flex-shrink-0 transition-transform duration-300 group-hover:scale-105">
         <Image
           src="/logo/ma-emblem.svg"
           alt="MA Logo"
@@ -63,18 +63,18 @@ export default function MaLogo({
       </div>
 
       {/* Brand Typography */}
-      <div className="flex flex-col text-left">
-        <div className="flex items-center gap-1.5">
-          <span className="font-serif font-black tracking-widest text-lg md:text-xl gold-text-gradient drop-shadow-sm">
+      <div className="flex flex-col text-left justify-center">
+        <div className="flex items-center gap-1 sm:gap-1.5 leading-tight">
+          <span className="font-serif font-black tracking-widest text-base sm:text-lg md:text-xl gold-text-gradient drop-shadow-sm">
             MA
           </span>
-          <span className="font-serif font-bold tracking-wider text-xs md:text-sm text-brand-creamSoft">
-            CARPENTER & INTERIOR
+          <span className="font-serif font-bold tracking-wider text-[10px] min-[360px]:text-[11px] sm:text-xs md:text-sm text-brand-creamSoft whitespace-nowrap">
+            CARPENTER &amp; INTERIOR
           </span>
         </div>
-        <div className="flex items-center gap-2">
-          <span className="text-[9px] uppercase tracking-[0.25em] text-brand-gold font-semibold">
-            Carpenter and Interior
+        <div className="flex items-center gap-1.5 sm:gap-2 leading-none mt-0.5">
+          <span className="text-[7.5px] min-[360px]:text-[8.5px] sm:text-[9px] uppercase tracking-[0.12em] sm:tracking-[0.25em] text-brand-gold font-semibold whitespace-nowrap">
+            Carpenter &amp; Interior
           </span>
           <span className="hidden sm:inline-block w-1.5 h-1.5 rounded-full bg-brand-gold/60" />
           <span className="hidden sm:inline-block text-[9px] text-gray-400 italic">

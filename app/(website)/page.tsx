@@ -16,6 +16,8 @@ import {
   INITIAL_SERVICES,
   INITIAL_PROJECTS,
   INITIAL_TESTIMONIALS,
+  INITIAL_GALLERY_ITEMS,
+  INITIAL_GALLERY_CATEGORIES,
 } from "@/lib/data/initialData";
 
 export const revalidate = 60; // Instant response with 60s background ISR; admin mutations purge cache on-demand
@@ -80,6 +82,24 @@ export default async function HomePage() {
       ? testimonials
       : INITIAL_TESTIMONIALS.map((t, idx) => ({ ...t, id: `init-test-${idx}` }));
 
+  const displayGalleryItems =
+    galleryItems.length > 0
+      ? galleryItems
+      : INITIAL_GALLERY_ITEMS.map((g, idx) => ({
+          id: `init-gal-${idx}`,
+          title: g.title,
+          imageUrl: g.imageUrl,
+          category: {
+            slug: g.categorySlug,
+            name:
+              INITIAL_GALLERY_CATEGORIES.find((c) => c.slug === g.categorySlug)?.name ||
+              g.categorySlug
+                .split("-")
+                .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
+                .join(" "),
+          },
+        }));
+
   // Helper to check if section is enabled by admin
   const isSectionEnabled = (key: string) => {
     if (!homeSections || homeSections.length === 0) return true;
@@ -135,7 +155,7 @@ export default async function HomePage() {
 
         {/* 7. Gallery Section */}
         {isSectionEnabled("gallery") && (
-          <HomeGallerySection items={galleryItems} />
+          <HomeGallerySection items={displayGalleryItems} />
         )}
 
         {/* 8. Customer Testimonials Section */}

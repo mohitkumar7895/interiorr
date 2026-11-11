@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
-import Image from "next/image";
+import SafeImage from "@/components/ui/SafeImage";
 import {
   Sparkles,
   ArrowRight,
@@ -56,7 +56,7 @@ export default function HeroSection({
               index === currentSlide ? "opacity-100" : "opacity-0"
             }`}
           >
-            <Image
+            <SafeImage
               src={img}
               alt="Luxury Interior Masterpiece"
               fill
@@ -76,14 +76,14 @@ export default function HeroSection({
       </div>
 
       {/* Decorative Gold Accent Lines & Vignette */}
-      <div className="absolute inset-0 pointer-events-none border-x border-brand-gold/10 max-w-7xl mx-auto z-10" />
+      <div className="absolute inset-0 pointer-events-none border-x border-brand-gold/10 max-w-7xl mx-auto z-10 hidden sm:block" />
 
       {/* Hero Content Container */}
       <div className="relative z-20 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center">
         {/* Brand Reference Pill */}
-        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-surface/90 border border-brand-gold/40 text-brand-gold text-xs font-semibold uppercase tracking-widest mb-6 shadow-gold-sm backdrop-blur-md animate-fade-in">
-          <Sparkles size={14} className="text-brand-gold" />
-          <span>MA Carpenter and Interior • Sector 120 Noida</span>
+        <div className="inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 rounded-full bg-brand-surface/90 border border-brand-gold/40 text-brand-gold text-[10px] sm:text-xs font-semibold uppercase tracking-widest mb-4 sm:mb-6 shadow-gold-sm backdrop-blur-md animate-fade-in max-w-full text-center">
+          <Sparkles size={13} className="text-brand-gold flex-shrink-0" />
+          <span className="truncate">MA Carpenter and Interior • Sector 120 Noida</span>
         </div>
 
         {/* Hero Main Heading */}
@@ -95,22 +95,22 @@ export default function HeroSection({
         </h1>
 
         {/* Hero Tagline & Description */}
-        <p className="mt-6 text-base sm:text-lg md:text-xl text-brand-creamSoft max-w-3xl font-light leading-relaxed drop-shadow">
+        <p className="mt-4 sm:mt-6 text-sm sm:text-lg md:text-xl text-brand-creamSoft max-w-3xl font-light leading-relaxed drop-shadow">
           {subtitle}
         </p>
 
         {/* Pill Highlight: Tagline from uploaded reference card */}
-        <div className="mt-4 flex items-center gap-3 text-xs md:text-sm font-serif italic text-brand-goldLight tracking-wider">
-          <span className="h-[1px] w-8 bg-brand-gold/60" />
+        <div className="mt-3 sm:mt-4 flex items-center gap-2 sm:gap-3 text-xs md:text-sm font-serif italic text-brand-goldLight tracking-wider">
+          <span className="h-[1px] w-6 sm:w-8 bg-brand-gold/60" />
           <span>Designing Spaces, Defining Lifestyles</span>
-          <span className="h-[1px] w-8 bg-brand-gold/60" />
+          <span className="h-[1px] w-6 sm:w-8 bg-brand-gold/60" />
         </div>
 
         {/* CTA Button Group */}
-        <div className="mt-10 flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto">
+        <div className="mt-8 sm:mt-10 flex flex-col sm:flex-row items-center gap-3 sm:gap-4 w-full sm:w-auto">
           <Link
             href={ctaLink}
-            className="w-full sm:w-auto px-8 py-4 rounded-xl bg-gradient-to-r from-brand-gold via-brand-goldLight to-brand-goldDark text-brand-black font-bold text-xs uppercase tracking-widest hover:shadow-gold-md hover:scale-105 active:scale-95 transition-all duration-300 flex items-center justify-center gap-2 shadow-xl"
+            className="w-full sm:w-auto px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl bg-gradient-to-r from-brand-gold via-brand-goldLight to-brand-goldDark text-brand-black font-bold text-xs uppercase tracking-widest hover:shadow-gold-md hover:scale-105 active:scale-95 transition-all duration-300 flex items-center justify-center gap-2 shadow-xl"
           >
             <span>{ctaText}</span>
             <ArrowRight size={16} />
@@ -118,7 +118,7 @@ export default function HeroSection({
 
           <Link
             href="/contact"
-            className="w-full sm:w-auto px-8 py-4 rounded-xl bg-brand-charcoal/80 hover:bg-brand-surface border border-brand-gold/40 hover:border-brand-gold text-brand-cream hover:text-white font-bold text-xs uppercase tracking-widest backdrop-blur-md hover:scale-105 active:scale-95 transition-all duration-300 flex items-center justify-center gap-2"
+            className="w-full sm:w-auto px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl bg-brand-charcoal/80 hover:bg-brand-surface border border-brand-gold/40 hover:border-brand-gold text-brand-cream hover:text-white font-bold text-xs uppercase tracking-widest backdrop-blur-md hover:scale-105 active:scale-95 transition-all duration-300 flex items-center justify-center gap-2"
           >
             <Compass size={16} className="text-brand-gold" />
             <span>Get Free Consultation</span>
@@ -126,60 +126,60 @@ export default function HeroSection({
 
           <a
             href={`tel:+91${phone}`}
-            className="w-full sm:w-auto px-6 py-4 rounded-xl bg-black/40 hover:bg-black/60 border border-brand-gold/25 text-brand-gold text-xs font-semibold tracking-wider transition-all flex items-center justify-center gap-2"
+            className="w-full sm:w-auto px-5 sm:px-6 py-3.5 sm:py-4 rounded-xl bg-black/40 hover:bg-black/60 border border-brand-gold/25 text-brand-gold text-xs font-semibold tracking-wider transition-all flex items-center justify-center gap-2"
           >
             <Phone size={15} />
             <span>+91 {phone}</span>
           </a>
         </div>
 
-        {/* Quick Highlights Bar (Matching the bottom card icons in reference image) */}
-        <div className="mt-12 sm:mt-16 pt-6 sm:pt-8 border-t border-brand-gold/20 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 w-full max-w-4xl text-left bg-brand-surface/40 backdrop-blur-md rounded-2xl p-4 sm:p-6 border border-brand-gold/30">
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-brand-gold/10 border border-brand-gold/30 flex items-center justify-center text-brand-gold flex-shrink-0">
-              <Sparkles size={18} />
+        {/* Quick Highlights Bar */}
+        <div className="mt-10 sm:mt-16 pt-5 sm:pt-8 border-t border-brand-gold/20 grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-6 w-full max-w-4xl text-left bg-brand-surface/40 backdrop-blur-md rounded-2xl p-3.5 sm:p-6 border border-brand-gold/30">
+          <div className="flex items-center gap-2.5 sm:gap-3">
+            <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-brand-gold/10 border border-brand-gold/30 flex items-center justify-center text-brand-gold flex-shrink-0">
+              <Sparkles size={16} />
             </div>
             <div>
-              <h4 className="text-xs font-bold text-white uppercase tracking-wider">
+              <h4 className="text-[11px] sm:text-xs font-bold text-white uppercase tracking-wider">
                 Creative Design
               </h4>
-              <p className="text-[11px] text-gray-400">Bespoke 3D Layouts</p>
+              <p className="text-[10px] sm:text-[11px] text-gray-400">Bespoke 3D Layouts</p>
             </div>
           </div>
 
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-brand-gold/10 border border-brand-gold/30 flex items-center justify-center text-brand-gold flex-shrink-0">
-              <ShieldCheck size={18} />
+          <div className="flex items-center gap-2.5 sm:gap-3">
+            <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-brand-gold/10 border border-brand-gold/30 flex items-center justify-center text-brand-gold flex-shrink-0">
+              <ShieldCheck size={16} />
             </div>
             <div>
-              <h4 className="text-xs font-bold text-white uppercase tracking-wider">
+              <h4 className="text-[11px] sm:text-xs font-bold text-white uppercase tracking-wider">
                 Quality Assurance
               </h4>
-              <p className="text-[11px] text-gray-400">10-Year Hardware Warranty</p>
+              <p className="text-[10px] sm:text-[11px] text-gray-400">10-Year Warranty</p>
             </div>
           </div>
 
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-brand-gold/10 border border-brand-gold/30 flex items-center justify-center text-brand-gold flex-shrink-0">
-              <Award size={18} />
+          <div className="flex items-center gap-2.5 sm:gap-3">
+            <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-brand-gold/10 border border-brand-gold/30 flex items-center justify-center text-brand-gold flex-shrink-0">
+              <Award size={16} />
             </div>
             <div>
-              <h4 className="text-xs font-bold text-white uppercase tracking-wider">
-                Customer Satisfaction
+              <h4 className="text-[11px] sm:text-xs font-bold text-white uppercase tracking-wider">
+                Delighted Clients
               </h4>
-              <p className="text-[11px] text-gray-400">320+ Delighted Families</p>
+              <p className="text-[10px] sm:text-[11px] text-gray-400">320+ Happy Families</p>
             </div>
           </div>
 
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-brand-gold/10 border border-brand-gold/30 flex items-center justify-center text-brand-gold flex-shrink-0">
-              <Compass size={18} />
+          <div className="flex items-center gap-2.5 sm:gap-3">
+            <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-brand-gold/10 border border-brand-gold/30 flex items-center justify-center text-brand-gold flex-shrink-0">
+              <Compass size={16} />
             </div>
             <div>
-              <h4 className="text-xs font-bold text-white uppercase tracking-wider">
-                Complete Solutions
+              <h4 className="text-[11px] sm:text-xs font-bold text-white uppercase tracking-wider">
+                Turnkey Solutions
               </h4>
-              <p className="text-[11px] text-gray-400">Turnkey Interior & Woodwork</p>
+              <p className="text-[10px] sm:text-[11px] text-gray-400">End-to-End Interior</p>
             </div>
           </div>
         </div>

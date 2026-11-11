@@ -83,8 +83,8 @@ export default function Footer() {
       </div>
 
       {/* Main Footer Links */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 sm:gap-10">
           {/* Column 1 & 2: Brand Information */}
           <div className="lg:col-span-2 space-y-6">
             <div className="text-left">

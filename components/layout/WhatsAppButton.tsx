@@ -21,10 +21,10 @@ export default function WhatsAppButton() {
   }, []);
 
   return (
-    <div className="fixed bottom-5 right-5 sm:bottom-6 sm:right-6 z-50 flex flex-col items-end gap-3 select-none">
+    <div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 flex flex-col items-end gap-2.5 sm:gap-3 select-none">
       {/* Quick Action Popup when opened */}
       {isOpen && (
-        <div className="bg-brand-charcoal/95 backdrop-blur-md border border-brand-gold/40 rounded-2xl p-4 shadow-2xl w-[calc(100vw-2.5rem)] max-w-xs mb-2 animate-fade-in text-brand-cream text-sm">
+        <div className="bg-brand-charcoal/95 backdrop-blur-md border border-brand-gold/40 rounded-2xl p-3.5 sm:p-4 shadow-2xl w-[calc(100vw-2rem)] max-w-[290px] sm:max-w-xs mb-2 animate-fade-in text-brand-cream text-sm">
           <div className="flex items-center justify-between border-b border-brand-gold/20 pb-2 mb-3">
             <div className="flex items-center gap-2">
               <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse" />

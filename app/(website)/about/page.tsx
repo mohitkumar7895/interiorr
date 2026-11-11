@@ -2,6 +2,7 @@ import React from "react";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import SafeImage from "@/components/ui/SafeImage";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import ConsultationSection from "@/components/home/ConsultationSection";
@@ -79,9 +80,9 @@ export default function AboutPage() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
               {/* Image Collage */}
-              <div className="lg:col-span-6 relative">
+              <div className="lg:col-span-6 relative pb-6 sm:pb-8">
                 <div className="relative h-[280px] sm:h-[380px] md:h-[480px] rounded-2xl sm:rounded-3xl overflow-hidden border border-brand-gold/40 shadow-2xl">
-                  <Image
+                  <SafeImage
                     src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80"
                     alt="MA Carpenter and Interior Luxury Residence"
                     fill
@@ -89,11 +90,11 @@ export default function AboutPage() {
                     quality={80}
                     className="object-cover"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-brand-black via-transparent to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-brand-black via-transparent to-transparent pointer-events-none" />
                 </div>
 
-                <div className="absolute -bottom-8 -right-8 w-60 h-44 rounded-2xl overflow-hidden border-2 border-brand-gold/60 shadow-2xl hidden sm:block">
-                  <Image
+                <div className="absolute -bottom-2 -right-2 sm:-bottom-4 sm:-right-4 md:-bottom-6 md:-right-6 w-48 sm:w-56 md:w-60 h-36 sm:h-44 rounded-2xl overflow-hidden border-2 border-brand-gold/60 shadow-2xl hidden min-[480px]:block z-10">
+                  <SafeImage
                     src="/images/ma-reference-branding.jpg"
                     alt="Brand Identity"
                     fill

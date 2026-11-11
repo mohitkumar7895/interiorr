@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import Image from "next/image";
+import SafeImage from "@/components/ui/SafeImage";
 import {
   Compass,
   Utensils,
@@ -121,7 +121,7 @@ export default function ServicesSection({ services }: ServicesSectionProps) {
             >
               {/* Featured Image with Dark Overlay */}
               <div className="relative h-48 sm:h-56 md:h-60 w-full overflow-hidden">
-                <Image
+                <SafeImage
                   src={service.featuredImage}
                   alt={service.title}
                   fill
@@ -129,7 +129,7 @@ export default function ServicesSection({ services }: ServicesSectionProps) {
                   quality={80}
                   className="object-cover group-hover:scale-110 transition-transform duration-700"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-brand-charcoal via-brand-charcoal/40 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-brand-charcoal via-brand-charcoal/40 to-transparent pointer-events-none" />
 
                 {/* Service Category Badge */}
                 <div className="absolute top-4 left-4 bg-brand-black/80 backdrop-blur-md px-3 py-1 rounded-full border border-brand-gold/40 text-[10px] font-bold uppercase tracking-wider text-brand-gold">

@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
+import SafeImage from "@/components/ui/SafeImage";
 import { toast } from "sonner";
 import { Plus, Trash2, Star, X, Image as ImageIcon } from "lucide-react";
 
@@ -157,10 +158,11 @@ export default function AdminGalleryPage() {
               className="group bg-brand-charcoal border border-brand-gold/20 hover:border-brand-gold/50 rounded-2xl overflow-hidden transition-all duration-300 hover:shadow-xl flex flex-col justify-between"
             >
               <div className="relative h-48 w-full bg-black">
-                <Image
+                <SafeImage
                   src={item.imageUrl}
                   alt={item.title}
                   fill
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                   className="object-cover group-hover:scale-105 transition-transform duration-500"
                 />
                 <div className="absolute top-2 left-2 bg-brand-black/80 px-2 py-0.5 rounded text-[10px] text-brand-gold font-bold uppercase">

@@ -269,7 +269,7 @@ export default function Navbar() {
 
       {/* Mobile Menu Drawer */}
       {mobileMenuOpen && (
-        <div className="lg:hidden fixed inset-x-0 top-full h-[calc(100dvh-64px)] bg-[#080808]/98 backdrop-blur-2xl border-t border-brand-gold/30 p-5 sm:p-6 overflow-y-auto z-50 flex flex-col justify-between shadow-2xl">
+        <div className="lg:hidden fixed inset-x-0 top-full h-[calc(100dvh-64px)] bg-[#080808]/98 backdrop-blur-2xl border-t border-brand-gold/30 p-5 sm:p-6 pb-20 sm:pb-8 overflow-y-auto overscroll-contain z-50 flex flex-col justify-between shadow-2xl">
           <div className="space-y-4">
             <div className="border-b border-brand-gold/20 pb-4 mb-2">
               <span className="text-[11px] uppercase tracking-widest text-brand-gold font-bold">
