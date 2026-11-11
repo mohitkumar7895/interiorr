@@ -63,7 +63,7 @@ export default function LocationMapSection() {
                   href={googleMapsUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-brand-charcoal hover:bg-brand-black border border-brand-gold/40 text-brand-gold hover:text-brand-goldLight text-xs font-bold uppercase tracking-wider transition-all"
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-brand-charcoal hover:bg-brand-black border border-brand-gold/40 text-brand-gold hover:text-brand-goldLight text-xs font-bold uppercase tracking-wider transition-all"
                 >
                   <Navigation size={14} />
                   <span>Get Directions on Google Maps</span>

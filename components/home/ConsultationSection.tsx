@@ -184,7 +184,7 @@ export default function ConsultationSection() {
                       placeholder="e.g. Rahul Sharma"
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      className="w-full px-4 py-3 rounded-xl bg-brand-surface border border-brand-gold/20 focus:border-brand-gold text-brand-cream text-xs outline-none transition-colors"
+                      className="w-full px-4 py-3 sm:py-3.5 rounded-xl bg-brand-surface border border-brand-gold/20 focus:border-brand-gold text-brand-cream text-sm sm:text-xs outline-none transition-colors"
                     />
                   </div>
 
@@ -199,7 +199,7 @@ export default function ConsultationSection() {
                       placeholder="e.g. 9818XXXXXX"
                       value={formData.phone}
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                      className="w-full px-4 py-3 rounded-xl bg-brand-surface border border-brand-gold/20 focus:border-brand-gold text-brand-cream text-xs outline-none transition-colors"
+                      className="w-full px-4 py-3 sm:py-3.5 rounded-xl bg-brand-surface border border-brand-gold/20 focus:border-brand-gold text-brand-cream text-sm sm:text-xs outline-none transition-colors"
                     />
                   </div>
                 </div>
@@ -215,7 +215,7 @@ export default function ConsultationSection() {
                       placeholder="e.g. rahul@example.com"
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      className="w-full px-4 py-3 rounded-xl bg-brand-surface border border-brand-gold/20 focus:border-brand-gold text-brand-cream text-xs outline-none transition-colors"
+                      className="w-full px-4 py-3 sm:py-3.5 rounded-xl bg-brand-surface border border-brand-gold/20 focus:border-brand-gold text-brand-cream text-sm sm:text-xs outline-none transition-colors"
                     />
                   </div>
 
@@ -227,7 +227,7 @@ export default function ConsultationSection() {
                     <select
                       value={formData.service}
                       onChange={(e) => setFormData({ ...formData, service: e.target.value })}
-                      className="w-full px-4 py-3 rounded-xl bg-brand-surface border border-brand-gold/20 focus:border-brand-gold text-brand-cream text-xs outline-none transition-colors"
+                      className="w-full px-4 py-3 sm:py-3.5 rounded-xl bg-brand-surface border border-brand-gold/20 focus:border-brand-gold text-brand-cream text-sm sm:text-xs outline-none transition-colors"
                     >
                       {servicesList.map((srv) => (
                         <option key={srv} value={srv} className="bg-brand-charcoal text-white">
@@ -249,7 +249,7 @@ export default function ConsultationSection() {
                     placeholder="Tell us about your property (e.g. 3BHK flat in Sector 120 Noida, looking for modular kitchen and master bedroom interior)..."
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    className="w-full px-4 py-3 rounded-xl bg-brand-surface border border-brand-gold/20 focus:border-brand-gold text-brand-cream text-xs outline-none transition-colors resize-none"
+                    className="w-full px-4 py-3 sm:py-3.5 rounded-xl bg-brand-surface border border-brand-gold/20 focus:border-brand-gold text-brand-cream text-sm sm:text-xs outline-none transition-colors resize-none"
                   />
                 </div>
 

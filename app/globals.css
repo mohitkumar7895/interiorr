@@ -142,4 +142,20 @@ html, body {
   }
 }
 
+/* Responsive media defaults & container bounds */
+img, svg, video, canvas, audio, iframe, embed, object {
+  display: block;
+  max-width: 100%;
+}
+
+/* Fix mobile momentum scrolling */
+.smooth-scroll {
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Safe padding bottom for modern mobile devices */
+.pb-safe {
+  padding-bottom: max(1.5rem, env(safe-area-inset-bottom, 1.5rem));
+}
+
 
