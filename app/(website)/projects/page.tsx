@@ -8,11 +8,27 @@ import ConsultationSection from "@/components/home/ConsultationSection";
 import { INITIAL_PROJECTS } from "@/lib/data/initialData";
 import { Sparkles } from "lucide-react";
 
-export const metadata: Metadata = {
-  title: "Interior Projects & Transformations | MA Carpenter and Interior",
-  description:
-    "Explore our luxury interior design and carpentry project transformations in Noida, Sector 120, and Delhi NCR with before/after photography.",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  try {
+    const seo = await db.sEOSettings.findUnique({ where: { pageRoute: "/projects" } });
+    if (seo?.metaTitle) {
+      return {
+        title: { absolute: seo.metaTitle },
+        description: seo.metaDesc || undefined,
+        keywords: seo.keywords ? seo.keywords.split(",").map((k: string) => k.trim()) : undefined,
+        openGraph: {
+          title: seo.ogTitle || seo.metaTitle,
+          description: seo.ogDesc || seo.metaDesc || undefined,
+        },
+      };
+    }
+  } catch {}
+  return {
+    title: { absolute: "Interior Projects & Transformations | MA Carpenter and Interior" },
+    description:
+      "Explore our luxury interior design and carpentry project transformations in Noida, Sector 120, and Delhi NCR with before/after photography.",
+  };
+}
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;

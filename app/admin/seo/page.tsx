@@ -114,6 +114,7 @@ export default function AdminSEOPage() {
     { route: "/services", label: "Services (/services)" },
     { route: "/projects", label: "Portfolio (/projects)" },
     { route: "/gallery", label: "Gallery (/gallery)" },
+    { route: "/blogs", label: "Blogs & Articles (/blogs)" },
     { route: "/contact", label: "Contact Us (/contact)" },
   ];
 

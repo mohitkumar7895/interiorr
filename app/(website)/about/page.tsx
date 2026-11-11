@@ -19,11 +19,32 @@ import {
   ArrowRight
 } from "lucide-react";
 
-export const metadata: Metadata = {
-  title: "About Us | MA Carpenter and Interior Noida",
-  description:
-    "Learn about MA Carpenter and Interior's heritage in luxury interior architecture, master carpentry, and turnkey home renovations in Sector 120, Noida.",
-};
+import db from "@/lib/db";
+
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
+export async function generateMetadata(): Promise<Metadata> {
+  try {
+    const seo = await db.sEOSettings.findUnique({ where: { pageRoute: "/about" } });
+    if (seo?.metaTitle) {
+      return {
+        title: { absolute: seo.metaTitle },
+        description: seo.metaDesc || undefined,
+        keywords: seo.keywords ? seo.keywords.split(",").map((k: string) => k.trim()) : undefined,
+        openGraph: {
+          title: seo.ogTitle || seo.metaTitle,
+          description: seo.ogDesc || seo.metaDesc || undefined,
+        },
+      };
+    }
+  } catch {}
+  return {
+    title: { absolute: "About Us | MA Carpenter and Interior Noida" },
+    description:
+      "Learn about MA Carpenter and Interior's heritage in luxury interior architecture, master carpentry, and turnkey home renovations in Sector 120, Noida.",
+  };
+}
 
 export default function AboutPage() {
   const phone = process.env.NEXT_PUBLIC_PHONE || "8714114418";

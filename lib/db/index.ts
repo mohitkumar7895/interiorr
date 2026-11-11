@@ -683,34 +683,36 @@ export const db = {
         const existing = await queryOne("SELECT id FROM SEOSettings WHERE pageRoute = ?", [where.pageRoute]);
         if (existing) {
           await execute(
-            `UPDATE SEOSettings SET metaTitle = ?, metaDesc = ?, keywords = ?, canonicalUrl = ?, ogTitle = ?, ogDesc = ? WHERE pageRoute = ?`,
+            `UPDATE SEOSettings SET metaTitle = ?, metaDesc = ?, keywords = ?, canonicalUrl = ?, ogTitle = ?, ogDesc = ?, updatedAt = NOW(3) WHERE pageRoute = ?`,
             [
               update.metaTitle,
-              update.metaDesc,
+              update.metaDesc || "",
               update.keywords || "",
               update.canonicalUrl || null,
               update.ogTitle || update.metaTitle,
-              update.ogDesc || update.metaDesc,
+              update.ogDesc || update.metaDesc || "",
               where.pageRoute,
             ]
           );
         } else {
           const id = create.id || generateId();
           await execute(
-            `INSERT INTO SEOSettings (id, pageRoute, metaTitle, metaDesc, keywords, canonicalUrl, ogTitle, ogDesc) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
+            `INSERT INTO SEOSettings (id, pageRoute, metaTitle, metaDesc, keywords, canonicalUrl, ogTitle, ogDesc, createdAt, updatedAt) VALUES (?, ?, ?, ?, ?, ?, ?, ?, NOW(3), NOW(3))`,
             [
               id,
               where.pageRoute,
               create.metaTitle,
-              create.metaDesc,
+              create.metaDesc || "",
               create.keywords || "",
               create.canonicalUrl || null,
               create.ogTitle || create.metaTitle,
-              create.ogDesc || create.metaDesc,
+              create.ogDesc || create.metaDesc || "",
             ]
           );
         }
-      } catch {}
+      } catch (err) {
+        console.error("MySQL SEOSettings upsert error:", err);
+      }
       return jsonRes;
     },
   },

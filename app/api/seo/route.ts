@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { revalidatePath } from "next/cache";
 import db from '@/lib/db';
 import { getCurrentAdmin } from "@/lib/auth/auth";
 import { INITIAL_SEO_SETTINGS as INITIAL_SEO } from "@/lib/data/initialData";
@@ -43,48 +44,42 @@ export async function PUT(req: NextRequest) {
     const body = await req.json();
     const { pageRoute, metaTitle, metaDesc, keywords, canonicalUrl, ogTitle, ogDesc } = body;
 
-    if (!pageRoute || !metaTitle || !metaDesc) {
-      return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
+    if (!pageRoute || !metaTitle) {
+      return NextResponse.json({ error: "Page route and meta title are required" }, { status: 400 });
     }
 
-    let updated: any = null;
-    try {
-      updated = await db.sEOSettings.upsert({
-        where: { pageRoute },
-        update: {
-          metaTitle,
-          metaDesc,
-          keywords: keywords || "",
-          canonicalUrl: canonicalUrl || null,
-          ogTitle: ogTitle || metaTitle,
-          ogDesc: ogDesc || metaDesc,
-        },
-        create: {
-          pageRoute,
-          metaTitle,
-          metaDesc,
-          keywords: keywords || "",
-          canonicalUrl: canonicalUrl || null,
-          ogTitle: ogTitle || metaTitle,
-          ogDesc: ogDesc || metaDesc,
-        },
-      });
-    } catch (dbErr) {
-      console.warn("DB offline, returning updated SEO object in runtime:", dbErr);
-      updated = {
-        id: `seo-${pageRoute.replace(/\//g, "-") || "home"}`,
-        pageRoute,
+    const updated = await db.sEOSettings.upsert({
+      where: { pageRoute },
+      update: {
         metaTitle,
-        metaDesc,
+        metaDesc: metaDesc || "",
         keywords: keywords || "",
         canonicalUrl: canonicalUrl || null,
         ogTitle: ogTitle || metaTitle,
-        ogDesc: ogDesc || metaDesc,
-      };
-    }
+        ogDesc: ogDesc || metaDesc || "",
+      },
+      create: {
+        pageRoute,
+        metaTitle,
+        metaDesc: metaDesc || "",
+        keywords: keywords || "",
+        canonicalUrl: canonicalUrl || null,
+        ogTitle: ogTitle || metaTitle,
+        ogDesc: ogDesc || metaDesc || "",
+      },
+    });
+
+    try {
+      revalidatePath("/", "layout");
+      revalidatePath("/", "page");
+      if (pageRoute && pageRoute !== "/") {
+        revalidatePath(pageRoute, "page");
+      }
+    } catch {}
 
     return NextResponse.json({ success: true, seo: updated });
   } catch (error: any) {
-    return NextResponse.json({ success: true, seo: {} });
+    console.error("Update SEO error:", error);
+    return NextResponse.json({ error: error?.message || "Failed to update SEO" }, { status: 400 });
   }
 }
