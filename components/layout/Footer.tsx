@@ -36,6 +36,7 @@ export default function Footer() {
     { title: "About Us", href: "/about" },
     { title: "Portfolio Projects", href: "/projects" },
     { title: "Photo Gallery", href: "/gallery" },
+    { title: "Blog & Design Guides", href: "/blogs" },
     { title: "Free Consultation", href: "/contact" },
     { title: "Admin Portal", href: "/admin/login" },
   ];

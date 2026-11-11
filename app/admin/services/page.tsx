@@ -13,6 +13,8 @@ import {
   EyeOff,
   Hammer
 } from "lucide-react";
+import SafeImage from "@/components/ui/SafeImage";
+import ImageUploadInput from "@/components/admin/ImageUploadInput";
 
 interface Service {
   id: string;
@@ -347,17 +349,16 @@ export default function AdminServicesPage() {
                     <option value="Carpentry">Carpentry</option>
                   </select>
                 </div>
+              </div>
 
-                <div>
-                  <label className="block uppercase text-brand-gold font-bold mb-1">Featured Image URL *</label>
-                  <input
-                    type="text"
-                    required
-                    value={formData.featuredImage}
-                    onChange={(e) => setFormData({ ...formData, featuredImage: e.target.value })}
-                    className="w-full p-2.5 rounded-xl bg-brand-surface border border-brand-gold/20 text-white outline-none focus:border-brand-gold"
-                  />
-                </div>
+              <div>
+                <ImageUploadInput
+                  label="Featured Service Image"
+                  required
+                  value={formData.featuredImage}
+                  onChange={(url) => setFormData({ ...formData, featuredImage: url })}
+                  placeholder="/images/services/wardrobe-design.jpg or /uploads/image.jpg"
+                />
               </div>
 
               <div>

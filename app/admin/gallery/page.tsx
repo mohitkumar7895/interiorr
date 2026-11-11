@@ -5,6 +5,7 @@ import Image from "next/image";
 import SafeImage from "@/components/ui/SafeImage";
 import { toast } from "sonner";
 import { Plus, Trash2, Star, X, Image as ImageIcon } from "lucide-react";
+import ImageUploadInput from "@/components/admin/ImageUploadInput";
 
 interface GalleryItem {
   id: string;
@@ -242,14 +243,12 @@ export default function AdminGalleryPage() {
               </div>
 
               <div>
-                <label className="block uppercase text-brand-gold font-bold mb-1">Image URL *</label>
-                <input
-                  type="text"
+                <ImageUploadInput
+                  label="Gallery Image"
                   required
-                  placeholder="https://images.unsplash.com/..."
+                  placeholder="/images/gallery/rose-gold-wardrobe.jpg or /uploads/my-photo.jpg"
                   value={formData.imageUrl}
-                  onChange={(e) => setFormData({ ...formData, imageUrl: e.target.value })}
-                  className="w-full p-2.5 rounded-xl bg-brand-surface border border-brand-gold/20 text-white outline-none focus:border-brand-gold"
+                  onChange={(url) => setFormData({ ...formData, imageUrl: url })}
                 />
               </div>
 

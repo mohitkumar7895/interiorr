@@ -2,19 +2,61 @@ import { NextRequest, NextResponse } from "next/server";
 import { revalidatePath } from "next/cache";
 import db from '@/lib/db';
 import { getCurrentAdmin } from "@/lib/auth/auth";
+import { INITIAL_GALLERY_CATEGORIES, INITIAL_GALLERY_ITEMS } from "@/lib/data/initialData";
 
 export async function GET() {
   try {
-    const items = await db.gallery.findMany({
+    let items = await db.gallery.findMany({
       include: { category: true },
       orderBy: { orderIndex: "asc" },
     });
-    const categories = await db.galleryCategories.findMany({
+    let categories = await db.galleryCategories.findMany({
       orderBy: { orderIndex: "asc" },
     });
+
+    if (!categories || categories.length === 0) {
+      categories = INITIAL_GALLERY_CATEGORIES.map((c, idx) => ({
+        ...c,
+        id: (c as any).id || `cat-init-${idx + 1}`,
+      }));
+    }
+
+    if (!items || items.length === 0) {
+      items = INITIAL_GALLERY_ITEMS.map((item, idx) => {
+        const cat = categories.find((c: any) => c.slug === item.categorySlug) || {
+          id: `cat-${item.categorySlug}`,
+          name: item.categorySlug,
+          slug: item.categorySlug,
+        };
+        return {
+          ...item,
+          id: (item as any).id || `gal-init-${idx + 1}`,
+          categoryId: cat.id,
+          category: cat,
+        };
+      });
+    }
+
     return NextResponse.json({ success: true, items, categories });
   } catch (error) {
-    return NextResponse.json({ error: "Failed to fetch gallery items" }, { status: 500 });
+    const categories = INITIAL_GALLERY_CATEGORIES.map((c, idx) => ({
+      ...c,
+      id: (c as any).id || `cat-init-${idx + 1}`,
+    }));
+    const items = INITIAL_GALLERY_ITEMS.map((item, idx) => {
+      const cat = categories.find((c: any) => c.slug === item.categorySlug) || {
+        id: `cat-${item.categorySlug}`,
+        name: item.categorySlug,
+        slug: item.categorySlug,
+      };
+      return {
+        ...item,
+        id: (item as any).id || `gal-init-${idx + 1}`,
+        categoryId: cat.id,
+        category: cat,
+      };
+    });
+    return NextResponse.json({ success: true, items, categories });
   }
 }
 

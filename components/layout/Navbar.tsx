@@ -58,6 +58,7 @@ export default function Navbar() {
     },
     { label: "Projects", href: "/projects" },
     { label: "Gallery", href: "/gallery" },
+    { label: "Blog", href: "/blogs" },
     { label: "Contact Us", href: "/contact" },
   ];
 

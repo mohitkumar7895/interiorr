@@ -2,15 +2,26 @@ import { NextRequest, NextResponse } from "next/server";
 import { revalidatePath } from "next/cache";
 import db from '@/lib/db';
 import { getCurrentAdmin } from "@/lib/auth/auth";
+import { INITIAL_SERVICES } from "@/lib/data/initialData";
 
 export async function GET() {
   try {
-    const services = await db.services.findMany({
+    let services = await db.services.findMany({
       orderBy: { orderIndex: "asc" },
     });
+    if (!services || services.length === 0) {
+      services = INITIAL_SERVICES.map((s, idx) => ({
+        ...s,
+        id: (s as any).id || `srv-init-${idx + 1}`,
+      }));
+    }
     return NextResponse.json({ success: true, services });
   } catch (error) {
-    return NextResponse.json({ error: "Failed to fetch services" }, { status: 500 });
+    const services = INITIAL_SERVICES.map((s, idx) => ({
+      ...s,
+      id: (s as any).id || `srv-init-${idx + 1}`,
+    }));
+    return NextResponse.json({ success: true, services });
   }
 }
 

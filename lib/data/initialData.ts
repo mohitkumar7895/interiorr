@@ -212,6 +212,7 @@ export const INITIAL_SERVICES: ServiceData[] = [
     featuredImage: "/images/services/wardrobe-design.jpg",
     images: [
       "/images/services/wardrobe-design.jpg",
+      "/images/gallery/rose-gold-wardrobe.jpg",
       "https://images.unsplash.com/photo-1595428774223-ef52624120d2?auto=format&fit=crop&w=1200&q=80"
     ],
     features: [
@@ -580,7 +581,7 @@ export const INITIAL_GALLERY_ITEMS: GalleryItemData[] = [
   {
     title: "Rose Gold Profile Tinted Glass Walk-In Wardrobe",
     categorySlug: "luxury-wardrobes",
-    imageUrl: "/images/services/wardrobe-design.jpg",
+    imageUrl: "/images/gallery/rose-gold-wardrobe.jpg",
     isFeatured: true,
     orderIndex: 5
   },
@@ -706,6 +707,107 @@ export const INITIAL_SEO_SETTINGS = [
     metaTitle: "Contact Us & Free Consultation | MA Carpenter and Interior Noida",
     metaDesc: "Get in touch with MA Carpenter and Interior at Shop No. 6, Sector 120, Noida. Call 8714114418 for free site consultation and 3D estimates.",
     keywords: "contact interior designer noida, carpenter phone number noida, sector 120 carpenter"
+  },
+  {
+    pageRoute: "/blogs",
+    metaTitle: "Interior & Carpentry Design Blogs | MA Carpenter and Interior Noida",
+    metaDesc: "Read expert guides, modular kitchen layouts, wardrobe trends, and woodworking advice from master artisans at MA Carpenter & Interior.",
+    keywords: "interior design blog noida, modular kitchen tips, wardrobe design ideas, carpentry advice"
+  }
+];
+
+export interface BlogData {
+  id?: string;
+  slug: string;
+  title: string;
+  excerpt: string;
+  content: string;
+  featuredImage: string;
+  category: string;
+  author: string;
+  readTime: string;
+  publishedAt: string;
+  isPublished: boolean;
+  tags: string[];
+}
+
+export const INITIAL_BLOGS: BlogData[] = [
+  {
+    id: "blog-1",
+    slug: "top-modular-kitchen-layouts-noida",
+    title: "Top Modular Kitchen Layouts for 3BHK Apartments in Noida",
+    excerpt: "Discover how L-shaped, parallel, and island modular kitchen layouts maximize culinary ergonomics and storage in Noida high-rise residences.",
+    content: `When designing a kitchen for modern 3BHK apartments in Noida (such as in Sector 120, Sector 137, or Sector 78), homeowners often struggle to balance storage capacity with open floor movement. 
+
+### 1. The Parallel Galley Layout
+For apartments with long, narrow kitchen footprints, the parallel layout is unmatched. It creates an intuitive 'work triangle' between the sink, refrigerator, and cooking hob. Using Blum or Hettich tandem boxes ensures that every centimeter of depth is easily accessible.
+
+### 2. The L-Shaped Modular Kitchen
+The L-shape remains the most versatile layout for open-concept dining and living layouts. We recommend installing corner carousel pull-outs or LeMans corner units to eliminate dead corners.
+
+### 3. Kitchen Island with Calacatta Quartz
+If your floor plan allows at least 12 feet of width, adding a central island provides a prep station, breakfast bar, and hidden trash pull-out.
+
+### Material Recommendation:
+Always insist on BWP (Boiling Water Proof) Marine Grade 710 plywood for the under-sink and base cabinetry, coupled with scratch-resistant anti-fingerprint acrylic or PU finishes.`,
+    featuredImage: "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=1200&q=80",
+    category: "Modular Kitchen",
+    author: "Monish Pasha",
+    readTime: "5 min read",
+    publishedAt: "November 2026",
+    isPublished: true,
+    tags: ["Modular Kitchen", "Noida 3BHK", "Plywood", "Interior Tips"]
+  },
+  {
+    id: "blog-2",
+    slug: "glass-vs-wood-wardrobe-guide",
+    title: "Tinted Fluted Glass vs. Solid Wood Wardrobes: Which One Suits Your Bedroom?",
+    excerpt: "A detailed comparison of rose gold profile tinted glass walk-in wardrobes versus traditional teakwood sliding systems for modern master bedrooms.",
+    content: `Choosing the right wardrobe design sets the tone for your master bedroom suite. Over the past year in Noida luxury apartments, two clear trends have dominated: tinted reflective glass systems and handcrafted wooden louvers.
+
+### The Appeal of Tinted Fluted Glass Wardrobes
+Glass wardrobes framed in rose gold or champagne aluminum create the sensation of a high-end luxury fashion boutique:
+- **Visual Depth**: Reflective bronze glass reflects ambient cove light, making compact bedrooms feel twice as large.
+- **Sensor Illumination**: Concealed vertical LED strips automatically illuminate your clothing collection when doors slide open.
+- **Maintenance**: Dust-proof seals prevent any airborne particles from entering delicate garments.
+
+### Handcrafted Teak & Fluted Wood Wardrobes
+For homeowners seeking organic warmth, nothing beats natural wood:
+- **Timeless Durability**: Solid teak or seasoned commercial core with natural wood veneer withstands decades of daily use.
+- **Acoustic Softness**: Wood naturally absorbs sound, creating a calm, quiet sanctuary for sleep.
+
+### The MA Carpenter Verdict:
+A hybrid approach often works best: choose solid wood carcass structures with tinted glass sliding shutters in the master suite!`,
+    featuredImage: "/images/gallery/rose-gold-wardrobe.jpg",
+    category: "Wardrobe Design",
+    author: "Monish Pasha",
+    readTime: "4 min read",
+    publishedAt: "November 2026",
+    isPublished: true,
+    tags: ["Wardrobes", "Glass Wardrobe", "Master Bedroom", "Luxury Closets"]
+  },
+  {
+    id: "blog-3",
+    slug: "choosing-marine-ply-for-home-interiors",
+    title: "Architectural Woodwork & Waterproof Plywood: The Complete Homeowner Guide",
+    excerpt: "Why BWP Marine grade plywood and authentic teak wood carpentry deliver decades of structural durability over particle board.",
+    content: `Many homeowners ask why custom carpenter-made interiors outlast ready-made flat-pack furniture. The secret lies in material composition and precision joinery.
+
+### Commercial Ply vs. BWP Marine Ply (IS:710)
+- **MDF & Particle Board**: Highly prone to swelling and warping when exposed to Delhi NCR's monsoon humidity.
+- **BWP Marine Ply (IS 710)**: Bonded with synthetic phenol formaldehyde resin, it resists boiling water for over 72 hours without delamination. Essential for all kitchens and bathroom vanities.
+
+### Architectural Woodwork & Jali Screens
+CNC-carved wooden partitions and fluted wall cladding bring architectural elegance to foyers and dining areas. Staining with polyurethane (PU) matte coats preserves the authentic grain while providing anti-scratch protection.
+
+At MA Carpenter and Interior in Sector 120 Noida, every piece of woodwork is precision-calibrated in our in-house facility before site installation.`,
+    featuredImage: "/images/services/wooden-work.jpg",
+    category: "Carpentry & Woodwork",
+    author: "Monish Pasha",
+    readTime: "6 min read",
+    publishedAt: "November 2026",
+    isPublished: true,
+    tags: ["Carpentry", "Woodwork", "Plywood", "Quality Standards"]
   }
 ];
 

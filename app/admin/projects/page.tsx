@@ -14,6 +14,7 @@ import {
   EyeOff,
   FolderGit2
 } from "lucide-react";
+import ImageUploadInput from "@/components/admin/ImageUploadInput";
 
 interface Project {
   id: string;
@@ -372,34 +373,31 @@ export default function AdminProjectsPage() {
               </div>
 
               <div>
-                <label className="block uppercase text-brand-gold font-bold mb-1">Featured Main Image URL *</label>
-                <input
-                  type="text"
+                <ImageUploadInput
+                  label="Featured Main Image"
                   required
                   value={formData.featuredImage}
-                  onChange={(e) => setFormData({ ...formData, featuredImage: e.target.value })}
-                  className="w-full p-2.5 rounded-xl bg-brand-surface border border-brand-gold/20 text-white outline-none focus:border-brand-gold"
+                  onChange={(url) => setFormData({ ...formData, featuredImage: url })}
+                  placeholder="/images/services/wardrobe-design.jpg or /uploads/project.jpg"
                 />
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block uppercase text-brand-gold font-bold mb-1">Before Image URL (Optional)</label>
-                  <input
-                    type="text"
+                  <ImageUploadInput
+                    label="Before Transformation Image (Optional)"
                     value={formData.beforeImage}
-                    onChange={(e) => setFormData({ ...formData, beforeImage: e.target.value })}
-                    className="w-full p-2.5 rounded-xl bg-brand-surface border border-brand-gold/20 text-white outline-none focus:border-brand-gold"
+                    onChange={(url) => setFormData({ ...formData, beforeImage: url })}
+                    placeholder="/uploads/before.jpg or https://..."
                   />
                 </div>
 
                 <div>
-                  <label className="block uppercase text-brand-gold font-bold mb-1">After Image URL (Optional)</label>
-                  <input
-                    type="text"
+                  <ImageUploadInput
+                    label="After Transformation Image (Optional)"
                     value={formData.afterImage}
-                    onChange={(e) => setFormData({ ...formData, afterImage: e.target.value })}
-                    className="w-full p-2.5 rounded-xl bg-brand-surface border border-brand-gold/20 text-white outline-none focus:border-brand-gold"
+                    onChange={(url) => setFormData({ ...formData, afterImage: url })}
+                    placeholder="/uploads/after.jpg or https://..."
                   />
                 </div>
               </div>

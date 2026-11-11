@@ -2,16 +2,29 @@ import { NextRequest, NextResponse } from "next/server";
 import { revalidatePath } from "next/cache";
 import db from '@/lib/db';
 import { getCurrentAdmin } from "@/lib/auth/auth";
+import { INITIAL_PROJECTS } from "@/lib/data/initialData";
 
 export async function GET() {
   try {
-    const projects = await db.projects.findMany({
+    let projects = await db.projects.findMany({
       include: { images: true },
       orderBy: { orderIndex: "asc" },
     });
+    if (!projects || projects.length === 0) {
+      projects = INITIAL_PROJECTS.map((p, idx) => ({
+        ...p,
+        id: (p as any).id || `proj-init-${idx + 1}`,
+        images: (p as any).galleryImages || [],
+      }));
+    }
     return NextResponse.json({ success: true, projects });
   } catch (error) {
-    return NextResponse.json({ error: "Failed to fetch projects" }, { status: 500 });
+    const projects = INITIAL_PROJECTS.map((p, idx) => ({
+      ...p,
+      id: (p as any).id || `proj-init-${idx + 1}`,
+      images: (p as any).galleryImages || [],
+    }));
+    return NextResponse.json({ success: true, projects });
   }
 }
 
