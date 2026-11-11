@@ -209,9 +209,9 @@ export const INITIAL_SERVICES: ServiceData[] = [
     shortDesc: "Floor-to-ceiling modular sliding, lacquered glass, walk-in closets, and hinged wardrobes with interior sensor illumination.",
     fullDesc: "Organize your life with high-fashion wardrobe designs. We fabricate walk-in dressing suites, tinted reflective glass wardrobes with aluminum gold profiles, floor-to-ceiling sliding sliders, and velvet-lined jewelry drawers that elevate your daily routine.",
     icon: "Sparkles",
-    featuredImage: "https://images.unsplash.com/photo-1558997519-83ea9252def8?auto=format&fit=crop&w=1600&q=80",
+    featuredImage: "/images/services/wardrobe-design.jpg",
     images: [
-      "https://images.unsplash.com/photo-1558997519-83ea9252def8?auto=format&fit=crop&w=1200&q=80",
+      "/images/services/wardrobe-design.jpg",
       "https://images.unsplash.com/photo-1595428774223-ef52624120d2?auto=format&fit=crop&w=1200&q=80"
     ],
     features: [
@@ -375,9 +375,9 @@ export const INITIAL_SERVICES: ServiceData[] = [
     shortDesc: "Fine architectural woodwork, fluted wooden columns, wood wall cladding, intricate jali partitions, and pergolas.",
     fullDesc: "Add organic warmth and grandeur with bespoke architectural woodwork. From solid wood pergolas on terraces to intricate CNC wood jali dividers and fluted wood accent columns, MA Carpenter and Interior crafts wood into pure art.",
     icon: "Box",
-    featuredImage: "https://images.unsplash.com/photo-1540518614846-7ede433c4570?auto=format&fit=crop&w=1600&q=80",
+    featuredImage: "/images/services/wooden-work.jpg",
     images: [
-      "https://images.unsplash.com/photo-1540518614846-7ede433c4570?auto=format&fit=crop&w=1200&q=80"
+      "/images/services/wooden-work.jpg"
     ],
     features: [
       "CNC Cut Geometric Wooden Jali Screens",
@@ -437,7 +437,7 @@ export const INITIAL_PROJECTS: ProjectData[] = [
     galleryImages: [
       { imageUrl: "https://images.unsplash.com/photo-1616594039964-ae9021a400a0?auto=format&fit=crop&w=1200&q=80", caption: "Master king bed with integrated floating nightstands" },
       { imageUrl: "https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?auto=format&fit=crop&w=1200&q=80", caption: "Acoustic wood panel detail and soft amber lighting" },
-      { imageUrl: "https://images.unsplash.com/photo-1558997519-83ea9252def8?auto=format&fit=crop&w=1200&q=80", caption: "Walk-in wardrobe with velvet-lined organizers" }
+      { imageUrl: "/images/services/wardrobe-design.jpg", caption: "Walk-in wardrobe with velvet-lined organizers" }
     ]
   },
   {
@@ -580,7 +580,7 @@ export const INITIAL_GALLERY_ITEMS: GalleryItemData[] = [
   {
     title: "Rose Gold Profile Tinted Glass Walk-In Wardrobe",
     categorySlug: "luxury-wardrobes",
-    imageUrl: "https://images.unsplash.com/photo-1558997519-83ea9252def8?auto=format&fit=crop&w=1600&q=80",
+    imageUrl: "/images/services/wardrobe-design.jpg",
     isFeatured: true,
     orderIndex: 5
   },
@@ -629,7 +629,7 @@ export const INITIAL_GALLERY_ITEMS: GalleryItemData[] = [
   {
     title: "Artisanal Wooden Wall Paneling & Architectural Louvers",
     categorySlug: "custom-woodwork",
-    imageUrl: "https://images.unsplash.com/photo-1540518614846-7ede433c4570?auto=format&fit=crop&w=1600&q=80",
+    imageUrl: "/images/services/wooden-work.jpg",
     isFeatured: false,
     orderIndex: 12
   }

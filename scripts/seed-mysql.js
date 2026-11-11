@@ -148,6 +148,15 @@ async function seed() {
     }
   }
 
+  // 5. Update & Seed Services (Wardrobe Design & Wooden Work)
+  await conn.query(
+    "UPDATE Services SET featuredImage = '/images/services/wardrobe-design.jpg' WHERE slug = 'wardrobe-design'"
+  ).catch(() => {});
+
+  await conn.query(
+    "UPDATE Services SET featuredImage = '/images/services/wooden-work.jpg' WHERE slug = 'wooden-work'"
+  ).catch(() => {});
+
   console.log("Database seeded successfully via native MySQL!");
   await conn.end();
 }
