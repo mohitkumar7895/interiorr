@@ -130,7 +130,7 @@ export default function Navbar() {
           <MaLogo variant="horizontal" />
 
           {/* Desktop Navigation Links */}
-          <div className="hidden lg:flex items-center gap-8">
+          <div className="hidden lg:flex items-center gap-4 xl:gap-7 2xl:gap-8 flex-shrink-0">
             {navLinks.map((link) => {
               const isActive = pathname === link.href;
 
@@ -144,7 +144,7 @@ export default function Navbar() {
                   >
                     <Link
                       href={link.href}
-                      className={`flex items-center gap-1 text-sm tracking-wider uppercase font-medium transition-all ${
+                      className={`flex items-center gap-1 text-xs xl:text-sm tracking-wider uppercase font-medium transition-all whitespace-nowrap ${
                         pathname.startsWith("/services")
                           ? "text-brand-gold font-semibold"
                           : "text-brand-creamSoft hover:text-brand-gold"
@@ -152,7 +152,7 @@ export default function Navbar() {
                     >
                       <span>{link.label}</span>
                       <ChevronDown
-                        size={14}
+                        size={13}
                         className={`transition-transform duration-200 ${
                           servicesDropdownOpen ? "rotate-180 text-brand-gold" : ""
                         }`}
@@ -209,7 +209,7 @@ export default function Navbar() {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className={`relative text-sm tracking-wider uppercase font-medium transition-all py-1 ${
+                  className={`relative text-xs xl:text-sm tracking-wider uppercase font-medium transition-all py-1 whitespace-nowrap ${
                     isActive
                       ? "text-brand-gold font-semibold"
                       : "text-brand-creamSoft hover:text-brand-gold"
@@ -225,10 +225,10 @@ export default function Navbar() {
           </div>
 
           {/* Desktop Right CTA */}
-          <div className="hidden lg:flex items-center gap-4">
+          <div className="hidden lg:flex items-center gap-2.5 xl:gap-4 flex-shrink-0">
             <a
               href={`tel:+91${phone}`}
-              className="flex items-center gap-2 text-xs font-semibold text-brand-gold hover:text-brand-goldLight transition-colors px-3 py-2 border border-brand-gold/30 rounded-xl hover:border-brand-gold/60"
+              className="flex items-center gap-1.5 xl:gap-2 text-xs font-semibold text-brand-gold hover:text-brand-goldLight transition-colors px-2.5 xl:px-3 py-2 border border-brand-gold/30 rounded-xl hover:border-brand-gold/60 whitespace-nowrap"
             >
               <Phone size={14} />
               <span>Call Us</span>
@@ -236,7 +236,7 @@ export default function Navbar() {
 
             <Link
               href="/contact"
-              className="relative group overflow-hidden px-5 py-2.5 rounded-xl bg-gradient-to-r from-[#D9A441] via-[#E5BE53] to-[#B8832A] text-brand-black text-xs font-bold uppercase tracking-wider shadow-lg hover:shadow-gold-md hover:scale-[1.02] active:scale-95 transition-all duration-300"
+              className="relative group overflow-hidden px-4 xl:px-5 py-2.5 rounded-xl bg-gradient-to-r from-[#D9A441] via-[#E5BE53] to-[#B8832A] text-brand-black text-xs font-bold uppercase tracking-wider shadow-lg hover:shadow-gold-md hover:scale-[1.02] active:scale-95 transition-all duration-300 whitespace-nowrap"
             >
               <span className="relative z-10 flex items-center gap-1.5">
                 <Sparkles size={14} />
