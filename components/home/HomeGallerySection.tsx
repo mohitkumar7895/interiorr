@@ -204,9 +204,6 @@ export default function HomeGallerySection({ items }: HomeGallerySectionProps) {
           </div>
         </div>
       )}
-          </div>
-        </div>
-      )}
     </section>
   );
 }
