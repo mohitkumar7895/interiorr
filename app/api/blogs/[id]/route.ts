@@ -79,6 +79,7 @@ export async function PUT(
       revalidatePath("/", "page");
       revalidatePath("/blogs", "page");
       revalidatePath(`/blogs/${cleanSlug}`, "page");
+      revalidatePath("/sitemap.xml");
     } catch {}
 
     return NextResponse.json({ success: true, blog: updated });
@@ -109,6 +110,7 @@ export async function DELETE(
       revalidatePath("/", "layout");
       revalidatePath("/", "page");
       revalidatePath("/blogs", "page");
+      revalidatePath("/sitemap.xml");
     } catch {}
 
     return NextResponse.json({ success: true, message: "Blog deleted successfully" });

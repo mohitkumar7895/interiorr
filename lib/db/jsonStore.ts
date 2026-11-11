@@ -483,8 +483,14 @@ export const jsonBlogs = {
     }
     return list;
   },
-  findFirst({ where }: { where: { OR?: Array<{ id?: string; slug?: string }> } }) {
+  findFirst({ where }: { where: { slug?: string; id?: string; OR?: Array<{ id?: string; slug?: string }> } }) {
     const store = getJsonStore();
+    if (where.slug) {
+      return store.blogs.find((b: any) => b.slug === where.slug) || null;
+    }
+    if (where.id) {
+      return store.blogs.find((b: any) => b.id === where.id) || null;
+    }
     if (where.OR) {
       for (const cond of where.OR) {
         const found = store.blogs.find((b: any) => (cond.id && b.id === cond.id) || (cond.slug && b.slug === cond.slug));

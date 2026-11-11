@@ -596,10 +596,42 @@ export const db = {
       } catch {}
       return jsonBlogs.findMany(options);
     },
-    async findFirst({ where }: { where: { OR?: Array<{ id?: string; slug?: string }> } }) {
+    async findFirst({ where }: { where: { slug?: string; id?: string; OR?: Array<{ id?: string; slug?: string }> } }) {
+      try {
+        if (where.slug) {
+          const row = await queryOne("SELECT * FROM Blogs WHERE slug = ? LIMIT 1", [where.slug]);
+          if (row) return { ...row, isPublished: Boolean(row.isPublished) };
+        }
+        if (where.id) {
+          const row = await queryOne("SELECT * FROM Blogs WHERE id = ? LIMIT 1", [where.id]);
+          if (row) return { ...row, isPublished: Boolean(row.isPublished) };
+        }
+        if (where.OR && where.OR.length > 0) {
+          for (const cond of where.OR) {
+            if (cond.slug) {
+              const row = await queryOne("SELECT * FROM Blogs WHERE slug = ? LIMIT 1", [cond.slug]);
+              if (row) return { ...row, isPublished: Boolean(row.isPublished) };
+            }
+            if (cond.id) {
+              const row = await queryOne("SELECT * FROM Blogs WHERE id = ? LIMIT 1", [cond.id]);
+              if (row) return { ...row, isPublished: Boolean(row.isPublished) };
+            }
+          }
+        }
+      } catch {}
       return jsonBlogs.findFirst({ where });
     },
     async findUnique({ where }: { where: { slug?: string; id?: string } }) {
+      try {
+        if (where.slug) {
+          const row = await queryOne("SELECT * FROM Blogs WHERE slug = ? LIMIT 1", [where.slug]);
+          if (row) return { ...row, isPublished: Boolean(row.isPublished) };
+        }
+        if (where.id) {
+          const row = await queryOne("SELECT * FROM Blogs WHERE id = ? LIMIT 1", [where.id]);
+          if (row) return { ...row, isPublished: Boolean(row.isPublished) };
+        }
+      } catch {}
       return jsonBlogs.findUnique({ where });
     },
     async create({ data }: { data: any }) {
@@ -607,8 +639,8 @@ export const db = {
       try {
         const id = jsonRes.id;
         await execute(
-          `INSERT INTO Blogs (id, slug, title, excerpt, content, featuredImage, category, author, readTime, publishedAt, isPublished)
-           VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+          `INSERT INTO Blogs (id, slug, title, excerpt, content, featuredImage, category, author, readTime, publishedAt, isPublished, createdAt, updatedAt)
+           VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW(3), NOW(3))`,
           [
             id,
             jsonRes.slug,
@@ -623,7 +655,9 @@ export const db = {
             jsonRes.isPublished ? 1 : 0,
           ]
         );
-      } catch {}
+      } catch (err) {
+        console.error("MySQL Blogs create error:", err);
+      }
       return jsonRes;
     },
     async update({ where, data }: { where: { id: string }; data: any }) {
@@ -637,21 +671,30 @@ export const db = {
             values.push(k === "isPublished" ? (v ? 1 : 0) : v);
           }
         }
+        fields.push("updatedAt = NOW(3)");
         if (fields.length > 0) {
           values.push(where.id);
           await execute(`UPDATE Blogs SET ${fields.join(", ")} WHERE id = ?`, values);
         }
-      } catch {}
+      } catch (err) {
+        console.error("MySQL Blogs update error:", err);
+      }
       return jsonRes;
     },
     async delete({ where }: { where: { id: string } }) {
       const jsonRes = jsonBlogs.delete({ where });
       try {
-        await execute("DELETE FROM Blogs WHERE id = ?", [where.id]);
-      } catch {}
+        await execute("DELETE FROM Blogs WHERE id = ? OR slug = ?", [where.id, where.id]);
+      } catch (err) {
+        console.error("MySQL Blogs delete error:", err);
+      }
       return jsonRes;
     },
     async count() {
+      try {
+        const res = await queryOne<{ total: number }>("SELECT COUNT(*) as total FROM Blogs");
+        if (res) return Number(res.total);
+      } catch {}
       return jsonBlogs.count();
     },
   },

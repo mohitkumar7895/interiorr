@@ -80,6 +80,7 @@ export async function POST(req: NextRequest) {
       revalidatePath("/", "page");
       revalidatePath("/blogs", "page");
       revalidatePath(`/blogs/${cleanSlug}`, "page");
+      revalidatePath("/sitemap.xml");
     } catch {}
 
     return NextResponse.json({ success: true, blog }, { status: 201 });
