@@ -73,11 +73,11 @@ export default function MaLogo({
           </span>
         </div>
         <div className="flex items-center gap-1.5 sm:gap-2 leading-none mt-0.5">
-          <span className="text-[7.5px] min-[360px]:text-[8.5px] sm:text-[9px] uppercase tracking-[0.12em] sm:tracking-[0.18em] xl:tracking-[0.25em] text-brand-gold font-semibold whitespace-nowrap">
+          <span className="text-[7.5px] min-[360px]:text-[8.5px] sm:text-[9px] uppercase tracking-[0.12em] sm:tracking-[0.18em] xl:tracking-[0.22em] text-brand-gold font-semibold whitespace-nowrap">
             Luxury Woodwork &amp; Turnkey
           </span>
-          <span className="hidden xl:inline-block w-1.5 h-1.5 rounded-full bg-brand-gold/60" />
-          <span className="hidden xl:inline-block text-[9px] text-gray-400 italic">
+          <span className="hidden 2xl:inline-block w-1.5 h-1.5 rounded-full bg-brand-gold/60" />
+          <span className="hidden 2xl:inline-block text-[9px] text-gray-400 italic">
             Sector 120 Noida
           </span>
         </div>
